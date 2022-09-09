@@ -19,8 +19,13 @@ public class RoleService implements IRoleService {
 	private RoleRepository roleRepo;
 
 	@Override
-	public List<RoleDTO> getListByPage(Pageable pageable) {
-		List<Role> getList = roleRepo.findAll(pageable).getContent();
+	public List<RoleDTO> getList(String keyword, Pageable pageable) {
+		List<Role> getList = null;
+		if (keyword == null) {
+			getList = roleRepo.findAll(pageable).getContent();
+		} else if (keyword != null && keyword.length() > 0) {
+			getList = roleRepo.getSearchListByName(keyword, pageable);
+		}
 		List<RoleDTO> resultList = new ArrayList<>();
 		for (Role role : getList) {
 			RoleDTO roleDTO = new RoleDTO();
@@ -28,12 +33,6 @@ public class RoleService implements IRoleService {
 			resultList.add(roleDTO);
 		}
 		return resultList;
-	}
-
-	@Override
-	public List<RoleDTO> getSearchListByPage(String keyword, Pageable pageable) {
-
-		return null;
 	}
 
 	@Override

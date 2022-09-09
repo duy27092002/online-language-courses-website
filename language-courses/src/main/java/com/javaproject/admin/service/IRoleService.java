@@ -7,9 +7,7 @@ import org.springframework.data.domain.Pageable;
 import com.javaproject.admin.dto.RoleDTO;
 
 public interface IRoleService {
-	List<RoleDTO> getListByPage(Pageable pageable);
-	
-	List<RoleDTO> getSearchListByPage(String keyword, Pageable pageable);
+	List<RoleDTO> getList(String keyword, Pageable pageable);
 	
 	RoleDTO save(RoleDTO role);
 	

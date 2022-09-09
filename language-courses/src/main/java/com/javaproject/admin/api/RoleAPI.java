@@ -21,10 +21,10 @@ import com.javaproject.admin.util.SortUtil;
 public class RoleAPI {
 	@Autowired
 	private IRoleService roleService;
-	
+
 	@Autowired
 	private SortUtil sortUtil;
-	
+
 	@GetMapping
 	public ResponseEntity<RoleDTO> showRoleListPage(
 			@Pattern(regexp = "^.+$") @RequestParam(value = "page", required = false, defaultValue = "1") String page,
@@ -38,13 +38,11 @@ public class RoleAPI {
 			roleDTO.setCurrentPage(getPage);
 			roleDTO.setPageTotal(roleService.getTotalPage(pageSize));
 			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSord(orderBy, orderType));
-			
 			if (keyword != null) {
-				
+				roleDTO.setResultList(roleService.getList(keyword, pageable));
 			} else {
-				roleDTO.setResultList(roleService.getListByPage(pageable));
+				roleDTO.setResultList(roleService.getList(null, pageable));
 			}
-			
 			return ResponseEntity.ok(roleDTO);
 		} catch (Exception exp) {
 			throw new BadRequestException("Yêu câu không hợp lệ. Vui lòng kiểm tra lại!");
