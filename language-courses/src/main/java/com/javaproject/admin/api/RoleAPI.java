@@ -17,7 +17,7 @@ import com.javaproject.admin.service.IRoleService;
 import com.javaproject.admin.util.SortUtil;
 
 @RestController(value = "roleAPIOfAdmin")
-@RequestMapping(value = "/api/role")
+@RequestMapping(value = "/api/admin/role")
 public class RoleAPI {
 	@Autowired
 	private IRoleService roleService;

@@ -23,7 +23,8 @@
 
 <!-- Custom styles for this template-->
 <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -50,24 +51,26 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link"
-				href="/quan-tri"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Tổng quan</span></a>
-			</li>
+			<li class="nav-item active"><a class="nav-link" href="/quan-tri">
+					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Tổng quan</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Danh mục</div>
-			
+
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="/quan-tri/thong-tin-website">
-					<i class="fas fa-fw fa-table"></i> <span>Thông tin website</span>
+			<li class="nav-item"><a class="nav-link"
+				href="/quan-tri/thong-tin-website"> <i
+					class="fas fa-fw fa-table"></i> <span>Thông tin website</span>
 			</a></li>
-			
+
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="/quan-tri/vai-tro">
-					<i class="fas fa-users-cog"></i> <span>Vai trò</span>
+			<li class="nav-item"><a class="nav-link"
+				href="/quan-tri/vai-tro"> <i class="fas fa-users-cog"></i> <span>Vai
+						trò</span>
 			</a></li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
@@ -79,34 +82,34 @@
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/quan-tri/danh-sach-admin">Admin</a> 
-						<a class="collapse-item" href="/quan-tri/danh-sach-giang-vien">Giảng viên</a>
-						<a class="collapse-item" href="/quan-tri/danh-sach-hoc-vien">Học viên</a>
+						<a class="collapse-item" href="/quan-tri/danh-sach-admin">Admin</a>
+						<a class="collapse-item" href="/quan-tri/danh-sach-giang-vien">Giảng
+							viên</a> <a class="collapse-item" href="/quan-tri/danh-sach-hoc-vien">Học
+							viên</a>
 					</div>
-				</div>
-			</li>
+				</div></li>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
 					class="fas fa-book-open"></i> <span>Khóa học</span>
-				</a>
+			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/quan-tri/danh-sach-ngon-ngu">Ngôn ngữ</a> 
-						<a class="collapse-item" href="/quan-tri/danh-sach-khoa-hoc">Khóa học</a>
-						<a class="collapse-item" href="/quan-tri/binh-luan">Bình luận</a>
-						<a class="collapse-item" href="/quan-tri/danh-gia-cua-hoc-vien">Đánh giá</a>
+						<a class="collapse-item" href="/quan-tri/danh-sach-ngon-ngu">Ngôn
+							ngữ</a> <a class="collapse-item" href="/quan-tri/danh-sach-khoa-hoc">Khóa
+							học</a> <a class="collapse-item" href="/quan-tri/binh-luan">Bình
+							luận</a> <a class="collapse-item"
+							href="/quan-tri/danh-gia-cua-hoc-vien">Đánh giá</a>
 					</div>
-				</div>
-			</li>
+				</div></li>
 
 			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="/quan-tri/cau-hoi-thuong-gap">
-					<i class="fas fa-question-circle"></i> <span>Câu hỏi thường gặp</span>
+			<li class="nav-item"><a class="nav-link"
+				href="/quan-tri/cau-hoi-thuong-gap"> <i
+					class="fas fa-question-circle"></i> <span>Câu hỏi thường gặp</span>
 			</a></li>
 
 			<!-- Divider -->
