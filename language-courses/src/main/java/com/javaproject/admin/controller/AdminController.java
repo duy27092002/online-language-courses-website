@@ -1,18 +1,17 @@
 package com.javaproject.admin.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller(value = "HomeControllerOfAdmin")
-public class HomeController {
+@Controller(value = "AdminController")
+public class AdminController {
 	@GetMapping(value = {"/quan-tri"})
 	public String dashboardPage() {
 		return "/admin/home/index";
 	}
 	
 	@GetMapping(value = {"/quan-tri/vai-tro"})
-	public String showRoleListPage() {
+	public String viewRoleListPage() {
 		return "/admin/role/list";
 	}
 	
@@ -22,22 +21,22 @@ public class HomeController {
 	}
 	
 	@GetMapping(value = {"/quan-tri/danh-sach-ngon-ngu"})
-	public String showLanguageListPage() {
+	public String viewLanguageListPage() {
 		return "/admin/language/list";
 	}
 	
 	@GetMapping(value = {"/quan-tri/danh-sach-admin"})
-	public String showAdminListPage() {
+	public String viewAdminListPage() {
 		return "/admin/user/admin-list";
 	}
 	
 	@GetMapping(value = {"/dang-nhap"})
-	public String signInPage() {
+	public String viewSignInPage() {
 		return "/sign-in";
 	}
 	
 	@GetMapping(value = {"/dang-ky", "/dang-ki"})
-	public String signUpPage() {
+	public String viewSignUpPage() {
 		return "/sign-up";
 	}
 }
