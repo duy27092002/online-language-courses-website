@@ -9,8 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -51,8 +51,8 @@ public class User extends BaseEntity implements UserDetails {
 	@Column(length = 180)
 	private String password;
 
-	@OneToOne
-	@JoinColumn(name = "role_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "role_id")
 	private Role role;
 
 	@Column(name = "twitter_link", nullable = true)
