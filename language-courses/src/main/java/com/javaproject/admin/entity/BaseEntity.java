@@ -26,21 +26,21 @@ public abstract class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@Column
-//	@CreatedDate
-//	private Date createdDate;
-//	
-//	@Column
-//	@CreatedBy
-//	private String createdBy;
-//	
-//	@Column
-//	@LastModifiedDate
-//	private Date modifiedDate;
-//	
-//	@Column
-//	@LastModifiedBy
-//	private String modifiedBy;
+	@Column
+	@CreatedDate
+	private Date createdDate;
+	
+	@Column
+	@CreatedBy
+	private String createdBy;
+	
+	@Column
+	@LastModifiedDate
+	private Date modifiedDate;
+	
+	@Column
+	@LastModifiedBy
+	private String modifiedBy;
 
 	@Column
 	private byte status;

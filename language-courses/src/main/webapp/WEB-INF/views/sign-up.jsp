@@ -51,7 +51,7 @@
 						</form>
 						<hr>
 						<div class="text-center">
-							<a class="small" href="forgot-password.html">Quên mật khẩu?</a>
+							<a class="small" href="">Quên mật khẩu?</a>
 						</div>
 						<div class="text-center">
 							<a class="small" href="/dang-nhap">Bạn đã có tài khoản?

@@ -1,5 +1,6 @@
 package com.javaproject.admin.api;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class RoleAPI {
 	private SortUtil sortUtil;
 
 	@GetMapping
+	@RolesAllowed("ROLE_GIANGVIEN")
 	public ResponseEntity<RoleDTO> showRoleListPage(
 			@Pattern(regexp = "^.+$") @RequestParam(value = "page", required = false, defaultValue = "1") String page,
 			@RequestParam(name = "order-by", required = false, defaultValue = "name") String orderBy,
@@ -45,6 +47,7 @@ public class RoleAPI {
 			}
 			return ResponseEntity.ok(roleDTO);
 		} catch (Exception exp) {
+			
 			throw new BadRequestException("Yêu câu không hợp lệ. Vui lòng kiểm tra lại!");
 		}
 	}

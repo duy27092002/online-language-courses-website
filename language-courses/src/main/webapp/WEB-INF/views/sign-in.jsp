@@ -19,22 +19,15 @@
 							<form class="user">
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
-										id="exampleInputEmail" aria-describedby="emailHelp"
+										id="email" name="email" aria-describedby="emailHelp"
 										placeholder="Email">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control form-control-user"
-										id="exampleInputPassword" placeholder="Mật khẩu">
+									<input type="password" id="password" name="password"
+										class="form-control form-control-user" placeholder="Mật khẩu">
 								</div>
-								<div class="form-group">
-									<div class="custom-control custom-checkbox small">
-										<input type="checkbox" class="custom-control-input"
-											id="customCheck"> <label class="custom-control-label"
-											for="customCheck">Ghi nhớ tôi</label>
-									</div>
-								</div>
-								<a href="" class="btn btn-primary btn-user btn-block"> Đăng nhập
-								</a>
+								<a href="" class="btn btn-primary btn-user btn-block"> Đăng
+									nhập </a>
 							</form>
 							<hr>
 							<div class="text-center">
