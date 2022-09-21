@@ -23,11 +23,11 @@ public class Comment extends BaseEntity {
 	private Date time;
 
 	@ManyToOne
-	@JoinColumn(name = "video_id")
+	@JoinColumn(name = "video_id", nullable = false)
 	private Video video;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@ManyToOne

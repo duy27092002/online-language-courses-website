@@ -20,32 +20,32 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User extends BaseEntity {
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String name;
 
 	@Column(length = 500)
 	private String avatar;
 
-	@Column
+	@Column(nullable = false)
 	private Date dob;
 
-	@Column
+	@Column(nullable = false)
 	private byte gender;
 
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String email;
 
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String phoneNumber;
 
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String userName;
 
-	@Column(length = 180)
+	@Column(length = 180, nullable = false)
 	private String password;
 
 	@ManyToOne
-	@JoinColumn(name = "role_id")
+	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
 	@Column(name = "twitter_link", nullable = true)

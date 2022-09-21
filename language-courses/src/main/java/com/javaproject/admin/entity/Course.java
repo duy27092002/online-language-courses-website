@@ -22,20 +22,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Course extends BaseEntity {
-	@Column
+	@Column(nullable = false)
 	private String name;
 
-	@Column(length = 1000)
+	@Column(length = 1000, nullable = false)
 	private String thumbnail;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "course_skill", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "skill_level_id"))
 	private List<SkillLevel> skillLevelList = new ArrayList<>();
 
-	@Column(columnDefinition = "TEXT")
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String description;
 
-	@Column
+	@Column(nullable = false)
 	private int price;
 
 	@Column(nullable = true)
@@ -51,9 +51,9 @@ public class Course extends BaseEntity {
 	private Date releaseTime;
 
 	@ManyToOne
-	@JoinColumn(name = "language_id")
+	@JoinColumn(name = "language_id", nullable = false)
 	private Language language;
-	
+
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 	private List<CourseUser> courseUserList = new ArrayList<>();
 

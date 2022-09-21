@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SkillLevel extends BaseEntity {
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String name;
 
 	@ManyToMany(mappedBy = "skillLevelList", cascade = { CascadeType.PERSIST,

@@ -12,16 +12,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class About extends BaseEntity {
-	@Column(length = 10)
+	@Column(length = 10, nullable = false)
 	private String name;
 
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String location;
 
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String email;
 
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String phoneNumber;
 
 	@Column(name = "twitter_link")

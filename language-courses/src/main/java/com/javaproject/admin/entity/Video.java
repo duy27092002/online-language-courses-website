@@ -19,10 +19,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Video extends BaseEntity {
-	@Column(length = 500)
+	@Column(length = 500, nullable = false)
 	private String videoFile;
 
-	@Column
+	@Column(nullable = false)
 	private String name;
 
 	@Column(length = 500)
@@ -32,11 +32,11 @@ public class Video extends BaseEntity {
 	private String description;
 
 	@ManyToOne
-	@JoinColumn(name = "course_id")
+	@JoinColumn(name = "course_id", nullable = false)
 	private Course course;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@OneToMany(mappedBy = "video", cascade = CascadeType.ALL)

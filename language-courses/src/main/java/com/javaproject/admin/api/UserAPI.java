@@ -24,9 +24,14 @@ public class UserAPI {
 		User user = new User();
 		user.setName(dto.getName());
 		user.setEmail(dto.getEmail());
+		user.setDob(dto.getDob());
+		user.setPhoneNumber("0987654321");
+		user.setUserName("Admin 1");
+		user.setGender((byte) 1);
 		PasswordEncoder password = new BCryptPasswordEncoder();
 		String pass = password.encode(dto.getPassword());
 		user.setPassword(pass);
+		user.setStatus((byte) 1);
 		user = userRepo.save(user);
 		return null;
 	}

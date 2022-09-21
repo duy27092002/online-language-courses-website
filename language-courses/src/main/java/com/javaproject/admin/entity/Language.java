@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Language extends BaseEntity {
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String name;
 
 	@OneToMany(mappedBy = "language", cascade = CascadeType.ALL)

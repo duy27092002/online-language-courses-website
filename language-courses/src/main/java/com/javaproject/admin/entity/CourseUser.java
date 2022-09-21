@@ -14,10 +14,10 @@ import lombok.Setter;
 @Setter
 public class CourseUser extends BaseEntity {
 	@ManyToOne
-	@JoinColumn(name = "course_id")
+	@JoinColumn(name = "course_id", nullable = false)
 	private Course course;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 }

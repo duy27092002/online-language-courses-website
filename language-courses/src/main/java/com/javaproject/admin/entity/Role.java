@@ -21,18 +21,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role extends BaseEntity {
-	@Column(length = 20)
+	@Column(length = 20, nullable = false)
 	private String name;
-	
-	public Role(String name) {
-		this.name = name;
-	}
+
+	@Column(length = 20, nullable = false)
+	private String code;
 
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
 	private List<User> users = new ArrayList<>();
-
-	@Override
-	public String toString() {
-		return this.name;
-	}
 }

@@ -15,16 +15,16 @@ import lombok.Setter;
 @Setter
 public class Evaluated extends BaseEntity {
 	@ManyToOne
-	@JoinColumn(name = "course_id")
+	@JoinColumn(name = "course_id", nullable = false)
 	private Course course;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@Column(length = 1000)
+	@Column(length = 1000, nullable = false)
 	private String content;
 
-	@Column
+	@Column(nullable = false)
 	private int point;
 }
