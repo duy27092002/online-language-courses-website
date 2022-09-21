@@ -86,7 +86,7 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
                 </div>
-                <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Tham gia với chúng tôi</a>
+                <a href="/dang-nhap" class="btn btn-primary py-2 px-4 d-none d-lg-block">Tham gia với chúng tôi</a>
             </div>
         </nav>
     </div>

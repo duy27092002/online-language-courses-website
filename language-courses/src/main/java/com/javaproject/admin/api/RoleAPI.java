@@ -27,7 +27,7 @@ public class RoleAPI {
 	private SortUtil sortUtil;
 
 	@GetMapping
-	@RolesAllowed("ROLE_ADMIN")
+	@RolesAllowed("ROLE_admin")
 	public ResponseEntity<RoleDTO> showRoleListPage(
 			@Pattern(regexp = "^.+$") @RequestParam(value = "page", required = false, defaultValue = "1") String page,
 			@RequestParam(name = "order-by", required = false, defaultValue = "name") String orderBy,

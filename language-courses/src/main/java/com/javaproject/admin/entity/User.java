@@ -1,7 +1,6 @@
 package com.javaproject.admin.entity;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -13,10 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,9 +19,7 @@ import lombok.Setter;
 @Table(name = "user")
 @Getter
 @Setter
-public class User extends BaseEntity implements UserDetails {
-	private static final long serialVersionUID = 1L;
-
+public class User extends BaseEntity {
 	@Column(length = 50)
 	private String name;
 
@@ -84,41 +77,4 @@ public class User extends BaseEntity implements UserDetails {
 
 	@OneToMany(mappedBy = "feedbackFor", cascade = CascadeType.ALL)
 	private List<Comment> feedbackCommentsList = new ArrayList<>();
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(role.getName()));
-		return authorities;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-	
-	public void addRole(Role role) {
-		this.setRole(role);
-	}
-	
 }

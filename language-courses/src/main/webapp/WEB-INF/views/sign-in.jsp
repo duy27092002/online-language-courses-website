@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/form/header-of-form.jsp"%>
+<%@include file="/WEB-INF/views/common/taglib.jsp"%>
 <!-- Outer Row -->
 <div class="row justify-content-center">
 
@@ -15,19 +16,22 @@
 						<div class="p-5">
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">Chào mừng bạn!</h1>
+								<c:if test="${param.loi != null}">
+									<div class="alert alert-danger rounded-pill">Sai thông
+										tin đăng nhập</div>
+								</c:if>
 							</div>
-							<form class="user">
+							<form class="user" id="loginForm" role="form">
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
-										id="email" name="email" aria-describedby="emailHelp"
-										placeholder="Email">
+										name="email" aria-describedby="emailHelp" placeholder="Email" />
 								</div>
 								<div class="form-group">
-									<input type="password" id="password" name="password"
-										class="form-control form-control-user" placeholder="Mật khẩu">
+									<input type="password" name="password"
+										class="form-control form-control-user" placeholder="Mật khẩu" />
 								</div>
-								<a href="" class="btn btn-primary btn-user btn-block"> Đăng
-									nhập </a>
+								<button type="submit" id="btnLogin"
+									class="btn btn-primary btn-user btn-block">Đăng nhập</button>
 							</form>
 							<hr>
 							<div class="text-center">
@@ -45,4 +49,31 @@
 	</div>
 
 </div>
+<!-- <script>
+	$('#btnLogin').click(function(e) {
+		e.preventDefault();
+		var data = {};
+		var formData = $('#loginForm').serializeArray();
+		$.each(formData, function(i, v) {
+			data["" + v.name + ""] = v.value;
+		});
+		checkLogin(data);
+	});
+
+	function checkLogin(data) {
+		$.ajax({
+			url : '/api/auth/login',
+			type : 'POST',
+			contentType : 'application/x-www-form-urlencoded',
+			data : {email: data["email"], password: data["password"]},
+			dataType : 'json',
+			success : function(result) {
+				console.log(result);
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+	}
+</script> -->
 <%@include file="/WEB-INF/views/common/form/footer-of-form.jsp"%>
