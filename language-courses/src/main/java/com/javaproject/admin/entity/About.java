@@ -24,18 +24,18 @@ public class About extends BaseEntity {
 	@Column(length = 20, nullable = false)
 	private String phoneNumber;
 
-	@Column(name = "twitter_link")
+	@Column(name = "twitter_link", nullable = false)
 	private String twitterLink;
 
-	@Column(name = "facebook_link")
+	@Column(name = "facebook_link", nullable = false)
 	private String facebookLink;
 
-	@Column(name = "instagram_link")
+	@Column(name = "instagram_link", nullable = false)
 	private String instagramLink;
 
-	@Column(name = "youtube_link")
+	@Column(name = "youtube_link", nullable = false)
 	private String youtubeLink;
 
-	@Column(name = "in_link")
+	@Column(name = "in_link", nullable = false)
 	private String inLink;
 }
