@@ -3,6 +3,7 @@ package com.javaproject.admin.service.impl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.javaproject.admin.dto.AboutDTO;
 import com.javaproject.admin.entity.About;
@@ -10,6 +11,7 @@ import com.javaproject.admin.repository.AboutRepository;
 import com.javaproject.admin.service.IAboutService;
 
 @Service
+@Transactional
 public class AboutService implements IAboutService {
 	@Autowired
 	private AboutRepository aboutRepo;
