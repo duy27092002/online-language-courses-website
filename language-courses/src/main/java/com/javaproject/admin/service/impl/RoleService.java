@@ -36,9 +36,27 @@ public class RoleService implements IRoleService {
 	}
 
 	@Override
-	public RoleDTO save(RoleDTO role) {
-		
-		return null;
+	public RoleDTO save(RoleDTO roleDTO) {
+		Long getRoleId = roleDTO.getId();
+		Role roleEntity = null;
+		if (getRoleId == null) {
+			roleEntity = new Role();
+		} else {
+			roleEntity = roleRepo.findById(getRoleId).get();
+		}
+		BeanUtils.copyProperties(roleDTO, roleEntity);
+		BeanUtils.copyProperties(roleRepo.save(roleEntity), roleDTO);
+		return roleDTO;
+	}
+
+	@Override
+	public List<RoleDTO> getDetails(Long id) {
+		Role getRoleEntityById = roleRepo.findById(id).get();
+		List<RoleDTO> roleDTO = new ArrayList<>();
+		RoleDTO dto = new RoleDTO();
+		BeanUtils.copyProperties(getRoleEntityById, dto);
+		roleDTO.add(dto);
+		return roleDTO;
 	}
 
 	@Override
@@ -46,5 +64,4 @@ public class RoleService implements IRoleService {
 		int getTotalItem = (int) roleRepo.count();
 		return (getTotalItem % pageSize == 0) ? (getTotalItem / pageSize) : ((getTotalItem / pageSize) + 1);
 	}
-
 }

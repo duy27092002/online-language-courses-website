@@ -11,5 +11,7 @@ public interface IRoleService {
 	
 	RoleDTO save(RoleDTO role);
 	
+	List<RoleDTO> getDetails(Long id);
+	
 	int getTotalPage(int pageSize);
 }

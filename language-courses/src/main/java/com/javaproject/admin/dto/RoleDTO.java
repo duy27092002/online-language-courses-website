@@ -19,4 +19,6 @@ public class RoleDTO extends BaseDTO<RoleDTO> {
 	@NotNull(message = "Không được để trống tên vai trò!")
 	@Length(min = 1, max = 20, message = "Tên vai trò không được vượt quá 20 ký tự")
 	private String name;
+	
+	private String code;
 }
