@@ -18,7 +18,7 @@ public class About extends BaseEntity {
 	@Column(length = 50, nullable = false)
 	private String location;
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String email;
 
 	@Column(length = 20, nullable = false)

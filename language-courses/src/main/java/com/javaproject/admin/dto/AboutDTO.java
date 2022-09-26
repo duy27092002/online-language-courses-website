@@ -28,7 +28,7 @@ public class AboutDTO extends BaseDTO<AboutDTO> {
 	private String location;
 
 	@NotNull(message = "Không được để trống email!")
-	@Length(min = 1, max = 20, message = "Email không được vượt quá 20 ký tự")
+	@Length(min = 1, max = 50, message = "Email không được vượt quá 50 ký tự")
 	@Email(message = "Sai định dạng email!")
 	@NotBlank(message = "Vui lòng nhập email!")
 	private String email;
