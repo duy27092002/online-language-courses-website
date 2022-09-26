@@ -26,11 +26,11 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService userDetailsService;
 
-	// private final BCryptPasswordEncoder bCryptPasswordEncoder;u
+	//private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);// .passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(userDetailsService);//.passwordEncoder(bCryptPasswordEncoder);
 	}
 
 	@Override
