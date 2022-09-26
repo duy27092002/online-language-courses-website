@@ -23,13 +23,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userRepo.findByEmail(email)
-				.orElseThrow(() -> new UsernameNotFoundException("Không tìm thấy " + email));
+		User user = userRepo.findByEmail(email);
 		
 		if (user != null) {
 			log.info("Da tim thay user: {}", email);
 		} else {
 			log.error("Khong tim thay user: {}", email);
+			throw new UsernameNotFoundException("Không tìm thấy " + email);
 		}
 		
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
