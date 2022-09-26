@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class UserDTO extends BaseDTO<UserDTO> {
 	private String name;
 
 	private String avatar;
+	MultipartFile fileImage;
 
 	@NotNull(message = "Không được để trống ngày sinh!")
 	private Date dob;
@@ -32,7 +34,7 @@ public class UserDTO extends BaseDTO<UserDTO> {
 	private byte gender;
 
 	@NotNull(message = "Không được để trống email!")
-	@Length(min = 1, max = 20, message = "Email không được vượt quá 20 ký tự")
+	@Length(min = 1, max = 50, message = "Email không được vượt quá 50 ký tự")
 	@Email(message = "Sai định dạng email!")
 	@NotBlank(message = "Vui lòng nhập email!")
 	private String email;
@@ -50,6 +52,9 @@ public class UserDTO extends BaseDTO<UserDTO> {
 	@NotNull(message = "Không được để trống mật khẩu!")
 	@NotBlank(message = "Vui lòng nhập mật khẩu!")
 	private String password;
+	
+	@NotNull(message = "Vui lòng chọn vai trò!")
+	private Long roleId;
 
 	private String twitterLink;
 

@@ -32,10 +32,10 @@ public class User extends BaseEntity {
 	@Column(nullable = false)
 	private byte gender;
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false, unique = true)
 	private String email;
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = false, unique = true)
 	private String phoneNumber;
 
 	@Column(length = 50, nullable = false)
