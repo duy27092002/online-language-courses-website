@@ -14,4 +14,6 @@ public interface IRoleService {
 	List<RoleDTO> getDetails(Long id);
 	
 	int getTotalPage(int pageSize);
+	
+	RoleDTO getRoleByName(String name);
 }

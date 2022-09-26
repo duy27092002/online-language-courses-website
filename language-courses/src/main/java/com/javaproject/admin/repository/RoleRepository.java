@@ -11,4 +11,6 @@ import com.javaproject.admin.entity.Role;
 public interface RoleRepository extends JpaRepository<Role, Long> {
 	@Query("select r from #{#entityName} r where r.name like %?1%")
 	List<Role> getSearchListByName(String keyword, Pageable pageable);
+	
+	Role findByName(String name);
 }

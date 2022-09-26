@@ -66,4 +66,15 @@ public class RoleService implements IRoleService {
 		int getTotalItem = (int) roleRepo.count();
 		return (getTotalItem % pageSize == 0) ? (getTotalItem / pageSize) : ((getTotalItem / pageSize) + 1);
 	}
+
+	@Override
+	public RoleDTO getRoleByName(String name) {
+		RoleDTO dto = new RoleDTO();
+		Role getRoleByName = roleRepo.findByName(name);
+		if (getRoleByName != null) {
+			BeanUtils.copyProperties(getRoleByName, dto);
+			return dto;
+		}
+		return null;
+	}
 }

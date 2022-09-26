@@ -64,6 +64,11 @@ public class RoleAPI {
 	@PostMapping
 	@RolesAllowed("ROLE_admin")
 	public ResponseEntity<?> create(@Valid @RequestBody RoleDTO dto) {
+		RoleDTO getRoleByName = roleService.getRoleByName(dto.getName());
+		if (getRoleByName != null) {
+			throw new BadRequestException("Tên vai trò này đã tồn tại. Vui lòng thử lại!");
+		}
+
 		try {
 			return ResponseEntity.ok(roleService.save(dto));
 		} catch (Exception ex) {
@@ -74,6 +79,14 @@ public class RoleAPI {
 	@PutMapping
 	@RolesAllowed("ROLE_admin")
 	public ResponseEntity<?> update(@Valid @RequestBody RoleDTO dto) {
+		RoleDTO getOldInfo = roleService.getDetails(dto.getId()).get(0);
+		if (!getOldInfo.getName().equalsIgnoreCase(dto.getName())) {
+			RoleDTO getRoleByName = roleService.getRoleByName(dto.getName());
+			if (getRoleByName != null) {
+				throw new BadRequestException("Tên vai trò này đã tồn tại. Vui lòng thử lại!");
+			}
+		}
+		
 		try {
 			return ResponseEntity.ok(roleService.save(dto));
 		} catch (Exception ex) {
