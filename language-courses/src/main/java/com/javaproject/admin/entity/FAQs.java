@@ -12,12 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FAQs extends BaseEntity {
-	@Column(length = 50, nullable = false)
-	private String name;
-
-	@Column(length = 20, nullable = false)
-	private String email;
-
 	@Column(length = 1000, nullable = false)
 	private String question;
 
