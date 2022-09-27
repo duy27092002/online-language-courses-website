@@ -44,7 +44,7 @@ public class LanguageAPI {
 			int pageSize = 2;
 			languageDTO.setCurrentPage(getPage);
 			languageDTO.setPageTotal(languageService.getTotalPage(pageSize));
-			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSord(orderBy, orderType));
+			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 			if (keyword != null) {
 				languageDTO.setResultList(languageService.getList(keyword, pageable));
 			} else if (keyword == null) {

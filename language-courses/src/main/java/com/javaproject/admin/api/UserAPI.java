@@ -45,7 +45,7 @@ public class UserAPI {
 			int pageSize = 2;
 			userDTO.setCurrentPage(getPage);
 			userDTO.setPageTotal(userService.getTotalPage(pageSize));
-			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSord(orderBy, orderType));
+			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 			if (keyword != null) {
 				userDTO.setResultList(userService.getList(keyword, pageable));
 			} else if (keyword == null && detailsUserId == null && editUserId == null) {

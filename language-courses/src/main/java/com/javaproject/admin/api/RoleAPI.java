@@ -45,7 +45,7 @@ public class RoleAPI {
 			int pageSize = 2;
 			roleDTO.setCurrentPage(getPage);
 			roleDTO.setPageTotal(roleService.getTotalPage(pageSize));
-			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSord(orderBy, orderType));
+			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 			if (keyword != null) {
 				roleDTO.setResultList(roleService.getList(keyword, pageable));
 			} else if (keyword == null && detailsRoleId == null && editRoleId == null) {

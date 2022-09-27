@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SortUtil {
-	public Sort handleSord(String orderBy, String orderType) {
+	public Sort handleSort(String orderBy, String orderType) {
 		Sort sort = null;
 		if (orderType.toLowerCase().equalsIgnoreCase("asc")) {
 			sort = Sort.by(orderBy.toLowerCase()).ascending();

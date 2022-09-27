@@ -44,7 +44,7 @@ public class FeedbackAPI {
 			int pageSize = 2;
 			feedbackDTO.setCurrentPage(getPage);
 			feedbackDTO.setPageTotal(feedbackService.getTotalPage(pageSize));
-			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSord(orderBy, orderType));
+			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 			if (keyword != null) {
 				feedbackDTO.setResultList(feedbackService.getList(keyword, pageable));
 			} else if (keyword == null) {

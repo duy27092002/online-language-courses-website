@@ -44,7 +44,7 @@ public class SkillLevelAPI {
 			int pageSize = 2;
 			sklDTO.setCurrentPage(getPage);
 			sklDTO.setPageTotal(skillLevelService.getTotalPage(pageSize));
-			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSord(orderBy, orderType));
+			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 			if (keyword != null) {
 				sklDTO.setResultList(skillLevelService.getList(keyword, pageable));
 			} else if (keyword == null) {
