@@ -35,8 +35,8 @@ public class Course extends BaseEntity {
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String description;
 
-	@Column(nullable = false)
-	private int price;
+	@Column(nullable = false, length = 20)
+	private String price;
 
 	@Column(nullable = true)
 	private int discount;
@@ -62,4 +62,9 @@ public class Course extends BaseEntity {
 
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 	private List<Evaluated> evaluatedList = new ArrayList<>();
+	
+	public void addSkillLevel(SkillLevel skl) {
+		this.skillLevelList.add(skl);
+		skl.getCourses().add(this);
+	}
 }
