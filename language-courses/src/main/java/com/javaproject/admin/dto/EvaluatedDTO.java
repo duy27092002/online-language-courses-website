@@ -24,5 +24,6 @@ public class EvaluatedDTO extends BaseDTO<EvaluatedDTO> {
 	@Length(min = 1, max = 1000, message = "Nội dung đánh giá không được vượt quá 1000 ký tự")
 	private String content;
 	
+	@NotNull(message = "Không được để trống điểm đánh giá!")
 	private int point;
 }
