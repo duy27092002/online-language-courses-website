@@ -28,7 +28,7 @@ public class Video extends BaseEntity {
 	@Column(length = 500)
 	private String thumbnail;
 
-	@Column(columnDefinition = "TEXT")
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String description;
 
 	@ManyToOne
