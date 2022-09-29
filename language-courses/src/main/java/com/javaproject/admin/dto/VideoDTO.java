@@ -4,6 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import lombok.Setter;
 public class VideoDTO extends BaseDTO<VideoDTO> {
 	@NotNull(message = "Vui lòng chọn video!")
 	private String videoFile;
+	MultipartFile videoName;
 	
 	@NotNull(message = "Không được để trống tên video!")
 	@NotBlank(message = "Vui lòng nhập tên video!")
@@ -25,6 +27,7 @@ public class VideoDTO extends BaseDTO<VideoDTO> {
 	
 	@NotNull(message = "Vui lòng chọn hình đại diện cho video!")
 	private String thumbnail;
+	MultipartFile thumbnailImg;
 	
 	@NotNull(message = "Không được để mô tả video!")
 	@NotBlank(message = "Vui lòng nhập mô tả cho video!")
