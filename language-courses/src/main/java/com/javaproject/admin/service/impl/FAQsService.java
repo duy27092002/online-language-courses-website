@@ -69,9 +69,9 @@ public class FAQsService implements IFAQsService {
 
 	@Override
 	public FAQsDTO getQuestion(String question) {
-		FAQsDTO dto = new FAQsDTO();
 		FAQs getQuestion = faqsRepo.findByQuestion(question);
 		if (getQuestion != null) {
+			FAQsDTO dto = new FAQsDTO();
 			BeanUtils.copyProperties(getQuestion, dto);
 			return dto;
 		}

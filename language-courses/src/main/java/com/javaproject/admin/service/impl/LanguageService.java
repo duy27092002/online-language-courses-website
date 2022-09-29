@@ -69,9 +69,9 @@ public class LanguageService implements ILanguageService {
 
 	@Override
 	public LanguageDTO getLanguageByName(String name) {
-		LanguageDTO dto = new LanguageDTO();
 		Language getLanguageByName = languageRepo.findByName(name);
 		if (getLanguageByName != null) {
+			LanguageDTO dto = new LanguageDTO();
 			BeanUtils.copyProperties(getLanguageByName, dto);
 			return dto;
 		}

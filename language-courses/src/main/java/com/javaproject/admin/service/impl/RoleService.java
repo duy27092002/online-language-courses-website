@@ -69,9 +69,9 @@ public class RoleService implements IRoleService {
 
 	@Override
 	public RoleDTO getRoleByName(String name) {
-		RoleDTO dto = new RoleDTO();
 		Role getRoleByName = roleRepo.findByName(name);
 		if (getRoleByName != null) {
+			RoleDTO dto = new RoleDTO();
 			BeanUtils.copyProperties(getRoleByName, dto);
 			return dto;
 		}

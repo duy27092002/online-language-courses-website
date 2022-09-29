@@ -69,9 +69,9 @@ public class SkillLevelService implements ISkillLevelService {
 
 	@Override
 	public SkillLevelDTO getSkillLevelByName(String name) {
-		SkillLevelDTO dto = new SkillLevelDTO();
 		SkillLevel getByName = skillLevelRepo.findByName(name);
 		if (getByName != null) {
+			SkillLevelDTO dto = new SkillLevelDTO();
 			BeanUtils.copyProperties(getByName, dto);
 			return dto;
 		}
