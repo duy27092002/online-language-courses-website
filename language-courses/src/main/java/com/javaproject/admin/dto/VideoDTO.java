@@ -18,7 +18,7 @@ import lombok.Setter;
 public class VideoDTO extends BaseDTO<VideoDTO> {
 	@NotNull(message = "Vui lòng chọn video!")
 	private String videoFile;
-	MultipartFile videoName;
+	MultipartFile videoFilePath;
 	
 	@NotNull(message = "Không được để trống tên video!")
 	@NotBlank(message = "Vui lòng nhập tên video!")
@@ -36,4 +36,9 @@ public class VideoDTO extends BaseDTO<VideoDTO> {
 	private Long courseId;
 
 	private Long userId;
+	
+	// response
+	private String courseName;
+	
+	private String emailOfInstructor;
 }
