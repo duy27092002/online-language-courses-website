@@ -26,4 +26,9 @@ public class EvaluatedDTO extends BaseDTO<EvaluatedDTO> {
 	
 	@NotNull(message = "Không được để trống điểm đánh giá!")
 	private int point;
+	
+	// response
+	private String courseName;
+	
+	private String emailOfStudent;
 }

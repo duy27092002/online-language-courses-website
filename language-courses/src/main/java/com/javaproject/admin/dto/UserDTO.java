@@ -65,4 +65,7 @@ public class UserDTO extends BaseDTO<UserDTO> {
 	private String youtubeLink;
 
 	private String inLink;
+	
+	// response
+	private String roleName;
 }
