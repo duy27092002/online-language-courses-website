@@ -63,7 +63,7 @@ public class VideoAPI {
 	public ResponseEntity<?> details(@Pattern(regexp = "^.+$") @PathVariable String id) {
 		try {
 			Long getId = Long.parseLong(id);
-			return ResponseEntity.ok(videoService.getDetails(getId, null));
+			return ResponseEntity.ok(videoService.getVideoByIdOrName(getId, null));
 		} catch (Exception ex) {
 			throw new BadRequestException("Không tìm thấy dữ liệu. Vui lòng thử lại!");
 		}
@@ -72,7 +72,7 @@ public class VideoAPI {
 	@PostMapping
 	@RolesAllowed({ "ROLE_admin", "ROLE_giang-vien" })
 	public ResponseEntity<?> create(@Valid @RequestBody VideoDTO dto) {
-		List<VideoDTO> getVideoByName = videoService.getDetails(null, dto.getName());
+		List<VideoDTO> getVideoByName = videoService.getVideoByIdOrName(null, dto.getName());
 		if (getVideoByName != null) {
 			throw new BadRequestException("Tên video này đã tồn tại. Vui lòng thử lại!");	
 		}
@@ -87,9 +87,9 @@ public class VideoAPI {
 	@PutMapping
 	@RolesAllowed({ "ROLE_admin", "ROLE_giang-vien", "ROLE_video-editor" })
 	public ResponseEntity<?> update(@Valid @RequestBody VideoDTO dto) {
-		VideoDTO getOldInfo = videoService.getDetails(dto.getId(), null).get(0);
+		VideoDTO getOldInfo = videoService.getVideoByIdOrName(dto.getId(), null).get(0);
 		if (!getOldInfo.getName().equalsIgnoreCase(dto.getName())) {
-			List<VideoDTO> getVideoByName = videoService.getDetails(null, dto.getName());
+			List<VideoDTO> getVideoByName = videoService.getVideoByIdOrName(null, dto.getName());
 			if (getVideoByName != null) {
 				throw new BadRequestException("Tên video này đã tồn tại. Vui lòng thử lại!");	
 			}
