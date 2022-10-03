@@ -15,6 +15,7 @@ import com.javaproject.admin.dto.CourseDTO;
 import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.Language;
 import com.javaproject.admin.entity.SkillLevel;
+import com.javaproject.admin.mapper.CourseMapper;
 import com.javaproject.admin.repository.CourseRepository;
 import com.javaproject.admin.repository.LanguageRepository;
 import com.javaproject.admin.repository.SkillLevelRepository;
@@ -35,6 +36,9 @@ public class CourseService implements ICourseService {
 	
 	@Autowired
 	private IImageService imageService;
+	
+	@Autowired
+	private CourseMapper courseMapper;
 
 	@Override
 	public List<CourseDTO> getList(String keyword, Pageable pageable) {
@@ -46,9 +50,7 @@ public class CourseService implements ICourseService {
 			entityList = courseRepo.getSearchList(keyword, pageable);
 		}
 		for (Course item : entityList) {
-			CourseDTO dto = new CourseDTO();
-			BeanUtils.copyProperties(item, dto);
-			resultList.add(dto);
+			resultList.add(courseMapper.toDTO(item));
 		}
 		return resultList;
 	}
