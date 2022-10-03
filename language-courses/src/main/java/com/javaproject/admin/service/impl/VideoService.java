@@ -56,7 +56,7 @@ public class VideoService implements IVideoService {
 	}
 
 	@Override
-	public List<VideoDTO> getDetails(Long id, String videoName) {
+	public List<VideoDTO> getVideoByIdOrName(Long id, String videoName) {
 		Video videoEntity = null;
 		if (id != null && videoName == null) {
 			videoEntity = videoRepo.findById(id).get();
@@ -90,7 +90,7 @@ public class VideoService implements IVideoService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		dto.setVideoFile("https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/videoplayback.mp4?alt=media&token=775baef3-bc53-406c-af09-7e297445d7b0");
+//		dto.setVideoFilePath("https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/videoplayback.mp4?alt=media&token=775baef3-bc53-406c-af09-7e297445d7b0");
 //		dto.setThumbnail("https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/tieng-anh-nha-hang.jpg?alt=media&token=bef8480a-40d4-4c62-a27d-9eb92fd23c22");
 
 		BeanUtils.copyProperties(dto, videoEntity);
@@ -112,5 +112,10 @@ public class VideoService implements IVideoService {
 		String fileName = imageService.save(files);
 		String fileUrl = imageService.getImageUrl(fileName);
 		return fileUrl;
+	}
+
+	@Override
+	public List<VideoDTO> getDetails(Long id) {
+		return null;
 	}
 }
