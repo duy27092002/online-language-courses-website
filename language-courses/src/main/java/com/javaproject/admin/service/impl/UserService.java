@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.javaproject.admin.dto.UserDTO;
 import com.javaproject.admin.entity.Role;
 import com.javaproject.admin.entity.User;
+import com.javaproject.admin.mapper.UserMapper;
 import com.javaproject.admin.repository.RoleRepository;
 import com.javaproject.admin.repository.UserRepository;
 import com.javaproject.admin.service.IUserService;
@@ -32,6 +33,9 @@ public class UserService implements IUserService {
 	
 	@Autowired
 	private IImageService imageService;
+	
+	@Autowired
+	private UserMapper userMapper;
 
 	@Override
 	public List<UserDTO> getList(String keyword, Pageable pageable) {
@@ -43,9 +47,7 @@ public class UserService implements IUserService {
 			entityList = userRepo.getSearchList(keyword, pageable);
 		}
 		for (User user : entityList) {
-			UserDTO dto = new UserDTO();
-			BeanUtils.copyProperties(user, dto);
-			resultList.add(dto);
+			resultList.add(userMapper.toDTO(user));
 		}
 		return resultList;
 	}

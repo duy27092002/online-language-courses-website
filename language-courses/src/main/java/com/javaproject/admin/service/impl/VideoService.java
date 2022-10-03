@@ -15,6 +15,7 @@ import com.javaproject.admin.dto.VideoDTO;
 import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.User;
 import com.javaproject.admin.entity.Video;
+import com.javaproject.admin.mapper.VideoMapper;
 import com.javaproject.admin.repository.CourseRepository;
 import com.javaproject.admin.repository.UserRepository;
 import com.javaproject.admin.repository.VideoRepository;
@@ -35,6 +36,9 @@ public class VideoService implements IVideoService {
 
 	@Autowired
 	private IImageService imageService;
+	
+	@Autowired
+	private VideoMapper videoMapper;
 
 	@Override
 	public List<VideoDTO> getList(String keyword, Pageable pageable) {
@@ -46,9 +50,7 @@ public class VideoService implements IVideoService {
 			entityList = videoRepo.getSearchList(keyword, pageable);
 		}
 		for (Video video : entityList) {
-			VideoDTO dto = new VideoDTO();
-			BeanUtils.copyProperties(video, dto);
-			resultList.add(dto);
+			resultList.add(videoMapper.toDTO(video));
 		}
 		return resultList;
 	}
@@ -83,7 +85,7 @@ public class VideoService implements IVideoService {
 		}
 
 		try {
-			dto.setVideoFile(getFileURL(dto.getVideoName()));
+			dto.setVideoFile(getFileURL(dto.getVideoFilePath()));
 			dto.setThumbnail(getFileURL(dto.getThumbnailImg()));
 		} catch (IOException e) {
 			e.printStackTrace();

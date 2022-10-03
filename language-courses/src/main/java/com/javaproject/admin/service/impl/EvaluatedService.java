@@ -13,6 +13,7 @@ import com.javaproject.admin.dto.EvaluatedDTO;
 import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.Evaluated;
 import com.javaproject.admin.entity.User;
+import com.javaproject.admin.mapper.EvaluatedMapper;
 import com.javaproject.admin.repository.CourseRepository;
 import com.javaproject.admin.repository.EvaluatedRepository;
 import com.javaproject.admin.repository.UserRepository;
@@ -29,6 +30,9 @@ public class EvaluatedService implements IEvaluatedService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private EvaluatedMapper evaluatedMapper;
 
 	@Override
 	public List<EvaluatedDTO> getList(String keyword, Pageable pageable) {
@@ -40,9 +44,7 @@ public class EvaluatedService implements IEvaluatedService {
 		}
 		List<EvaluatedDTO> resultList = new ArrayList<>();
 		for (Evaluated item : getList) {
-			EvaluatedDTO dto = new EvaluatedDTO();
-			BeanUtils.copyProperties(item, dto);
-			resultList.add(dto);
+			resultList.add(evaluatedMapper.toDTO(item));
 		}
 		return resultList;
 	}
