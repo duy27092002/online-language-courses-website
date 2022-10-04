@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,9 +37,7 @@ public class UserAPI {
 			@Pattern(regexp = "^.+$") @RequestParam(value = "page", required = false, defaultValue = "1") String page,
 			@RequestParam(name = "order-by", required = false, defaultValue = "name") String orderBy,
 			@RequestParam(name = "order-type", required = false, defaultValue = "asc") String orderType,
-			@RequestParam(name = "keyword", required = false) String keyword,
-			@RequestParam(name = "details-user-id", required = false) Long detailsUserId,
-			@RequestParam(name = "edit-user-id", required = false) Long editUserId) {
+			@RequestParam(name = "keyword", required = false) String keyword) {
 		UserDTO userDTO = new UserDTO();
 		try {
 			int getPage = Integer.parseInt(page);
@@ -48,16 +47,22 @@ public class UserAPI {
 			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 			if (keyword != null) {
 				userDTO.setResultList(userService.getList(keyword, pageable));
-			} else if (keyword == null && detailsUserId == null && editUserId == null) {
+			} else if (keyword == null) {
 				userDTO.setResultList(userService.getList(null, pageable));
-			} else if (detailsUserId != null) {
-				userDTO.setResultList(userService.getDetails(detailsUserId));
-			} else if (editUserId != null) {
-				userDTO.setResultList(userService.getDetails(editUserId));
 			}
 			return ResponseEntity.ok(userDTO);
 		} catch (Exception ex) {
 			throw new BadRequestException("Yêu cầu không hợp lệ. Vui lòng kiểm tra lại!");
+		}
+	}
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<?> details(@Pattern(regexp = "^.+$") @PathVariable String id) {
+		try {
+			Long getId = Long.parseLong(id);
+			return ResponseEntity.ok(userService.getDetails(getId));
+		} catch (Exception ex) {
+			throw new BadRequestException("Không tìm thấy dữ liệu. Vui lòng thử lại!");
 		}
 	}
 
