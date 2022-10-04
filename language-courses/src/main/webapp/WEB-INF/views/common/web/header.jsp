@@ -12,7 +12,7 @@
     <meta content="Edukate - online education website" name="description">
 
     <!-- Favicon -->
-    <link href="/web/img/favicon.ico" rel="icon">
+    <link href="/web/img/edukate_logo.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -67,7 +67,7 @@
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
             <a href="index.html" class="navbar-brand ml-lg-3">
-                <h1 class="m-0 text-uppercase text-primary"><i class="fa fa-book-reader mr-3"></i>Edukate</h1>
+                <h1 class="m-0 text-uppercase text-primary"><img src="/web/img/edukate_logo.png" class="mr-3" style="width: 45px; border-radius: 50%; margin-bottom: 0.25em;" />Edukate</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
