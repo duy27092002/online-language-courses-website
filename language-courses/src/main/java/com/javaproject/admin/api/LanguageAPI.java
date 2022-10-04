@@ -31,6 +31,20 @@ public class LanguageAPI {
 
 	@Autowired
 	private SortUtil sortUtil;
+	
+	// test
+//	@Autowired
+//	private ResponseDataTableService responseDTService;
+//	
+//	@GetMapping
+//	public ResponseEntity<?> viewList(@PagingParam(path = "language") ResponseDataTableDTO resDTDTO) {
+//		try {
+//			return ResponseEntity.ok(responseDTService.list(resDTDTO));
+//		} catch (Exception exp) {
+//			throw new BadRequestException("Yêu câu không hợp lệ. Vui lòng kiểm tra lại!");
+//		}
+//	}
+	// end test
 
 	@GetMapping
 	public ResponseEntity<?> viewList(
