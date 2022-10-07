@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaproject.admin.dto.FeedbackDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.entity.Feedback;
 import com.javaproject.admin.repository.FeedbackRepository;
 import com.javaproject.admin.service.IFeedbackService;
@@ -21,20 +22,15 @@ public class FeedbackService implements IFeedbackService {
 	private FeedbackRepository feedbackRepo;
 
 	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(feedbackRepo, new FeedbackDTO().getClass(), 
+				responseDataTableDTO.getKeyword());
+	}
+
+
+	@Override
 	public List<FeedbackDTO> getList(String keyword, Pageable pageable) {
-		List<Feedback> getList = null;
-		if (keyword == null) {
-			getList = feedbackRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			getList = feedbackRepo.getSearchListByKeyword(keyword, pageable);
-		}
-		List<FeedbackDTO> resultList = new ArrayList<>();
-		for (Feedback item : getList) {
-			FeedbackDTO dto = new FeedbackDTO();
-			BeanUtils.copyProperties(item, dto);
-			resultList.add(dto);
-		}
-		return resultList;
+		return null;
 	}
 
 	@Override
@@ -66,5 +62,4 @@ public class FeedbackService implements IFeedbackService {
 		getInfo.add(dto);
 		return getInfo;
 	}
-
 }
