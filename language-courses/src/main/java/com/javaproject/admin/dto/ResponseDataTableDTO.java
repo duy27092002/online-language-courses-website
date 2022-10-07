@@ -1,11 +1,13 @@
 package com.javaproject.admin.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.javaproject.admin.repository.SearchingRepository;
 import com.javaproject.admin.util.SortUtil;
 
 import lombok.AllArgsConstructor;
@@ -18,13 +20,13 @@ import lombok.NoArgsConstructor;
 public class ResponseDataTableDTO {
 	private String path;
 
-	private int page;
+	private Integer page;
 
-	private int pageSize;
+	private Integer pageSize;
 
-	private int totalOfPage;
+	private Integer totalOfPage;
 
-	private int totalOfItem;
+	private Integer totalOfItem;
 
 	private String keyword;
 
@@ -34,7 +36,7 @@ public class ResponseDataTableDTO {
 
 	private List<?> data;
 
-	public ResponseDataTableDTO(String path, int page, int pageSize, String keyword, String orderBy,
+	public ResponseDataTableDTO(String path, Integer page, Integer pageSize, String keyword, String orderBy,
 			String orderType) {
 		this.path = path;
 		this.page = page;
@@ -44,14 +46,29 @@ public class ResponseDataTableDTO {
 		this.orderType = orderType;
 	}
 
-	public ResponseDataTableDTO list(JpaRepository<?, ?> repository) throws Exception {
+	@SuppressWarnings("deprecation")
+	public <T> ResponseDataTableDTO getList(SearchingRepository<?, ?> repository, Class<T> dtoObj, String keyword)
+			throws Exception {
 		SortUtil sortUtil = new SortUtil();
-		Pageable pageable = PageRequest.of(this.getPage() - 1, this.getPageSize(),
-				sortUtil.handleSort(this.getOrderBy(), this.getOrderType()));
-		this.setData(repository.findAll(pageable).getContent());
-		long total = repository.count();
+		Pageable pageable = PageRequest.of(page - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
+		List<T> resultList = new ArrayList<>();
+		List<?> getListByPage = null;
+		long total = 0;
+		if (keyword == null) {
+			getListByPage = repository.findAll(pageable).getContent();
+			total = repository.count();
+		} else {
+			getListByPage = repository.getSearchList(keyword, pageable);
+			total = repository.getSearchList(keyword, null).size();
+		}
+		for (Object object : getListByPage) {
+			T dto = dtoObj.newInstance();
+			BeanUtils.copyProperties(object, dto);
+			resultList.add(dto);
+		}
+		this.setData(resultList);
 		this.setTotalOfItem((int) total);
-		this.setTotalOfPage((int) Math.ceil((double) total / this.getPageSize()));
+		this.setTotalOfPage((int) Math.ceil((double) total / pageSize));
 		return this;
 	}
 }
