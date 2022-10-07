@@ -14,9 +14,9 @@ public @interface PagingParam {
 	
 	int page() default 1;
 	
-	int pageSize() default 2;
+	int pageSize() default 8;
 	
-	String orderBy() default "";
+	String orderBy() default "id";
 	
 	String orderType() default "asc";
 }
