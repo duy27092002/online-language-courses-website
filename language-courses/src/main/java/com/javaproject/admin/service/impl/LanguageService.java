@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaproject.admin.dto.LanguageDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.entity.Language;
 import com.javaproject.admin.repository.LanguageRepository;
 import com.javaproject.admin.service.ILanguageService;
@@ -19,22 +20,11 @@ import com.javaproject.admin.service.ILanguageService;
 public class LanguageService implements ILanguageService {
 	@Autowired
 	private LanguageRepository languageRepo;
-
+	
 	@Override
-	public List<LanguageDTO> getList(String keyword, Pageable pageable) {
-		List<Language> getList = null;
-		if (keyword == null) {
-			getList = languageRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			getList = languageRepo.getSearchListByName(keyword, pageable);
-		}
-		List<LanguageDTO> resultList = new ArrayList<>();
-		for (Language item : getList) {
-			LanguageDTO dto = new LanguageDTO();
-			BeanUtils.copyProperties(item, dto);
-			resultList.add(dto);
-		}
-		return resultList;
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(languageRepo, new LanguageDTO().getClass(),
+				responseDataTableDTO.getKeyword());
 	}
 
 	@Override
@@ -75,6 +65,11 @@ public class LanguageService implements ILanguageService {
 			BeanUtils.copyProperties(getLanguageByName, dto);
 			return dto;
 		}
+		return null;
+	}
+
+	@Override
+	public List<LanguageDTO> getList(String keyword, Pageable pageable) {
 		return null;
 	}
 
