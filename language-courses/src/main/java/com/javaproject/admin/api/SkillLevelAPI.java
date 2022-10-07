@@ -5,8 +5,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.SkillLevelDTO;
 import com.javaproject.admin.exception.BadRequestException;
+import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.ISkillLevelService;
-import com.javaproject.admin.util.SortUtil;
 
 @RestController(value = "skillLevelAPIOfAdmin")
 @RequestMapping(value = "/api/admin/skill-level")
@@ -29,28 +27,10 @@ public class SkillLevelAPI {
 	@Autowired
 	private ISkillLevelService skillLevelService;
 
-	@Autowired
-	private SortUtil sortUtil;
-
 	@GetMapping
-	public ResponseEntity<?> viewList(
-			@Pattern(regexp = "^.+$") @RequestParam(value = "page", required = false, defaultValue = "1") String page,
-			@RequestParam(name = "order-by", required = false, defaultValue = "name") String orderBy,
-			@RequestParam(name = "order-type", required = false, defaultValue = "asc") String orderType,
-			@RequestParam(name = "keyword", required = false) String keyword) {
-		SkillLevelDTO sklDTO = new SkillLevelDTO();
+	public ResponseEntity<?> viewList(@PagingParam(path = "skillLevel") ResponseDataTableDTO resDTDTO) {
 		try {
-			int getPage = Integer.parseInt(page);
-			int pageSize = 2;
-			sklDTO.setCurrentPage(getPage);
-			sklDTO.setPageTotal(skillLevelService.getTotalPage(pageSize));
-			Pageable pageable = PageRequest.of(getPage - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
-			if (keyword != null) {
-				sklDTO.setResultList(skillLevelService.getList(keyword, pageable));
-			} else if (keyword == null) {
-				sklDTO.setResultList(skillLevelService.getList(null, pageable));
-			}
-			return ResponseEntity.ok(sklDTO);
+			return ResponseEntity.ok(skillLevelService.getList(resDTDTO));
 		} catch (Exception exp) {
 			throw new BadRequestException("Yêu câu không hợp lệ. Vui lòng kiểm tra lại!");
 		}

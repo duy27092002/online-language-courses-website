@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.javaproject.admin.dto.ResponseDataTableDTO;
+import com.javaproject.admin.dto.RoleDTO;
 import com.javaproject.admin.dto.SkillLevelDTO;
 import com.javaproject.admin.entity.SkillLevel;
 import com.javaproject.admin.repository.SkillLevelRepository;
@@ -21,20 +23,14 @@ public class SkillLevelService implements ISkillLevelService {
 	private SkillLevelRepository skillLevelRepo;
 
 	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(skillLevelRepo, new RoleDTO().getClass(), 
+				responseDataTableDTO.getKeyword());
+	}
+
+	@Override
 	public List<SkillLevelDTO> getList(String keyword, Pageable pageable) {
-		List<SkillLevel> getList = null;
-		if (keyword == null) {
-			getList = skillLevelRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			getList = skillLevelRepo.getSearchListByName(keyword, pageable);
-		}
-		List<SkillLevelDTO> resultList = new ArrayList<>();
-		for (SkillLevel item : getList) {
-			SkillLevelDTO dto = new SkillLevelDTO();
-			BeanUtils.copyProperties(item, dto);
-			resultList.add(dto);
-		}
-		return resultList;
+		return null;
 	}
 
 	@Override
