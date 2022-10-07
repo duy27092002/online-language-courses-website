@@ -3,14 +3,13 @@ package com.javaproject.admin.repository;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.javaproject.admin.entity.Role;
 
-public interface RoleRepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends SearchingRepository<Role, Long> {
 	@Query("select r from #{#entityName} r where r.name like %?1%")
-	List<Role> getSearchListByName(String keyword, Pageable pageable);
+	List<Role> getSearchList(String keyword, Pageable pageable);
 	
 	Role findByName(String name);
 }
