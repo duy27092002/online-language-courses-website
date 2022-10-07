@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaproject.admin.dto.ResponseDataTableDTO;
-import com.javaproject.admin.dto.RoleDTO;
 import com.javaproject.admin.dto.SkillLevelDTO;
 import com.javaproject.admin.entity.SkillLevel;
 import com.javaproject.admin.repository.SkillLevelRepository;
@@ -24,7 +23,7 @@ public class SkillLevelService implements ISkillLevelService {
 
 	@Override
 	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
-		return responseDataTableDTO.getList(skillLevelRepo, new RoleDTO().getClass(), 
+		return responseDataTableDTO.getList(skillLevelRepo, new SkillLevelDTO().getClass(), 
 				responseDataTableDTO.getKeyword());
 	}
 
