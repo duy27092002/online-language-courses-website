@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.RoleDTO;
 import com.javaproject.admin.entity.Role;
 import com.javaproject.admin.repository.RoleRepository;
@@ -21,20 +22,14 @@ public class RoleService implements IRoleService {
 	private RoleRepository roleRepo;
 
 	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(roleRepo, new RoleDTO().getClass(), 
+				responseDataTableDTO.getKeyword());
+	}
+
+	@Override
 	public List<RoleDTO> getList(String keyword, Pageable pageable) {
-		List<Role> getList = null;
-		if (keyword == null) {
-			getList = roleRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			getList = roleRepo.getSearchListByName(keyword, pageable);
-		}
-		List<RoleDTO> resultList = new ArrayList<>();
-		for (Role role : getList) {
-			RoleDTO roleDTO = new RoleDTO();
-			BeanUtils.copyProperties(role, roleDTO);
-			resultList.add(roleDTO);
-		}
-		return resultList;
+		return null;
 	}
 
 	@Override
