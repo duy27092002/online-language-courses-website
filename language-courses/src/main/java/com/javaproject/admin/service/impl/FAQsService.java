@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaproject.admin.dto.FAQsDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.entity.FAQs;
 import com.javaproject.admin.repository.FAQsRepository;
 import com.javaproject.admin.service.IFAQsService;
@@ -21,20 +22,14 @@ public class FAQsService implements IFAQsService {
 	private FAQsRepository faqsRepo;
 
 	@Override
-	public List<FAQsDTO> getList(String keyword, Pageable pageable) {
-		List<FAQs> getList = null;
-		if (keyword == null) {
-			getList = faqsRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			getList = faqsRepo.getSearchListByQuestion(keyword, pageable);
-		}
-		List<FAQsDTO> resultList = new ArrayList<>();
-		for (FAQs item : getList) {
-			FAQsDTO faqsDTO = new FAQsDTO();
-			BeanUtils.copyProperties(item, faqsDTO);
-			resultList.add(faqsDTO);
-		}
-		return resultList;
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(faqsRepo, new FAQsDTO().getClass(), 
+				responseDataTableDTO.getKeyword());
+	}
+
+	@Override
+	public List<FAQsDTO> getList(String question, Pageable pageable) {
+		return null;
 	}
 
 	@Override
