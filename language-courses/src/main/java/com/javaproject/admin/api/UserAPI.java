@@ -24,7 +24,6 @@ import com.javaproject.admin.util.SortUtil;
 
 @RestController(value = "userControllerOfAdmin")
 @RequestMapping(value = "/api/admin/user")
-@RolesAllowed("ROLE_admin")
 public class UserAPI {
 	@Autowired
 	private IUserService userService;
@@ -33,6 +32,7 @@ public class UserAPI {
 	private SortUtil sortUtil;
 
 	@GetMapping
+	@RolesAllowed("ROLE_admin")
 	public ResponseEntity<?> showList(
 			@Pattern(regexp = "^.+$") @RequestParam(value = "page", required = false, defaultValue = "1") String page,
 			@RequestParam(name = "order-by", required = false, defaultValue = "name") String orderBy,
@@ -86,7 +86,6 @@ public class UserAPI {
 	}
 
 	@PutMapping
-	@RolesAllowed({ "ROLE_giang-vien", "ROLE_admin" })
 	public ResponseEntity<?> update(@Valid @RequestBody UserDTO dto) {
 		UserDTO getOldInfo = userService.getDetails(dto.getId()).get(0);
 
