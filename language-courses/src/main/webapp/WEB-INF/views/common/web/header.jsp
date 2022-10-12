@@ -12,7 +12,7 @@
     <meta content="Edukate - online education website" name="description">
 
     <!-- Favicon -->
-    <link href="/web/img/edukate_logo.png" rel="icon">
+    <link href="/web/img/edukate_logo.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
