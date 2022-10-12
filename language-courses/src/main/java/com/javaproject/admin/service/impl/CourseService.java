@@ -6,12 +6,15 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaproject.admin.dto.CourseDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
+import com.javaproject.admin.dto.RoleDTO;
 import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.Language;
 import com.javaproject.admin.entity.SkillLevel;
@@ -41,16 +44,26 @@ public class CourseService implements ICourseService {
 	private CourseMapper courseMapper;
 
 	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(courseRepo, new CourseDTO().getClass(), 
+				responseDataTableDTO.getKeyword());
+	}
+
+	@Override
 	public List<CourseDTO> getList(String keyword, Pageable pageable) {
 		List<CourseDTO> resultList = new ArrayList<>();
-		List<Course> entityList = null;
+//		List<Course> entityList = null;
+		Page<Course> entityList = null;
 		if (keyword == null) {
-			entityList = courseRepo.findAll(pageable).getContent();
+			entityList = courseRepo.findAll(pageable)/* .getContent() */;
 		} else if (keyword != null && keyword.length() > 0) {
 			entityList = courseRepo.getSearchList(keyword, pageable);
 		}
 		for (Course item : entityList) {
-			resultList.add(courseMapper.toDTO(item));
+			CourseDTO dto = new CourseDTO();
+			BeanUtils.copyProperties(item, dto);
+			resultList.add(dto);
+			//resultList.add(courseMapper.toDTO(item));
 		}
 		return resultList;
 	}

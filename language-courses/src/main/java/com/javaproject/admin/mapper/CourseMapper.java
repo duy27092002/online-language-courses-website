@@ -13,10 +13,10 @@ public class CourseMapper {
 	private ModelMapper modelMapper;
 
 	public CourseDTO toDTO(Course entity) {
-		modelMapper.typeMap(Course.class, CourseDTO.class).addMappings(mapper -> {
-			mapper.map(src -> src.getLanguage().getName(), CourseDTO::setLanguageName);
-			mapper.map(src -> src.getSkillLevelList(), CourseDTO::setSkillLevelList);
-		});
+//		modelMapper.typeMap(Course.class, CourseDTO.class).addMappings(mapper -> {
+//			mapper.map(src -> src.getLanguage().getName(), CourseDTO::setLanguageName);
+//			mapper.map(src -> src.getSkillLevelList(), CourseDTO::setSkillLevelList);
+//		});
 
 		return modelMapper.map(entity, CourseDTO.class);
 	}

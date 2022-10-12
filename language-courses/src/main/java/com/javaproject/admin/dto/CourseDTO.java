@@ -1,8 +1,6 @@
 package com.javaproject.admin.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -10,8 +8,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.javaproject.admin.entity.SkillLevel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -56,7 +52,7 @@ public class CourseDTO extends BaseDTO<CourseDTO> {
 	private Long[] skillLevelIds;
 	
 	// response
-	private String languageName;
-	
-	private List<SkillLevel> skillLevelList = new ArrayList<>();
+//	private String languageName;
+
+//	private List<SkillLevel> skillLevelList = new ArrayList<>();
 }
