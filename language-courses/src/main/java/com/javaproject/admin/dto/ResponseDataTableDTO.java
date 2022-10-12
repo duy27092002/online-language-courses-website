@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -52,15 +53,19 @@ public class ResponseDataTableDTO {
 		SortUtil sortUtil = new SortUtil();
 		Pageable pageable = PageRequest.of(page - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
 		List<T> resultList = new ArrayList<>();
-		List<?> getListByPage = null;
+		//List<?> getListByPage = null;
+		Page<?> getListByPage = null;
 		long total = 0;
 		if (keyword == null) {
-			getListByPage = repository.findAll(pageable).getContent();
-			total = repository.count();
+//			getListByPage = repository.findAll(pageable).getContent();
+//			total = repository.count();
+			getListByPage = repository.getAllList(pageable);
 		} else {
 			getListByPage = repository.getSearchList(keyword, pageable);
-			total = repository.getSearchList(keyword, null).size();
+//			total = repository.getSearchList(keyword, null).size() ;
 		}
+		// test
+		total = getListByPage.getTotalElements();
 		for (Object object : getListByPage) {
 			T dto = dtoObj.newInstance();
 			BeanUtils.copyProperties(object, dto);
