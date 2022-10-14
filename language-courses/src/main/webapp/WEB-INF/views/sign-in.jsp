@@ -21,7 +21,7 @@
 										tin đăng nhập</div>
 								</c:if>
 							</div>
-							<form class="user" id="loginForm" role="form">
+							<form action="/check_login" class="user" id="loginForm" role="form" method="post">
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
 										name="email" aria-describedby="emailHelp" placeholder="Email" />

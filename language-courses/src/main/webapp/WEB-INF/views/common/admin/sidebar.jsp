@@ -14,6 +14,9 @@
 
 <title>Tổng quan</title>
 
+<!-- Favicon -->
+<link href="/web/img/edukate_logo.ico" rel="icon">
+
 <!-- Custom fonts for this template-->
 <link href="/admin/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
