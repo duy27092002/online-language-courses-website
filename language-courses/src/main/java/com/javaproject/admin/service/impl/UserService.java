@@ -1,7 +1,10 @@
 package com.javaproject.admin.service.impl;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -64,11 +67,22 @@ public class UserService implements IUserService {
 		} else {
 			userEntity = userRepo.findById(getUserId).get();
 		}
+//		try {
+//			userDTO.setAvatar(getImageURL(userDTO.getFileImage()));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		// start convert dob string to dob date
+		String dobString = userDTO.getDob();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date dobDate = null;
 		try {
-			userDTO.setAvatar(getImageURL(userDTO.getFileImage()));
-		} catch (IOException e) {
-			e.printStackTrace();
+		    dobDate = df.parse(dobString);
+		} catch (Exception e) {
+		    e.printStackTrace();
 		}
+		userEntity.setDob(dobDate);
+		// end convert
 		BeanUtils.copyProperties(userDTO, userEntity);
 		userEntity.setPassword(pass);
 		userEntity.setRole(getRoleById);
