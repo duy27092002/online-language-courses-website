@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<jsp:useBean id="date" class="java.util.Date" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +67,7 @@
 
 			<!-- Nav Item - Tables -->
 			<li class="nav-item"><a class="nav-link"
-				href="/quan-tri/thong-tin-website"> <i
+				href="/quan-tri/thong-tin-website?id=1"> <i
 					class="fas fa-fw fa-table"></i> <span>Thông tin website</span>
 			</a></li>
 
