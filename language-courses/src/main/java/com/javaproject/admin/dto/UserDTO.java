@@ -1,14 +1,13 @@
 package com.javaproject.admin.dto;
 
-import java.util.Date;
-
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.javaproject.admin.customannotaion.CheckDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,40 +19,33 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO extends BaseDTO<UserDTO> {
-	@NotBlank(message = "Vui lòng nhập tên!")
-	@NotNull(message = "Không được để trống tên!")
-	@Length(min = 1, max = 50, message = "Tên không được vượt quá 50 ký tự")
+	@Length(min = 1, max = 50, message = "Vui lòng nhập tên (không vượt quá 50 ký tự)")
 	private String name;
 
 	private String avatar;
 	MultipartFile fileImage;
 
-	@NotNull(message = "Không được để trống ngày sinh!")
-	private Date dob;
+//	@Past(message = "Ngày sinh không hợp lệ")
+//	private Date dob;
+	@CheckDate(message = "Ngày sinh không hợp lệ")
+	private String dob;
 
 	private byte gender;
 
-	@NotNull(message = "Không được để trống email!")
-	@Length(min = 1, max = 50, message = "Email không được vượt quá 50 ký tự")
-	@Email(message = "Sai định dạng email!")
-	@NotBlank(message = "Vui lòng nhập email!")
+	@Length(min = 1, max = 50, message = "Vui lòng nhập email (không vượt quá 50 ký tự")
+	@Email(message = "Sai định dạng email")
 	private String email;
 
-	@NotNull(message = "Không được để trống số điện thoại!")
-	@Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "Sai định dạng số điện thoại cá nhân!")
-	@NotBlank(message = "Vui lòng nhập số điện thoại!")
+	@Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "Số điện thoại không hợp lệ")
 	private String phoneNumber;
 
-	@NotNull(message = "Không được để trống tên đăng nhập!")
-	@Length(min = 1, max = 50, message = "Tên đăng nhập không được vượt quá 50 ký tự")
-	@NotBlank(message = "Vui lòng nhập tên đăng nhập!")
+	@Length(min = 1, max = 50, message = "Tên tài khoản không được để trống và không vượt quá 50 ký tự")
 	private String userName;
 
-	@NotNull(message = "Không được để trống mật khẩu!")
-	@NotBlank(message = "Vui lòng nhập mật khẩu!")
+	@Pattern(regexp = "^\\b.{6,15}\\b$", message = "Mật khẩu phải có từ 6 đến 15 ký tự và không chứa khoảng trắng ở đầu và cuối")
 	private String password;
 	
-	@NotNull(message = "Vui lòng chọn vai trò!")
+	@NotNull(message = "Vui lòng chọn vai trò")
 	private Long roleId;
 
 	private String twitterLink;
