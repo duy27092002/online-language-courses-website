@@ -44,7 +44,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		for (GrantedAuthority roleName : roles) {
 			getRoleName = roleName.getAuthority();
 		}
-		
+
 		log.info("LAY ROLE CHUAN BI DIEU HUONG: {}", getRoleName);
 
 		if (isAdminOrInstructor(getRoleName)) {
@@ -58,7 +58,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 	}
 
 	private boolean isAdminOrInstructor(String roleName) {
-		if (roleName.contains("ADMIN") || roleName.contains("INSTRUCTOR")) {
+		if (roleName.contains("admin") || roleName.contains("giang-vien") || roleName.contains("editor")) {
 			return true;
 		}
 
@@ -66,6 +66,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 	}
 
 	private boolean isStudent(String roleName) {
-		return roleName.contains("giang-vien");
+		return roleName.contains("hoc-vien");
 	}
 }
