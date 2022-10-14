@@ -29,14 +29,4 @@ public class AdminController {
 	public String viewAdminListPage() {
 		return "/admin/user/admin-list";
 	}
-	
-	@GetMapping(value = {"/dang-nhap"})
-	public String viewSignInPage() {
-		return "/sign-in";
-	}
-	
-	@GetMapping(value = {"/dang-ky", "/dang-ki"})
-	public String viewSignUpPage() {
-		return "/sign-up";
-	}
 }
