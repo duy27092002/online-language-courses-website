@@ -6,7 +6,6 @@
 
 <head>
 <title>Đăng ký</title>
-<link href="/web/img/edukate_logo.ico" rel="icon">
 </head>
 
 <body>
