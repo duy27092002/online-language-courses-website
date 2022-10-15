@@ -1,12 +1,14 @@
 package com.javaproject.admin.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller(value = "AdminController")
 public class AdminController {
 	@GetMapping(value = {"/quan-tri"})
-	public String dashboardPage() {
+	public String dashboardPage(Model model) {
+		model.addAttribute("viewTitle", "Tổng quan");
 		return "/admin/home/index";
 	}
 	

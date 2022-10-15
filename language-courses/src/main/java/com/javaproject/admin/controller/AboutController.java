@@ -41,7 +41,10 @@ public class AboutController {
 			long getId = Long.parseLong(id);
 			model.addAttribute("about", aboutService.details(getId));
 			if (action.equalsIgnoreCase("update")) {
+				model.addAttribute("viewTitle", "Chỉnh sửa");
 				model.addAttribute("aboutDTO", new AboutDTO());
+			} else {
+				model.addAttribute("viewTitle", "Thông tin Website");
 			}
 		} catch (Exception ex) {
 			redirectModel.addFlashAttribute("returnPage", "tổng quan");
@@ -55,6 +58,7 @@ public class AboutController {
 	public String update(@Valid @ModelAttribute("aboutDTO") AboutDTO aboutDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("viewTitle", "Chỉnh sửa");
 			return "/admin/about/update";
 		}
 
