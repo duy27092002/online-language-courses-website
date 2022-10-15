@@ -26,6 +26,22 @@
 					<div class="col-lg-12">
 						<div class="p-5">
 							<f:form cssClass="user">
+								<div class="form-group row text-center">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
+										<label>Favicon:</label>
+										<p>
+											<img src="/image-file/${about.favicon}"
+												class="img-fluid rounded-circle" style="width: 100px;" />
+										</p>
+									</div>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+										<label>Logo:</label>
+										<p>
+											<img src="/image-file/${about.logo}"
+												class="img-fluid rounded-circle" style="width: 100px;" />
+										</p>
+									</div>
+								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
 										<label>Tên website:</label> <input
@@ -84,7 +100,7 @@
 								</p>
 								<small>Vào lúc: <fmt:formatDate
 										value="${about.modifiedDate}" pattern="HH:mm:ss dd/MM/yyyy" /></small>
-								<a href="/quan-tri/thong-tin-website/chinh-sua?id=${about.id}"
+								<a href="/quan-tri/thong-tin-website/chinh-sua"
 									class="btn btn-primary btn-user btn-block mt-4">Sửa</a>
 							</f:form>
 						</div>

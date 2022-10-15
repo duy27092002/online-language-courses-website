@@ -17,7 +17,7 @@
 <title>${viewTitle}</title>
 
 <!-- Favicon -->
-<link href="/web/img/edukate_logo.ico" rel="icon">
+<link href="/image-file/${favicon}" rel="icon">
 
 <!-- Custom fonts for this template-->
 <link href="/admin/vendor/fontawesome-free/css/all.min.css"
@@ -68,7 +68,7 @@
 
 			<!-- Nav Item - Tables -->
 			<li class="nav-item"><a class="nav-link"
-				href="/quan-tri/thong-tin-website?id=1"> <i
+				href="/quan-tri/thong-tin-website"> <i
 					class="fas fa-fw fa-table"></i> <span>Thông tin website</span>
 			</a></li>
 

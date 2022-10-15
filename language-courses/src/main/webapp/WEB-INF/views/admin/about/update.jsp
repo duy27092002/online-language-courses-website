@@ -16,7 +16,8 @@
 					<div class="col-lg-12">
 						<div class="p-5">
 							<f:form action="/quan-tri/thong-tin-website/chinh-sua"
-								method="post" cssClass="user" modelAttribute="aboutDTO">
+								method="post" cssClass="user" modelAttribute="aboutDTO"
+								enctype="multipart/form-data">
 								<f:input type="hidden" path="id" value="${about.id}" />
 								<f:input type="hidden" path="status" value="${about.status}" />
 								<div class="form-group row">
@@ -49,6 +50,44 @@
 											class="form-control form-control-user bg-white"
 											value="${about.location}" />
 										<small><f:errors path="location" style="color:red;"></f:errors></small>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
+										<label>Favicon:</label>
+										<f:input type="file" id="faviconInput"
+											onchange="readURL(this, 'favicon');" cssStyle="display: none"
+											class="form-control form-control-user" path="faviconFile"
+											placeholder="Chọn favicon" aria-label="Favicon" />
+										<p>
+											<c:if test="${oldFavicon != null}">
+												<img style="width: 100px;" id="favicon"
+													src="/image-file/${oldFavicon}" alt="Favicon" />
+											</c:if>
+											<c:if test="${oldFavicon == null}">
+												<img style="width: 100px;" id="favicon"
+													src="/image-file/${about.favicon}" alt="Favicon" />
+											</c:if>
+										</p>
+										<label for="faviconInput" class="border p-2">Chọn favicon</label>
+									</div>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+										<label>Logo:</label>
+										<f:input type="file" id="logoInput"
+											onchange="readURL(this, 'logo');" cssStyle="display: none"
+											class="form-control form-control-user" path="logoFile"
+											placeholder="Chọn logo" aria-label="Logo" />
+										<p>
+											<c:if test="${oldLogo != null}">
+												<img style="width: 100px;" id="logo"
+													src="/image-file/${oldLogo}" alt="Logo" />
+											</c:if>
+											<c:if test="${oldLogo == null}">
+												<img style="width: 100px;" id="logo"
+													src="/image-file/${about.logo}" alt="Logo" />
+											</c:if>
+										</p>
+										<label for="logoInput" class="border p-2">Chọn logo</label>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -101,6 +140,19 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		function readURL(input, typeFile) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#' + typeFile).attr('src', e.target.result).width(100);
+				};
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
 	<!-- /.container-fluid -->
 	<%@include file="/WEB-INF/views/common/pagination.jsp"%>
 </div>
