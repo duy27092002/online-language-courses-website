@@ -38,4 +38,10 @@ public class About extends BaseEntity {
 
 	@Column(name = "in_link", nullable = false)
 	private String inLink;
+	
+	@Column(name = "favicon")
+	private String favicon;
+	
+	@Column(name = "logo")
+	private String logo;
 }

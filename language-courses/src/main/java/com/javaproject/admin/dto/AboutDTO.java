@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -43,4 +44,10 @@ public class AboutDTO extends BaseDTO<AboutDTO> {
 
 	@NotBlank(message = "Không được để trống trường này!")
 	private String inLink;
+	
+	private String favicon;
+	private MultipartFile faviconFile;
+	
+	private String logo;
+	private MultipartFile logoFile;
 }
