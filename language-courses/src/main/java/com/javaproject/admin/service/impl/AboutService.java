@@ -9,12 +9,16 @@ import com.javaproject.admin.dto.AboutDTO;
 import com.javaproject.admin.entity.About;
 import com.javaproject.admin.repository.AboutRepository;
 import com.javaproject.admin.service.IAboutService;
+import com.javaproject.util.SaveLocalFile;
 
 @Service
 @Transactional
 public class AboutService implements IAboutService {
 	@Autowired
 	private AboutRepository aboutRepo;
+	
+	@Autowired
+	private SaveLocalFile saveLocalFile;
 
 	@Override
 	public AboutDTO save(AboutDTO dto) {
@@ -24,6 +28,18 @@ public class AboutService implements IAboutService {
 			aboutEntity = new About();
 		} else {
 			aboutEntity = aboutRepo.findById(getAboutId).get();
+		}
+		// kiem tra favicon hoac logo co thay doi hay k?
+		// neu file input isEmpty tuc la khong thay doi favicon hoac logo, nguoc lai lay file moi
+		if (dto.getFaviconFile().getOriginalFilename().isEmpty()) {
+			dto.setFavicon(details(1L).getFavicon());
+		} else {
+			dto.setFavicon(saveLocalFile.saveFile(dto.getFaviconFile()));
+		}
+		if (dto.getLogoFile().getOriginalFilename().isEmpty()) {
+			dto.setLogo(details(1L).getLogo());
+		} else {
+			dto.setLogo(saveLocalFile.saveFile(dto.getLogoFile()));
 		}
 		BeanUtils.copyProperties(dto, aboutEntity);
 		BeanUtils.copyProperties(aboutRepo.save(aboutEntity), dto);
