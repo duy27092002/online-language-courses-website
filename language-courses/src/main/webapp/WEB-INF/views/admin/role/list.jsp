@@ -45,16 +45,16 @@
 					<table class="table table-striped text-center">
 						<thead>
 							<tr>
-								<c:if test="${roleList.keyword == null}">
+								<c:if test="${resultList.keyword == null}">
 									<c:set var="pagingParam"
 										value="orderBy=name&orderType=${orderType}"></c:set>
 								</c:if>
-								<c:if test="${roleList.keyword != null}">
+								<c:if test="${resultList.keyword != null}">
 									<c:set var="pagingParam"
-										value="keyword=${roleList.keyword}&orderBy=name&orderType=${orderType}"></c:set>
+										value="keyword=${resultList.keyword}&orderBy=name&orderType=${orderType}"></c:set>
 								</c:if>
 								<th scope="col"><a
-									href="?page=${roleList.page}&${pagingParam}" class="text-body"
+									href="?page=${resultList.page}&${pagingParam}" class="text-body"
 									style="text-decoration: none;">Tên vai trò <i
 										class="fas fa-arrows-alt-v ml-1"></i>
 								</a></th>
@@ -63,7 +63,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${roleList.data}" var="role">
+							<c:forEach items="${resultList.data}" var="role">
 								<tr>
 									<td>${role.name}</td>
 									<td><c:if test="${role.status == 1 }">

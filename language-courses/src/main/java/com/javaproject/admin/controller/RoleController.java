@@ -42,7 +42,7 @@ public class RoleController {
 		setViewTitleOrFaviconAttribute("Danh sách vai trò", model);
 		try {
 			ResponseDataTableDTO resultList = roleService.getList(resDTDTO);
-			model.addAttribute("roleList", resultList);
+			model.addAttribute("resultList", resultList);
 
 			String getOrderType = resultList.getOrderType().equalsIgnoreCase("asc") ? "desc" : "asc";
 			model.addAttribute("orderType", getOrderType);
