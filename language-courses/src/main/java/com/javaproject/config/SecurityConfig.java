@@ -42,10 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/", "/trang-chu", "/ve-chung-toi", "/danh-sach-khoa-hoc", "/chi-tiet-khoa-hoc",
 						"/danh-sach-giang-vien", "/danh-gia-cua-hoc-vien", "/lien-he", "/dang-nhap", "/dang-ky",
-						"/dang-ki", "/web/**", "/admin/**", "/403")
+						"/dang-ki", "/web/**", "/admin/**")
 				.permitAll();
 
 		http.authorizeRequests().anyRequest().authenticated();
+		
+		http.exceptionHandling().accessDeniedPage("/WEB-INF/views/common/403.jsp");
 
 		http.authorizeRequests().and().formLogin().loginPage("/dang-nhap")
 				.loginProcessingUrl("/check_login").successHandler(successHandler())
