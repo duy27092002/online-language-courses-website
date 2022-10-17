@@ -144,8 +144,8 @@ public class SkillLevelController {
 				errorMess = "Chỉnh sửa thất bại";
 			}
 
-			SkillLevelDTO getRoleAfterSave = sklService.save(sklDTO);
-			if (getRoleAfterSave != null) {
+			SkillLevelDTO getSklAfterSave = sklService.save(sklDTO);
+			if (getSklAfterSave != null) {
 				redirectModel.addFlashAttribute("typeAlert", "success");
 				redirectModel.addFlashAttribute("mess", successMess);
 			}
