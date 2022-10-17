@@ -40,15 +40,15 @@ public class PagingResolver implements HandlerMethodArgumentResolver {
 			String getOrderType = orderTypeStr.isEmpty() ? pagingParam.orderType() : orderTypeStr;
 
 			String keywordParam = webRequest.getParameter("keyword");
-			String getKeyword = null;
-			if (keywordParam != null) {
-				getKeyword = keywordParam.trim();
-				if ("" == getKeyword) {
-					throw new BadRequestException(null);
-				}
-			}
+//			String getKeyword = null;
+//			if (keywordParam != null) {
+//				getKeyword = keywordParam.trim();
+//				if ("" == getKeyword) {
+//					throw new BadRequestException(null);
+//				}
+//			}
 
-			return new ResponseDataTableDTO(getPath, getPage, getPageSize, getKeyword, getOrderBy, getOrderType);
+			return new ResponseDataTableDTO(getPath, getPage, getPageSize, keywordParam, getOrderBy, getOrderType);
 		} catch (Exception ex) {
 			throw new BadRequestException("Yêu câu không hợp lệ. Vui lòng kiểm tra lại!");
 		}
