@@ -103,7 +103,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/quan-tri/danh-sach-ngon-ngu">Ngôn
+						<a class="collapse-item" href="/quan-tri/ngon-ngu/danh-sach">Ngôn
 							ngữ</a> <a class="collapse-item" href="/quan-tri/danh-sach-khoa-hoc">Khóa
 							học</a> <a class="collapse-item" href="/quan-tri/binh-luan">Bình
 							luận</a> <a class="collapse-item"
