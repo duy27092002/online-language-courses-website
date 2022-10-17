@@ -114,7 +114,7 @@
 
 			<!-- Nav Item - Tables -->
 			<li class="nav-item"><a class="nav-link"
-				href="/quan-tri/cau-hoi-thuong-gap"> <i
+				href="/quan-tri/cau-hoi-thuong-gap/danh-sach"> <i
 					class="fas fa-question-circle"></i> <span>Câu hỏi thường gặp</span>
 			</a></li>
 
