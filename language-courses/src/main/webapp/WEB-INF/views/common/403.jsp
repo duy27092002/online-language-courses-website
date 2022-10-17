@@ -5,16 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Lỗi</title>
-<link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container-fluid">
-		<!-- 404 Error Text -->
-		<div class="text-center">
-			<div class="error mx-auto" data-text="403">403</div>
-			<p class="lead text-gray-800 mb-5">Từ chối quyền truy cập!</p>
-			<a href="">&larr; Quay lại</a>
+	<%@include file="/WEB-INF/views/common/admin/sidebar.jsp"%>
+	<!-- Main Content -->
+	<div id="content">
+
+		<%@include file="/WEB-INF/views/common/admin/topbar.jsp"%>
+		<div class="container-fluid">
+
+			<div class="text-center">
+				<div class="error mx-auto" data-text="403">403</div>
+				<p class="lead text-gray-800 mb-5">Bạn không được phép truy cập
+					vào trang này!</p>
+				<a href="/quan-tri">&larr; Quay lại trang tổng quan</a>
+			</div>
+
 		</div>
+		<%@include file="/WEB-INF/views/common/pagination.jsp"%>
 	</div>
+	<!-- End of Main Content -->
+
+	<%@include file="/WEB-INF/views/common/admin/footer.jsp"%>
 </body>
 </html>
