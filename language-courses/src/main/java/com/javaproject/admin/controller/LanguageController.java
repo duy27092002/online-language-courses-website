@@ -144,8 +144,8 @@ public class LanguageController {
 				errorMess = "Chỉnh sửa thất bại";
 			}
 
-			LanguageDTO getRoleAfterSave = languageService.save(languageDTO);
-			if (getRoleAfterSave != null) {
+			LanguageDTO getLanguageAfterSave = languageService.save(languageDTO);
+			if (getLanguageAfterSave != null) {
 				redirectModel.addFlashAttribute("typeAlert", "success");
 				redirectModel.addFlashAttribute("mess", successMess);
 			}
