@@ -18,5 +18,5 @@ public @interface PagingParam {
 	
 	String orderBy() default "id";
 	
-	String orderType() default "asc";
+	String orderType() default "desc";
 }
