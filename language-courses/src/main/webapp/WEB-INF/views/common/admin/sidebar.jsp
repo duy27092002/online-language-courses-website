@@ -104,7 +104,8 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="/quan-tri/ngon-ngu/danh-sach">Ngôn
-							ngữ</a> <a class="collapse-item" href="/quan-tri/danh-sach-khoa-hoc">Khóa
+							ngữ</a><a class="collapse-item" href="/quan-tri/ky-nang/danh-sach">Kỹ
+							năng</a> <a class="collapse-item" href="/quan-tri/danh-sach-khoa-hoc">Khóa
 							học</a> <a class="collapse-item" href="/quan-tri/binh-luan">Bình
 							luận</a> <a class="collapse-item"
 							href="/quan-tri/danh-gia-cua-hoc-vien">Đánh giá</a>
