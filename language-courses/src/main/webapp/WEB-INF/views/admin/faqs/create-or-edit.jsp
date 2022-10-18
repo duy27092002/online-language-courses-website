@@ -12,10 +12,12 @@
 			<c:set var="actionTitle" value="Chỉnh sửa câu hỏi"></c:set>
 			<c:set var="formAction"
 				value="/quan-tri/cau-hoi-thuong-gap/chinh-sua"></c:set>
+			<c:set var="modelAttribute" value="faqsDetails"></c:set>
 		</c:if>
 		<c:if test="${faqsDetails == null}">
 			<c:set var="actionTitle" value="Thêm mới câu hỏi"></c:set>
 			<c:set var="formAction" value="/quan-tri/cau-hoi-thuong-gap/them-moi"></c:set>
+			<c:set var="modelAttribute" value="faqsDTO"></c:set>
 		</c:if>
 		<h1 class="text-center">
 			<c:out value="${actionTitle}" />
@@ -27,15 +29,16 @@
 					<div class="col-lg-12">
 						<div class="p-5">
 							<f:form cssClass="user" action="${formAction}" method="post"
-								modelAttribute="faqsDTO">
+								modelAttribute="${modelAttribute}">
 								<f:input type="hidden" path="id" value="${faqsDetails.id}" />
 								<c:if test="${faqsDetails == null}">
 									<f:input type="hidden" path="status" value="1" />
 								</c:if>
 								<div class="form-group mb-3">
 									<label>Câu hỏi:</label>
-									<f:input cssClass="form-control form-control-user bg-white"
-										value="${faqsDetails.question}" path="question" />
+									<f:textarea rows="3" cssClass="form-control bg-white"
+										value="${faqsDetails.question}" path="question"
+										style="border-radius: 20px;" />
 									<small><f:errors path="question" cssClass="text-danger"></f:errors></small>
 									<c:if test="${isExitName != null}">
 										<small class="text-danger">${isExitName}</small>
