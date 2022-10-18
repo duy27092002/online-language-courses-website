@@ -21,8 +21,8 @@
 		<div class="row">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 				<a class="btn btn-sm btn-primary mb-4"
-					href="/quan-tri/cau-hoi-thuong-gap/them-moi"><i class="fas fa-plus mr-2"></i>Thêm
-					mới</a>
+					href="/quan-tri/cau-hoi-thuong-gap/them-moi"><i
+					class="fas fa-plus mr-2"></i>Thêm mới</a>
 			</div>
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 				<form action="/quan-tri/cau-hoi-thuong-gap/danh-sach" method="get"
