@@ -43,10 +43,13 @@
 									<c:if test="${isExitName != null}">
 										<small class="text-danger">${isExitName}</small>
 									</c:if>
+									<c:if test="${questionErr != null}">
+										<small class="text-danger">${questionErr}</small>
+									</c:if>
 								</div>
 								<div class="form-group mb-3">
 									<label>Câu trả lời:</label>
-									<f:input cssClass="form-control form-control-user bg-white"
+									<f:textarea rows="5" cssClass="form-control form-control-user bg-white"
 										value="${faqsDetails.answer}" path="answer" />
 								</div>
 								<div class="form-group mb-3">
@@ -87,3 +90,9 @@
 	<!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
+<script src="/lib/ckeditor/ckeditor.js"></script>
+<script>
+	$(document).ready(function(){
+		CKEDITOR.replace('answer');
+	});
+</script>

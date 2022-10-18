@@ -23,8 +23,8 @@
 								</div>
 								<div class="form-group">
 									<label>Câu trả lời:</label>
-									<textarea class="form-control bg-white" disabled="disabled"
-										rows="3" style="border-radius: 20px;">${faqsDetails.answer}</textarea>
+									<textarea id="answer-details" class="form-control bg-white" disabled="disabled"
+										rows="5" style="border-radius: 20px;">${faqsDetails.answer}</textarea>
 								</div>
 								<div class="form-group mb-3">
 									<c:if test="${faqsDetails.status == 1 }">
@@ -67,3 +67,9 @@
 <!-- End of Main Content -->
 
 <%@include file="/WEB-INF/views/common/admin/footer.jsp"%>
+<script src="/lib/ckeditor/ckeditor.js"></script>
+<script>
+	$(document).ready(function(){
+		CKEDITOR.replace('answer-details');
+	});
+</script>
