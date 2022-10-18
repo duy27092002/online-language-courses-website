@@ -92,7 +92,6 @@ public class FAQsController {
 			setViewTitleOrFaviconAttribute("Chi tiết câu hỏi", model);
 		} else {
 			setViewTitleOrFaviconAttribute("Chỉnh sửa câu hỏi", model);
-			model.addAttribute("faqsDTO", new FAQsDTO());
 		}
 
 		try {
@@ -117,7 +116,8 @@ public class FAQsController {
 
 		if (bindingResult.hasErrors()) {
 			if (formAction.equalsIgnoreCase("update")) {
-				model.addAttribute("faqsDetails", getOldFAQsById);
+				model.addAttribute("faqsDetails", faqsDTO);
+				model.addAttribute("questionErr", "Câu hỏi không hợp lệ");
 			}
 			return "/admin/faqs/create-or-edit";
 		}
@@ -136,7 +136,7 @@ public class FAQsController {
 			} else {
 				if (!getOldFAQsById.getQuestion().equalsIgnoreCase(faqsDTO.getQuestion())) {
 					if (getQuestion != null) {
-						model.addAttribute("faqsDetails", getOldFAQsById);
+						model.addAttribute("faqsDetails", faqsDTO);
 						return isExitName(model);
 					}
 				}
