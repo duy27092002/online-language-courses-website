@@ -117,7 +117,7 @@ public class RoleController {
 
 		if (bindingResult.hasErrors()) {
 			if (formAction.equalsIgnoreCase("update")) {
-				model.addAttribute("roleDetails", getOldRoleById);
+				model.addAttribute("roleDetails", roleDTO);
 			}
 			return "/admin/role/create-or-edit";
 		}
@@ -136,7 +136,7 @@ public class RoleController {
 			} else {
 				if (!getOldRoleById.getName().equalsIgnoreCase(roleDTO.getName())) {
 					if (getRoleByName != null) {
-						model.addAttribute("roleDetails", getOldRoleById);
+						model.addAttribute("roleDetails", roleDTO);
 						return isExitName(model);
 					}
 				}

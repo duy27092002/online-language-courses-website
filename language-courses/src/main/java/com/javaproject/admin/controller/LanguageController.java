@@ -117,7 +117,7 @@ public class LanguageController {
 
 		if (bindingResult.hasErrors()) {
 			if (formAction.equalsIgnoreCase("update")) {
-				model.addAttribute("languageDetails", getOldLanguageById);
+				model.addAttribute("languageDetails", languageDTO);
 			}
 			return "/admin/language/create-or-edit";
 		}
@@ -136,7 +136,7 @@ public class LanguageController {
 			} else {
 				if (!getOldLanguageById.getName().equalsIgnoreCase(languageDTO.getName())) {
 					if (getLanguageByName != null) {
-						model.addAttribute("languageDetails", getOldLanguageById);
+						model.addAttribute("languageDetails", languageDTO);
 						return isExitName(model);
 					}
 				}

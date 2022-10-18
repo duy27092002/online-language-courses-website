@@ -117,7 +117,7 @@ public class SkillLevelController {
 
 		if (bindingResult.hasErrors()) {
 			if (formAction.equalsIgnoreCase("update")) {
-				model.addAttribute("sklDetails", getOldSklById);
+				model.addAttribute("sklDetails", sklDTO);
 			}
 			return "/admin/skill-level/create-or-edit";
 		}
@@ -136,7 +136,7 @@ public class SkillLevelController {
 			} else {
 				if (!getOldSklById.getName().equalsIgnoreCase(sklDTO.getName())) {
 					if (getSklByName != null) {
-						model.addAttribute("sklDetails", getOldSklById);
+						model.addAttribute("sklDetails", sklDTO);
 						return isExitName(model);
 					}
 				}
