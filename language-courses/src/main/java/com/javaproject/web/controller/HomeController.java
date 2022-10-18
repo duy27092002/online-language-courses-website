@@ -1,7 +1,10 @@
 package com.javaproject.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.javaproject.admin.dto.FeedbackDTO;
 
 @Controller(value = "HomeControllerOfWeb")
 public class HomeController {
@@ -36,7 +39,8 @@ public class HomeController {
 	}
 	
 	@GetMapping(value = {"/lien-he"})
-	public String contactPage() {
+	public String contactPage(Model model) {
+		model.addAttribute("feedbackDTO", new FeedbackDTO());
 		return "/web/contact/index";
 	}
 }
