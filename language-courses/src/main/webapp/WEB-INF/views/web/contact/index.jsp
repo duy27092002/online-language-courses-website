@@ -45,41 +45,50 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-7">
+				<div class="col-lg-7 mt-5">
 					<div class="section-title position-relative mb-4">
 						<h6
 							class="d-inline-block position-relative text-secondary text-uppercase pb-2">Bạn
 							cần được hỗ trợ?</h6>
-
+						<c:if test="${mess != null}">
+							<div class="alert alert-${typeAlert} alert-dismissible fade show"
+								language="alert">
+								<strong>${mess}</strong>
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</c:if>
 					</div>
 					<div class="contact-form">
-						<form>
+						<f:form action="/gui-phan-hoi" method="post"
+							modelAttribute="feedbackDTO">
 							<div class="row">
 								<div class="col-6 form-group">
-									<input type="text"
-										class="form-control border-top-0 border-right-0 border-left-0 p-0"
-										placeholder="Họ tên" required="required">
+									<f:input path="name" type="text"
+										cssClass="form-control border-top-0 border-right-0 border-left-0 p-0"
+										placeholder="Họ tên" />
+									<small><f:errors path="name" cssClass="text-danger"></f:errors></small>
 								</div>
 								<div class="col-6 form-group">
-									<input type="email"
-										class="form-control border-top-0 border-right-0 border-left-0 p-0"
-										placeholder="Email" required="required">
+									<f:input path="email" type="text"
+										cssClass="form-control border-top-0 border-right-0 border-left-0 p-0"
+										placeholder="Email" />
+									<small><f:errors path="email" cssClass="text-danger"></f:errors></small>
 								</div>
 							</div>
 							<div class="form-group">
-								<input type="text"
-									class="form-control border-top-0 border-right-0 border-left-0 p-0"
-									placeholder="Khóa học" required="required">
-							</div>
-							<div class="form-group">
-								<textarea
-									class="form-control border-top-0 border-right-0 border-left-0 p-0"
-									rows="5" placeholder="Lời nhắn" required="required"></textarea>
+								<f:textarea path="question"
+									cssClass="form-control border-top-0 border-right-0 border-left-0 p-0"
+									rows="5" placeholder="Lời nhắn" />
+								<small><f:errors path="question" cssClass="text-danger"></f:errors></small>
 							</div>
 							<div>
+								<f:input type="hidden" path="status" value="1" />
 								<button class="btn btn-primary py-3 px-5" type="submit">Gửi</button>
 							</div>
-						</form>
+						</f:form>
 					</div>
 				</div>
 			</div>
