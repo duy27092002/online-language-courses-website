@@ -1,5 +1,7 @@
 package com.javaproject.admin.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +19,6 @@ public interface RoleRepository extends SearchingRepository<Role, Long> {
 	Page<Role> getAllList(Pageable pageable);
 	
 	Role findByName(String name);
+	
+	List<Role> findByStatus(int status);
 }
