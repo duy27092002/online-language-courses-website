@@ -9,6 +9,8 @@ import com.javaproject.admin.entity.User;
 public interface UserRepository extends SearchingRepository<User, Long> {
 	User findByEmail(String email);
 	
+	User findByEmailAndStatus(String email, int status);
+	
 	User findByPhoneNumber(String phoneNumber);
 	
 //	@Query("select u from #{#entityName} u where u.name like %?1% or u.email like %?1%")
