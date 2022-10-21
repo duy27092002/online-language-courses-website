@@ -72,4 +72,16 @@ public class RoleService implements IRoleService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<RoleDTO> activeRoleList() {
+		List<Role> getRoleListByStatus = roleRepo.findByStatus(1);
+		List<RoleDTO> resultList = new ArrayList<>();
+		for (Role role : getRoleListByStatus) {
+			RoleDTO dto = new RoleDTO();
+			BeanUtils.copyProperties(role, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
 }
