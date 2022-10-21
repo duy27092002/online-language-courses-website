@@ -43,5 +43,5 @@ public abstract class BaseEntity {
 	private String modifiedBy;
 
 	@Column(nullable = false)
-	private byte status;
+	private int status;
 }

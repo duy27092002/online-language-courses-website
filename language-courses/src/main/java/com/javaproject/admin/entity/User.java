@@ -30,7 +30,7 @@ public class User extends BaseEntity {
 	private Date dob;
 
 	@Column(nullable = false)
-	private byte gender;
+	private int gender;
 
 	@Column(length = 50, nullable = false, unique = true)
 	private String email;
