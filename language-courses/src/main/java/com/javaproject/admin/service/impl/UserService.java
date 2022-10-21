@@ -130,8 +130,6 @@ public class UserService implements IUserService {
 	@Override
 	public List<UserDTO> getDetails(Long id) {
 		User getUserById = userRepo.findById(id).get();
-		// UserDTO userDTO = new UserDTO();
-		// BeanUtils.copyProperties(getUserById, userDTO);
 		List<UserDTO> resultList = new ArrayList<>();
 		resultList.add(userMapper.toDTO(getUserById));
 		return resultList;
