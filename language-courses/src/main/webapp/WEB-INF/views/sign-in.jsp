@@ -18,10 +18,11 @@
 								<h1 class="h4 text-gray-900 mb-4">Chào mừng bạn!</h1>
 								<c:if test="${param.loi != null}">
 									<div class="alert alert-danger rounded-pill">Sai thông
-										tin đăng nhập</div>
+										tin đăng nhập hoặc tài khoản của bạn không còn tồn tại</div>
 								</c:if>
 							</div>
-							<form action="/check_login" class="user" id="loginForm" role="form" method="post">
+							<form action="/check_login" class="user" id="loginForm"
+								role="form" method="post">
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
 										name="email" aria-describedby="emailHelp" placeholder="Email" />
