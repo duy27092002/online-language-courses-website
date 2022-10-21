@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.UserDTO;
 import com.javaproject.admin.entity.Role;
 import com.javaproject.admin.entity.User;
@@ -33,26 +34,21 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private RoleRepository roleRepo;
-	
+
 	@Autowired
 	private IImageService imageService;
-	
+
 	@Autowired
 	private UserMapper userMapper;
 
 	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(userRepo, new UserDTO().getClass(), responseDataTableDTO.getKeyword());
+	}
+
+	@Override
 	public List<UserDTO> getList(String keyword, Pageable pageable) {
-		List<UserDTO> resultList = new ArrayList<>();
-		List<User> entityList = null;
-		if (keyword == null) {
-			entityList = userRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			entityList = userRepo.getSearchList(keyword, pageable);
-		}
-		for (User user : entityList) {
-			resultList.add(userMapper.toDTO(user));
-		}
-		return resultList;
+		return null;
 	}
 
 	@Override
@@ -67,22 +63,30 @@ public class UserService implements IUserService {
 		} else {
 			userEntity = userRepo.findById(getUserId).get();
 		}
-//		try {
-//			userDTO.setAvatar(getImageURL(userDTO.getFileImage()));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+
+		try {
+			if (userDTO.getFileImage().getOriginalFilename().isEmpty()) {
+				userDTO.setAvatar(
+						"https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/avatar_default.png?alt=media&token=b493b298-c1ce-4f76-9150-f5b6f6c743a3");
+			} else {
+				userDTO.setAvatar(getImageURL(userDTO.getFileImage()));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		// start convert dob string to dob date
 		String dobString = userDTO.getDob();
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); 
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dobDate = null;
 		try {
-		    dobDate = df.parse(dobString);
+			dobDate = df.parse(dobString);
 		} catch (Exception e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 		userEntity.setDob(dobDate);
 		// end convert
+
 		BeanUtils.copyProperties(userDTO, userEntity);
 		userEntity.setPassword(pass);
 		userEntity.setRole(getRoleById);
@@ -91,12 +95,45 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	public UserDTO update(UserDTO userDTO) {
+		Role getRoleById = roleRepo.findById(userDTO.getRoleId()).get();
+		User userEntity = userRepo.findById(userDTO.getId()).get();
+
+		try {
+			if (userDTO.getFileImage() != null && !userDTO.getFileImage().getOriginalFilename().isEmpty()) {
+				userDTO.setAvatar(getImageURL(userDTO.getFileImage()));
+			} else {
+				userDTO.setAvatar(userEntity.getAvatar());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// start convert dob string to dob date
+		String dobString = userDTO.getDob();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dobDate = null;
+		try {
+			dobDate = df.parse(dobString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		userEntity.setDob(dobDate);
+		// end convert
+
+		BeanUtils.copyProperties(userDTO, userEntity);
+		userEntity.setRole(getRoleById);
+		BeanUtils.copyProperties(userRepo.save(userEntity), userDTO);
+		return userDTO;
+	}
+
+	@Override
 	public List<UserDTO> getDetails(Long id) {
 		User getUserById = userRepo.findById(id).get();
-		UserDTO userDTO = new UserDTO();
-		BeanUtils.copyProperties(getUserById, userDTO);
+		// UserDTO userDTO = new UserDTO();
+		// BeanUtils.copyProperties(getUserById, userDTO);
 		List<UserDTO> resultList = new ArrayList<>();
-		resultList.add(userDTO);
+		resultList.add(userMapper.toDTO(getUserById));
 		return resultList;
 	}
 
@@ -121,12 +158,12 @@ public class UserService implements IUserService {
 		}
 		return null;
 	}
-	
+
 	private String getImageURL(MultipartFile files) throws IOException {
 		String fileName = imageService.save(files);
-        String imageUrl = imageService.getImageUrl(fileName);
+		String imageUrl = imageService.getImageUrl(fileName);
 
-        return imageUrl;
+		return imageUrl;
 	}
 
 }
