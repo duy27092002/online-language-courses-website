@@ -21,7 +21,7 @@ public class BaseDTO<T> {
 
 	private String modifiedBy;
 
-	private byte status;
+	private int status;
 
 	private int currentPage;
 
