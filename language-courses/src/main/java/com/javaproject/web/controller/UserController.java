@@ -3,6 +3,7 @@ package com.javaproject.web.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,7 @@ import com.javaproject.admin.service.IUserService;
 public class UserController {
 	@Autowired
 	private IUserService userService;
-	
+
 	@GetMapping(value = { "/dang-nhap" })
 	public String viewSignInPage() {
 		return "/sign-in";
@@ -30,13 +31,13 @@ public class UserController {
 		return "/sign-up";
 	}
 
-	@PostMapping(value = "/dang-ky")
+	@PostMapping(value = "/dang-ky", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String register(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult bindingResult,
 			RedirectAttributes model, Model m) {
 		if (bindingResult.hasErrors()) {
 			return "/sign-up";
 		}
-		
+
 		UserDTO getUserByEmail = userService.getUserByEmailOrByPhoneNumber(userDTO.getEmail(), null);
 		if (getUserByEmail != null) {
 			m.addAttribute("emailErrorMess", "Email đã tồn tại");
@@ -48,11 +49,11 @@ public class UserController {
 			m.addAttribute("phoneErrorMess", "Số điện thoại đã tồn tại");
 			return "/sign-up";
 		}
-		
+
 		try {
 			UserDTO getNewUser = userService.save(userDTO);
 			if (getNewUser != null) {
-				return "redirect:/sign-in";	
+				return "redirect:/sign-in";
 			} else {
 				m.addAttribute("errorMess", "Đăng ký thất bại. Vui lòng thử lại!");
 				return "/sign-up";

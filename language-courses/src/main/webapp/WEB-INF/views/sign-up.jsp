@@ -28,7 +28,7 @@
 							</c:if>
 						</div>
 						<f:form action="/dang-ky" method="post" cssClass="user"
-							modelAttribute="userDTO">
+							modelAttribute="userDTO" enctype="multipart/form-data">
 							<div class="form-group">
 								<f:input path="name" type="text"
 									cssClass="form-control form-control-user"
@@ -36,7 +36,7 @@
 								<small><f:errors path="name" style="color:red;"></f:errors></small>
 								<f:input path="status" value="1" type="hidden" />
 								<f:input path="roleId" value="3" type="hidden" />
-								<f:input path="avatar" type="hidden" />
+								<f:input type="file" cssStyle="display: none" path="fileImage" />
 								<f:input path="twitterLink" type="hidden" />
 								<f:input path="facebookLink" type="hidden" />
 								<f:input path="instagramLink" type="hidden" />
