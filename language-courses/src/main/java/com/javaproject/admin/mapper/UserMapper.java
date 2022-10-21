@@ -15,6 +15,7 @@ public class UserMapper {
 	public UserDTO toDTO(User entity) {
 		modelMapper.typeMap(User.class, UserDTO.class).addMappings(u -> {
 			u.map(src -> src.getRole().getName(), UserDTO::setRoleName);
+			u.map(src -> src.getDob(), UserDTO::setDobDate);
 		});
 		
 		return modelMapper.map(entity, UserDTO.class);
