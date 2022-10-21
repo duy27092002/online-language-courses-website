@@ -79,20 +79,10 @@
 			</a></li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-users"></i> <span>Thành viên</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/quan-tri/danh-sach-admin">Admin</a>
-						<a class="collapse-item" href="/quan-tri/danh-sach-giang-vien">Giảng
-							viên</a> <a class="collapse-item" href="/quan-tri/danh-sach-hoc-vien">Học
-							viên</a>
-					</div>
-				</div></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/quan-tri/nguoi-dung/danh-sach"> <i
+					class="fas fa-users"></i> <span>Người dùng</span>
+			</a></li>
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"

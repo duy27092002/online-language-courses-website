@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/common/taglib.jsp" %>
+<%@include file="/WEB-INF/views/common/taglib.jsp"%>
+<%@ page import="com.javaproject.util.SecurityUtil" %>
 <!-- Topbar -->
 <nav
 	class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -136,8 +137,10 @@
 			<div
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="#"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+				<a class="dropdown-item"
+					href="/quan-tri/ho-so-cua-toi?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
+					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ
+					của tôi
 				</a> <a class="dropdown-item" href="#"> <i
 					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
 				</a> <a class="dropdown-item" href="#"> <i
