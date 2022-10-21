@@ -141,8 +141,8 @@
 					href="/quan-tri/ho-so-cua-toi?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
 					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ
 					của tôi
-				</a> <a class="dropdown-item" href="#"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
+				</a> <a class="dropdown-item" href="/quan-tri/doi-mat-khau"> <i
+					class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật khẩu
 				</a> <a class="dropdown-item" href="#"> <i
 					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity
 					Log

@@ -80,8 +80,8 @@
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link"
-				href="/quan-tri/nguoi-dung/danh-sach"> <i
-					class="fas fa-users"></i> <span>Người dùng</span>
+				href="/quan-tri/nguoi-dung/danh-sach"> <i class="fas fa-users"></i>
+					<span>Người dùng</span>
 			</a></li>
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -95,16 +95,16 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="/quan-tri/ngon-ngu/danh-sach">Ngôn
 							ngữ</a><a class="collapse-item" href="/quan-tri/ky-nang/danh-sach">Kỹ
-							năng</a> <a class="collapse-item" href="/quan-tri/danh-sach-khoa-hoc">Khóa
-							học</a> <a class="collapse-item" href="/quan-tri/binh-luan">Bình
+							năng</a> <a class="collapse-item" href="/quan-tri/khoa-hoc/danh-sach">Khóa
+							học</a> <a class="collapse-item" href="/quan-tri/binh-luan/danh-sach">Bình
 							luận</a> <a class="collapse-item"
-							href="/quan-tri/danh-gia-cua-hoc-vien">Đánh giá</a>
+							href="/quan-tri/danh-gia-cua-hoc-vien/danh-sach">Đánh giá</a>
 					</div>
 				</div></li>
 
 			<li class="nav-item"><a class="nav-link"
-				href="/quan-tri/phan-hoi/danh-sach"> <i
-					class="fas fa-comment"></i> <span>Phản hồi</span>
+				href="/quan-tri/phan-hoi/danh-sach"> <i class="fas fa-comment"></i>
+					<span>Phản hồi</span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/quan-tri/cau-hoi-thuong-gap/danh-sach"> <i

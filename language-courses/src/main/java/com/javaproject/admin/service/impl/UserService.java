@@ -10,12 +10,16 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaproject.admin.dto.AccountDetails;
+import com.javaproject.admin.dto.ChangePasswordDTO;
+import com.javaproject.admin.dto.NotificationResponseDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.UserDTO;
 import com.javaproject.admin.entity.Role;
@@ -25,6 +29,7 @@ import com.javaproject.admin.repository.RoleRepository;
 import com.javaproject.admin.repository.UserRepository;
 import com.javaproject.admin.service.IUserService;
 import com.javaproject.service.IImageService;
+import com.javaproject.util.Constant;
 
 @Service
 @Transactional
@@ -155,6 +160,20 @@ public class UserService implements IUserService {
 			return userDTO;
 		}
 		return null;
+	}
+
+	@Override
+	public NotificationResponseDTO changePassword(ChangePasswordDTO cpDTO) {
+		User getUserById = userRepo.findById(
+				((AccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId())
+				.get();
+		PasswordEncoder password = new BCryptPasswordEncoder();
+		if (!password.matches(cpDTO.getOldPass(), getUserById.getPassword())) {
+			return new NotificationResponseDTO(Constant.CODE_ERROR, "Mật khẩu không khớp");
+		}
+		getUserById.setPassword(password.encode(cpDTO.getNewPass()));
+		userRepo.save(getUserById);
+		return new NotificationResponseDTO(Constant.CODE_SUCCESS, "Đổi mật khẩu thành công!");
 	}
 
 	private String getImageURL(MultipartFile files) throws IOException {

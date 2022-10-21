@@ -1,5 +1,7 @@
 package com.javaproject.admin.controller;
 
+import java.util.Objects;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.javaproject.admin.dto.ChangePasswordDTO;
+import com.javaproject.admin.dto.NotificationResponseDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.UserDTO;
 import com.javaproject.admin.paging.PagingParam;
@@ -120,6 +124,29 @@ public class UserController {
 		} catch (Exception e) {
 			return viewErrorPage(redirectModel);
 		}
+	}
+
+	@GetMapping(value = "/doi-mat-khau")
+	public String viewChangePassPage(Model model) {
+		setViewTitleOrFaviconAttribute("Đổi mật khẩu", model);
+		model.addAttribute("changePasswordDTO", new ChangePasswordDTO());
+		return "/admin/user/change-password";
+	}
+
+	@PostMapping(value = "/doi-mat-khau")
+	public String changePassword(@Valid @ModelAttribute("changePasswordDTO") ChangePasswordDTO dto,
+			BindingResult bindingResult, RedirectAttributes redirectModel, Model model) {
+		if (!Objects.equals(dto.getNewPass(), dto.getReNewPass())) {
+			bindingResult.rejectValue("reNewPass", "error.dto", "Mật khẩu mới không trùng khớp");
+		}
+		
+		if (bindingResult.hasErrors()) {
+			return "/admin/user/change-password";
+		}
+		
+		NotificationResponseDTO notiResDTO = userService.changePassword(dto);
+		redirectModel.addFlashAttribute("message", notiResDTO.getMess());
+		return "redirect:/quan-tri/doi-mat-khau";
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
