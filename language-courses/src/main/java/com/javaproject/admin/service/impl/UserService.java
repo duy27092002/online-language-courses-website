@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaproject.admin.dto.AccountDetails;
 import com.javaproject.admin.dto.ChangePasswordDTO;
+import com.javaproject.admin.dto.CourseDTO;
 import com.javaproject.admin.dto.NotificationResponseDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.UserDTO;
@@ -181,6 +182,28 @@ public class UserService implements IUserService {
 		String imageUrl = imageService.getImageUrl(fileName);
 
 		return imageUrl;
+	}
+
+	@Override
+	public List<UserDTO> getListByRoleIdAndStatus(long roleId, int status) {
+		List<User> userEntityList = userRepo.findByRoleIdAndStatus(roleId, status);
+		List<UserDTO> resultList = new ArrayList<>();
+		for (User entity : userEntityList) {
+			UserDTO dto = new UserDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<Long> getInstructorIdListByCourse(CourseDTO courseDTO) {
+		List<User> getInstructorListByCourse = courseDTO.getInstructors();
+		List<Long> instructorIdListByCourse = new ArrayList<>();
+		for (User item : getInstructorListByCourse) {
+			instructorIdListByCourse.add(item.getId());
+		}
+		return instructorIdListByCourse;
 	}
 
 }
