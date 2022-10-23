@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.javaproject.admin.dto.CourseDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.SkillLevelDTO;
 import com.javaproject.admin.entity.SkillLevel;
@@ -23,7 +24,7 @@ public class SkillLevelService implements ISkillLevelService {
 
 	@Override
 	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
-		return responseDataTableDTO.getList(skillLevelRepo, new SkillLevelDTO().getClass(), 
+		return responseDataTableDTO.getList(skillLevelRepo, new SkillLevelDTO().getClass(),
 				responseDataTableDTO.getKeyword());
 	}
 
@@ -71,6 +72,28 @@ public class SkillLevelService implements ISkillLevelService {
 			return dto;
 		}
 		return null;
+	}
+
+	@Override
+	public List<SkillLevelDTO> getListByStatus(int status) {
+		List<SkillLevel> sklEntityList = skillLevelRepo.findByStatus(status);
+		List<SkillLevelDTO> resultList = new ArrayList<>();
+		for (SkillLevel item : sklEntityList) {
+			SkillLevelDTO dto = new SkillLevelDTO();
+			BeanUtils.copyProperties(item, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<Long> getSklIdListByCourse(CourseDTO courseDTO) {
+		List<SkillLevel> getInstructorListByCourse = courseDTO.getSkillLevelList();
+		List<Long> sklIdListByCourse = new ArrayList<>();
+		for (SkillLevel item : getInstructorListByCourse) {
+			sklIdListByCourse.add(item.getId());
+		}
+		return sklIdListByCourse;
 	}
 
 }
