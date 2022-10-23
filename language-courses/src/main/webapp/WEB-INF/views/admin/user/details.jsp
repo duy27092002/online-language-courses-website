@@ -142,8 +142,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- /.container-fluid -->
-	<%@include file="/WEB-INF/views/common/pagination.jsp"%>
+	<!-- /.container-fluid -->>
 </div>
 <!-- End of Main Content -->
 
