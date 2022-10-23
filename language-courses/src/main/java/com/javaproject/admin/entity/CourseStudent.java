@@ -9,15 +9,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "course_user")
+@Table(name = "course_student")
 @Getter
 @Setter
-public class CourseUser extends BaseEntity {
+public class CourseStudent extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "course_id", nullable = false)
 	private Course course;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+	private User student;
 }
