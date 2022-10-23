@@ -73,4 +73,16 @@ public class LanguageService implements ILanguageService {
 		return null;
 	}
 
+	@Override
+	public List<LanguageDTO> getListByStatus(int status) {
+		List<Language> languageEntityList = languageRepo.findByStatus(status);
+		List<LanguageDTO> resultList = new ArrayList<>();
+		for (Language item : languageEntityList) {
+			LanguageDTO dto = new LanguageDTO();
+			BeanUtils.copyProperties(item, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
 }
