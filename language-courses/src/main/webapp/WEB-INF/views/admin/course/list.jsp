@@ -20,11 +20,11 @@
 		<div class="row">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 				<a class="btn btn-sm btn-primary mb-4"
-					href="/quan-tri/nguoi-dung/them-moi"><i
-					class="fas fa-plus mr-2"></i>Thêm mới</a>
+					href="/quan-tri/khoa-hoc/them-moi"><i class="fas fa-plus mr-2"></i>Thêm
+					mới</a>
 			</div>
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-				<form action="/quan-tri/nguoi-dung/danh-sach" method="get"
+				<form action="/quan-tri/khoa-hoc/danh-sach" method="get"
 					class="float-sm-left float-md-right float-lg-right form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
 						<input name="keyword" type="text"
@@ -53,15 +53,14 @@
 									<c:set var="pagingParam"
 										value="keyword=${resultList.keyword}&orderBy=name&orderType=${orderType}"></c:set>
 								</c:if>
-								<th scope="col">Ảnh đại diện</th>
+								<th scope="col">Ảnh bìa</th>
 								<th scope="col"><a
 									href="?page=${resultList.page}&${pagingParam}"
 									class="text-body" style="text-decoration: none;">Tên khóa
 										học <i class="fas fa-arrows-alt-v ml-1"></i>
 								</a></th>
 								<th scope="col">Ngôn ngữ</th>
-								<th scope="col">Giá</th>
-								<th scope="col">Thời gian phát hành</th>
+								<th scope="col">Giá gốc (VND)</th>
 								<th scope="col">Trạng thái</th>
 								<th scope="col">Thao tác</th>
 							</tr>
@@ -73,11 +72,8 @@
 										src="${course.thumbnail}" alt="thumbnail" /></td>
 
 									<td>${course.name}</td>
-									<td>Ngôn ngữ</td>
+									<td>${course.language.name}</td>
 									<td>${course.price}</td>
-									<td><c:if test="${course.releaseTime == null}">
-											<c:out value="Chưa có" />
-										</c:if></td>
 									<td><c:if test="${course.status == 1 }">
 											<c:set var="textColor" value="warning"></c:set>
 											<c:set var="tooltipTitle" value="Đang kiểm duyệt"></c:set>
@@ -88,7 +84,7 @@
 											<c:set var="toggleStatus" value="off"></c:set>
 										</c:if> <c:if test="${course.status == 2 }">
 											<c:set var="textColor" value="success"></c:set>
-											<c:set var="tooltipTitle" value="Đang hoạt động"></c:set>
+											<c:set var="tooltipTitle" value="Đang phát hành"></c:set>
 											<c:set var="toggleStatus" value="on"></c:set>
 										</c:if> <i class="fas fa-toggle-${toggleStatus} text-${textColor}"
 										data-toggle="tooltip" title="${tooltipTitle}"></i></td>
@@ -98,6 +94,10 @@
 												title="Xem chi tiết"></i></a> | <a
 												href="/quan-tri/khoa-hoc/chinh-sua?id=${course.id}"><i
 												class="fas fa-edit" data-toggle="tooltip" title="Chỉnh sửa"></i></a>
+											| <a
+												href="/quan-tri/khoa-hoc/danh-sach-video?id=${course.id}"><i
+												class="far fa-play-circle" data-toggle="tooltip"
+												title="Danh sách video"></i></a>
 										</button></td>
 								</tr>
 							</c:forEach>

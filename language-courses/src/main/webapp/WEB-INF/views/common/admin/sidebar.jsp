@@ -30,6 +30,14 @@
 <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+.element-scroll {
+	width: 100%;
+	height: 150px;
+	border: 1px solid light;
+	overflow: scroll;
+}
+</style>
 </head>
 
 <body id="page-top">

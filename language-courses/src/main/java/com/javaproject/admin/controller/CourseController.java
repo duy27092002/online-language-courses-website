@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,9 @@ import com.javaproject.admin.dto.CourseDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.ICourseService;
+import com.javaproject.admin.service.ILanguageService;
+import com.javaproject.admin.service.ISkillLevelService;
+import com.javaproject.admin.service.IUserService;
 import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "CourseControllerOfAdmin")
@@ -25,6 +29,15 @@ import com.javaproject.util.GetWebsiteDetails;
 public class CourseController {
 	@Autowired
 	private ICourseService courseService;
+
+	@Autowired
+	private ISkillLevelService sklService;
+
+	@Autowired
+	private ILanguageService languageService;
+
+	@Autowired
+	private IUserService userService;
 
 	@Autowired
 	private GetWebsiteDetails webDetails;
@@ -58,10 +71,13 @@ public class CourseController {
 	public String viewCreatePage(Model model) {
 		setViewTitleOrFaviconAttribute("Thêm mới khóa học", model);
 		model.addAttribute("courseDTO", new CourseDTO());
+		model.addAttribute("languageList", languageService.getListByStatus(1));
+		model.addAttribute("activeInstructorList", userService.getListByRoleIdAndStatus(2, 1));
+		model.addAttribute("activeSklList", sklService.getListByStatus(1));
 		return "/admin/course/create-or-edit";
 	}
 
-	@PostMapping(value = "/them-moi")
+	@PostMapping(value = "/them-moi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String create(@Valid @ModelAttribute("courseDTO") CourseDTO courseDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("create", courseDTO, bindingResult, redirectModel, model);
@@ -79,7 +95,7 @@ public class CourseController {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
 
-	@PostMapping(value = "/chinh-sua")
+	@PostMapping(value = "/chinh-sua", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String update(@Valid @ModelAttribute("courseDTO") CourseDTO courseDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("update", courseDTO, bindingResult, redirectModel, model);
@@ -90,12 +106,17 @@ public class CourseController {
 			setViewTitleOrFaviconAttribute("Chi tiết khóa học", model);
 		} else {
 			setViewTitleOrFaviconAttribute("Chỉnh sửa khóa học", model);
-			model.addAttribute("courseDTO", new CourseDTO());
+			model.addAttribute("languageList", languageService.getListByStatus(1));
+			model.addAttribute("activeInstructorList", userService.getListByRoleIdAndStatus(2, 1));
+			model.addAttribute("activeSklList", sklService.getListByStatus(1));
 		}
 
 		try {
 			Long getCourseId = Long.parseLong(id);
-			model.addAttribute("courseDetails", courseService.getDetails(getCourseId).get(0));
+			CourseDTO courseDetails = courseService.getDetails(getCourseId).get(0);
+			model.addAttribute("courseDetails", courseDetails);
+			model.addAttribute("instructorIdListByCourse", userService.getInstructorIdListByCourse(courseDetails));
+			model.addAttribute("sklIdListByCourse", sklService.getSklIdListByCourse(courseDetails));
 		} catch (Exception e) {
 			return viewErrorPage(redirectModel);
 		}
@@ -117,6 +138,9 @@ public class CourseController {
 			if (formAction.equalsIgnoreCase("update")) {
 				model.addAttribute("courseDetails", courseDTO);
 			}
+			model.addAttribute("languageList", languageService.getListByStatus(1));
+			model.addAttribute("activeInstructorList", userService.getListByRoleIdAndStatus(2, 1));
+			model.addAttribute("activeSklList", sklService.getListByStatus(1));
 			return "/admin/course/create-or-edit";
 		}
 
@@ -127,6 +151,9 @@ public class CourseController {
 
 			if (formAction.equalsIgnoreCase("create")) {
 				if (getCourseByName != null) {
+					model.addAttribute("languageList", languageService.getListByStatus(1));
+					model.addAttribute("activeInstructorList", userService.getListByRoleIdAndStatus(2, 1));
+					model.addAttribute("activeSklList", sklService.getListByStatus(1));
 					return isExitName(model);
 				}
 				successMess = "Thêm mới thành công";
@@ -135,15 +162,24 @@ public class CourseController {
 				if (!getOldCourseById.getName().equalsIgnoreCase(courseDTO.getName())) {
 					if (getCourseByName != null) {
 						model.addAttribute("courseDetails", courseDTO);
+						model.addAttribute("languageList", languageService.getListByStatus(1));
+						model.addAttribute("activeInstructorList", userService.getListByRoleIdAndStatus(2, 1));
+						model.addAttribute("activeSklList", sklService.getListByStatus(1));
 						return isExitName(model);
 					}
 				}
 				successMess = "Chỉnh sửa thành công";
 				errorMess = "Chỉnh sửa thất bại";
 			}
-
-			CourseDTO getLanguageAfterSave = courseService.save(courseDTO);
-			if (getLanguageAfterSave != null) {
+			
+			CourseDTO getCourseAfterSave = null;
+			if (formAction.equalsIgnoreCase("create")) {
+				getCourseAfterSave = courseService.save(courseDTO);
+			} else {
+				getCourseAfterSave = courseService.update(courseDTO);
+			}
+			
+			if (getCourseAfterSave != null) {
 				redirectModel.addFlashAttribute("typeAlert", "success");
 				redirectModel.addFlashAttribute("mess", successMess);
 			}
