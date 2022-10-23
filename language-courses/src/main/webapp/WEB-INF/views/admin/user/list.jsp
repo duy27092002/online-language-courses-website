@@ -80,7 +80,7 @@
 									<td><c:if test="${user.status == 1 }">
 											<c:set var="textColor" value="success"></c:set>
 											<c:set var="tooltipTitle" value="Đang hoạt động"></c:set>
-											<c:set var="toggleStatus" value="off"></c:set>
+											<c:set var="toggleStatus" value="on"></c:set>
 										</c:if> <c:if test="${user.status == 0 }">
 											<c:set var="textColor" value="danger"></c:set>
 											<c:set var="tooltipTitle" value="Đã hủy"></c:set>
