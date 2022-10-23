@@ -7,10 +7,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -63,8 +67,12 @@ public class User extends BaseEntity {
 	@Column(name = "in_link", nullable = true)
 	private String inLink;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<CourseUser> courseUserList = new ArrayList<>();
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	private List<CourseStudent> courseList = new ArrayList<>();
+
+	@ManyToMany(mappedBy = "instructors", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Course> courses = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Video> videos = new ArrayList<>();

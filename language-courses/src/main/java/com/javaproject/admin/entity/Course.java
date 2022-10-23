@@ -55,16 +55,25 @@ public class Course extends BaseEntity {
 	private Language language;
 
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-	private List<CourseUser> courseUserList = new ArrayList<>();
+	private List<CourseStudent> studentList = new ArrayList<>();
+	
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "course_instructor", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> instructors = new ArrayList<>();
 
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 	private List<Video> videos = new ArrayList<>();
 
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 	private List<Evaluated> evaluatedList = new ArrayList<>();
-	
+
 	public void addSkillLevel(SkillLevel skl) {
 		this.skillLevelList.add(skl);
 		skl.getCourses().add(this);
+	}
+	
+	public void addInstructor(User instructor) {
+		this.instructors.add(instructor);
+		instructor.getCourses().add(this);
 	}
 }
