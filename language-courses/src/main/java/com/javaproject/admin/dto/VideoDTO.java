@@ -1,10 +1,12 @@
 package com.javaproject.admin.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.javaproject.admin.entity.Course;
+import com.javaproject.admin.entity.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,29 +18,30 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VideoDTO extends BaseDTO<VideoDTO> {
-	@NotNull(message = "Vui lòng chọn video!")
-	private String videoFile;
-	MultipartFile videoFilePath;
+	private int index_;
 	
-	@NotNull(message = "Không được để trống tên video!")
+	private String videoFile;
+	MultipartFile videoFileName;
+	
 	@NotBlank(message = "Vui lòng nhập tên video!")
 	@Length(min = 1, max = 255, message = "Tên video không được vượt quá 255 ký tự")
 	private String name;
 	
-	@NotNull(message = "Vui lòng chọn hình đại diện cho video!")
 	private String thumbnail;
 	MultipartFile thumbnailImg;
 	
-	@NotNull(message = "Không được để mô tả video!")
 	@NotBlank(message = "Vui lòng nhập mô tả cho video!")
 	private String description;
+	
+	@Length(max = 1000, message = "Nhận xét không được quá 1000 ký tự")
+	private String cmt;
 	
 	private Long courseId;
 
 	private Long userId;
 	
 	// response
-	private String courseName;
+	private Course course;
 	
-	private String emailOfInstructor;
+	private User user;
 }

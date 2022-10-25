@@ -19,6 +19,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Video extends BaseEntity {
+	@Column(nullable = false)
+	private int index_;
+	
 	@Column(length = 500, nullable = false)
 	private String videoFile;
 
@@ -30,6 +33,9 @@ public class Video extends BaseEntity {
 
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String description;
+	
+	@Column(length = 1000)
+	private String cmt;
 
 	@ManyToOne
 	@JoinColumn(name = "course_id", nullable = false)
