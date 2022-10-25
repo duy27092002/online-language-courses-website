@@ -21,4 +21,6 @@ public class AccountDetails extends User {
 	}
 
 	private Long userId;
+	
+	private String avatar;
 }
