@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglib.jsp"%>
+<%@ page import="com.javaproject.util.SecurityUtil" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="utf-8">
-<title>Trang chủ</title>
+<title>${viewTitle}</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Edukate" name="keywords">
 <meta content="Edukate - online education website" name="description">
 
 <!-- Favicon -->
-<link href="/web/img/edukate_logo.ico" rel="icon">
+<link href="/image-file/${favicon}" rel="icon">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -78,19 +79,19 @@
 			<div class="collapse navbar-collapse justify-content-between px-lg-3"
 				id="navbarCollapse">
 				<div class="navbar-nav mx-auto py-0">
-					<a href="index.html" class="nav-item nav-link active">Trang chủ</a>
-					<a href="about.html" class="nav-item nav-link">Chúng tôi</a> <a
-						href="course.html" class="nav-item nav-link">Khóa học</a>
+					<a href="/trang-chu" class="nav-item nav-link active">Trang chủ</a>
+					<a href="/ve-chung-toi" class="nav-item nav-link">Chúng tôi</a> <a
+						href="/danh-sach-khoa-hoc" class="nav-item nav-link">Khóa học</a>
 					<div class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle"
 							data-toggle="dropdown">Khác</a>
 						<div class="dropdown-menu m-0">
-							<a href="team.html" class="dropdown-item">Giảng viên</a> <a
-								href="testimonial.html" class="dropdown-item">Đánh giá của
+							<a href="/danh-sach-giang-vien" class="dropdown-item">Giảng viên</a> <a
+								href="/danh-gia-cua-hoc-vien" class="dropdown-item">Đánh giá của
 								học viên</a>
 						</div>
 					</div>
-					<a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+					<a href="/lien-he" class="nav-item nav-link">Liên hệ</a>
 				</div>
 				<sec:authorize access="!isAuthenticated()">
 					<a href="/dang-nhap"
@@ -106,7 +107,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><sec:authentication
 										property="principal.username"></sec:authentication></span> <img
 								class="img-profile rounded-circle"
-								src="/admin/img/undraw_profile.svg" style="width: 30px;">
+								src="<%=SecurityUtil.getPrincipal().getAvatar()%>" style="width: 30px;">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -114,11 +115,8 @@
 								<a class="dropdown-item" href="#"> <i
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ của tôi
 								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
+									class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+									Đổi mật khẩu
 								</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="/dang-xuat"> <i
