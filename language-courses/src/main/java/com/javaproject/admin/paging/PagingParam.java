@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface PagingParam {
+	int id() default 0;
+	
 	String path() default "";
 	
 	int page() default 1;
