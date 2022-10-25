@@ -14,8 +14,8 @@ public class VideoMapper {
 	
 	public VideoDTO toDTO(Video entity) {
 		modelMapper.typeMap(Video.class, VideoDTO.class).addMappings(v -> {
-			v.map(src -> src.getCourse().getName(), VideoDTO::setCourseName);
-			v.map(src -> src.getUser().getEmail(), VideoDTO::setEmailOfInstructor);
+//			v.map(src -> src.getCourse(), VideoDTO::setCourseInfo);
+//			v.map(src -> src.getUser(), VideoDTO::setInstructorInfo);
 		});
 		
 		return modelMapper.map(entity, VideoDTO.class);
