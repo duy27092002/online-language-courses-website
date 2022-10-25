@@ -22,6 +22,10 @@ public class PagingResolver implements HandlerMethodArgumentResolver {
 		try {
 			PagingParam pagingParam = parameter.getParameterAnnotation(PagingParam.class);
 			String getPath = pagingParam.path();
+			
+			String idParam = webRequest.getParameter("id");
+			String idStr = idParam == null ? "" : idParam.trim();
+			Long getId = idStr.matches("^\\d+$") ? Long.valueOf(idStr) : 0;
 
 			String pageParam = webRequest.getParameter("page");
 			String pageStr = pageParam == null ? "" : pageParam.trim();
@@ -48,7 +52,7 @@ public class PagingResolver implements HandlerMethodArgumentResolver {
 //				}
 //			}
 
-			return new ResponseDataTableDTO(getPath, getPage, getPageSize, keywordParam, getOrderBy, getOrderType);
+			return new ResponseDataTableDTO(getPath, getId, getPage, getPageSize, keywordParam, getOrderBy, getOrderType);
 		} catch (Exception ex) {
 			throw new BadRequestException("Yêu câu không hợp lệ. Vui lòng kiểm tra lại!");
 		}
