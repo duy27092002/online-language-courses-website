@@ -14,8 +14,8 @@ public class EvaluatedMapper {
 	
 	public EvaluatedDTO toDTO(Evaluated entity) {
 		modelMapper.typeMap(Evaluated.class, EvaluatedDTO.class).addMappings(e -> {
-			e.map(src -> src.getCourse().getName(), EvaluatedDTO::setCourseName);
-			e.map(src -> src.getUser().getEmail(), EvaluatedDTO::setEmailOfStudent);
+//			e.map(src -> src.getCourse().getName(), EvaluatedDTO::setCourseName);
+//			e.map(src -> src.getUser().getEmail(), EvaluatedDTO::setEmailOfStudent);
 		});
 		
 		return modelMapper.map(entity, EvaluatedDTO.class);
