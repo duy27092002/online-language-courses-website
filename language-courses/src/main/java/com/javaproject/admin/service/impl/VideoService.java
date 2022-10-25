@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.VideoDTO;
 import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.User;
 import com.javaproject.admin.entity.Video;
-import com.javaproject.admin.mapper.VideoMapper;
 import com.javaproject.admin.repository.CourseRepository;
 import com.javaproject.admin.repository.UserRepository;
 import com.javaproject.admin.repository.VideoRepository;
@@ -36,23 +36,15 @@ public class VideoService implements IVideoService {
 
 	@Autowired
 	private IImageService imageService;
-	
-	@Autowired
-	private VideoMapper videoMapper;
+
+	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(videoRepo, responseDataTableDTO.getId(), responseDataTableDTO.getKeyword());
+	}
 
 	@Override
 	public List<VideoDTO> getList(String keyword, Pageable pageable) {
-		List<VideoDTO> resultList = new ArrayList<>();
-		List<Video> entityList = null;
-		if (keyword == null) {
-			entityList = videoRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			entityList = videoRepo.getSearchList(keyword, pageable);
-		}
-		for (Video video : entityList) {
-			resultList.add(videoMapper.toDTO(video));
-		}
-		return resultList;
+		return null;
 	}
 
 	@Override
@@ -85,13 +77,50 @@ public class VideoService implements IVideoService {
 		}
 
 		try {
-			dto.setVideoFile(getFileURL(dto.getVideoFilePath()));
-			dto.setThumbnail(getFileURL(dto.getThumbnailImg()));
+			dto.setVideoFile(getFileURL(dto.getVideoFileName()));
+			if (dto.getThumbnailImg().getOriginalFilename().isEmpty()) {
+				dto.setThumbnail(
+						"https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/video_thumbnail_default.png?alt=media&token=a620226a-f8f9-4ab2-be8b-7773a4424b1b");
+			} else {
+				dto.setThumbnail(getFileURL(dto.getThumbnailImg()));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		dto.setVideoFilePath("https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/videoplayback.mp4?alt=media&token=775baef3-bc53-406c-af09-7e297445d7b0");
-//		dto.setThumbnail("https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/tieng-anh-nha-hang.jpg?alt=media&token=bef8480a-40d4-4c62-a27d-9eb92fd23c22");
+
+		BeanUtils.copyProperties(dto, videoEntity);
+		Course getCourseById = courseRepo.findById(dto.getCourseId()).get();
+		videoEntity.setCourse(getCourseById);
+		User getUserById = userRepo.findById(dto.getUserId()).get();
+		videoEntity.setUser(getUserById);
+		try {
+			videoEntity = videoRepo.save(videoEntity);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		BeanUtils.copyProperties(videoEntity, dto);
+		return dto;
+	}
+
+	@Override
+	public VideoDTO update(VideoDTO dto) {
+		Long getVideoId = dto.getId();
+		Video videoEntity = videoRepo.findById(getVideoId).get();
+		try {
+			if (dto.getThumbnailImg().getOriginalFilename().isEmpty()) {
+				dto.setThumbnail(videoEntity.getThumbnail());
+			} else {
+				dto.setThumbnail(getFileURL(dto.getThumbnailImg()));
+			}
+
+			if (dto.getVideoFileName().getOriginalFilename().isEmpty()) {
+				dto.setVideoFile(videoEntity.getVideoFile());
+			} else {
+				dto.setVideoFile(getFileURL(dto.getVideoFileName()));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		BeanUtils.copyProperties(dto, videoEntity);
 		Course getCourseById = courseRepo.findById(dto.getCourseId()).get();
