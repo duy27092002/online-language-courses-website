@@ -104,9 +104,12 @@
 						<a class="collapse-item" href="/quan-tri/ngon-ngu/danh-sach">Ngôn
 							ngữ</a><a class="collapse-item" href="/quan-tri/ky-nang/danh-sach">Kỹ
 							năng</a> <a class="collapse-item" href="/quan-tri/khoa-hoc/danh-sach">Khóa
-							học</a> <a class="collapse-item" href="/quan-tri/binh-luan/danh-sach">Bình
-							luận</a> <a class="collapse-item"
-							href="/quan-tri/danh-gia-cua-hoc-vien/danh-sach">Đánh giá</a>
+							học</a>
+						<!-- <a class="collapse-item" href="/quan-tri/binh-luan/danh-sach">Bình
+							luận</a> -->
+						<a class="collapse-item"
+							href="/quan-tri/danh-gia-cua-hoc-vien/danh-sach">Đánh giá của
+							học viên</a>
 					</div>
 				</div></li>
 
