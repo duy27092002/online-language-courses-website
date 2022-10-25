@@ -26,6 +26,7 @@ import com.javaproject.util.GetWebsiteDetails;
 import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "VideoControllerOfAdmin")
+@PreAuthorize("hasAnyRole('ROLE_admin')")
 public class VideoController {
 	@Autowired
 	private IVideoService videoService;
@@ -39,7 +40,6 @@ public class VideoController {
 	}
 
 	@GetMapping(value = "/quan-tri/khoa-hoc/danh-sach-video")
-	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewListPage(@PagingParam(path = "/quan-tri/khoa-hoc/danh-sach-video") ResponseDataTableDTO resDTDTO,
 			RedirectAttributes redirectModel, Model model) {
 		setViewTitleOrFaviconAttribute("Danh sách video", model);
@@ -61,7 +61,6 @@ public class VideoController {
 	}
 
 	@GetMapping(value = "/quan-tri/video/them-moi")
-	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewCreatePage(Model model) {
 		setViewTitleOrFaviconAttribute("Thêm mới video bài giảng", model);
 		model.addAttribute("videoDTO", new VideoDTO());
@@ -70,21 +69,18 @@ public class VideoController {
 	}
 
 	@PostMapping(value = "/quan-tri/video/them-moi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String create(@Valid @ModelAttribute("videoDTO") VideoDTO videoDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("create", videoDTO, bindingResult, redirectModel, model);
 	}
 
 	@GetMapping(value = "/quan-tri/video/chi-tiet")
-	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/quan-tri/video/chinh-sua")
-	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
