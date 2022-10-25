@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglib.jsp"%>
-<c:if test="${resultList.keyword == null}">
+<c:if test="${resultList.keyword == null && resultList.id == 0}">
 	<c:set var="paginationParam"
 		value="orderBy=${resultList.orderBy}&orderType=${resultList.orderType}"></c:set>
 </c:if>
-<c:if test="${resultList.keyword != null}">
+<c:if test="${resultList.keyword != null && resultList.id == 0}">
 	<c:set var="paginationParam"
 		value="keyword=${resultList.keyword}&orderBy=${resultList.orderBy}&orderType=${resultList.orderType}"></c:set>
+</c:if>
+<c:if test="${resultList.keyword == null && resultList.id != 0}">
+	<c:set var="paginationParam"
+		value="id=${resultList.id}&orderBy=${resultList.orderBy}&orderType=${resultList.orderType}"></c:set>
+</c:if>
+<c:if test="${resultList.keyword != null && resultList.id != 0}">
+	<c:set var="paginationParam"
+		value="id=${resultList.id}&keyword=${resultList.keyword}&orderBy=${resultList.orderBy}&orderType=${resultList.orderType}"></c:set>
 </c:if>
 <nav aria-label="Page navigation example">
 	<ul class="pagination justify-content-center">
