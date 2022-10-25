@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaproject.admin.dto.EvaluatedDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.Evaluated;
 import com.javaproject.admin.entity.User;
-import com.javaproject.admin.mapper.EvaluatedMapper;
 import com.javaproject.admin.repository.CourseRepository;
 import com.javaproject.admin.repository.EvaluatedRepository;
 import com.javaproject.admin.repository.UserRepository;
@@ -24,29 +24,22 @@ import com.javaproject.admin.service.IEvaluatedService;
 public class EvaluatedService implements IEvaluatedService {
 	@Autowired
 	private EvaluatedRepository evaluatedRepo;
-	
+
 	@Autowired
 	private CourseRepository courseRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
-	@Autowired
-	private EvaluatedMapper evaluatedMapper;
+
+	@Override
+	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getList(evaluatedRepo, new EvaluatedDTO().getClass(),
+				responseDataTableDTO.getKeyword());
+	}
 
 	@Override
 	public List<EvaluatedDTO> getList(String keyword, Pageable pageable) {
-		List<Evaluated> getList = null;
-		if (keyword == null) {
-			getList = evaluatedRepo.findAll(pageable).getContent();
-		} else if (keyword != null && keyword.length() > 0) {
-			getList = evaluatedRepo.getSearchListByKeyword(keyword, pageable);
-		}
-		List<EvaluatedDTO> resultList = new ArrayList<>();
-		for (Evaluated item : getList) {
-			resultList.add(evaluatedMapper.toDTO(item));
-		}
-		return resultList;
+		return null;
 	}
 
 	@Override
@@ -68,11 +61,11 @@ public class EvaluatedService implements IEvaluatedService {
 		} else {
 			evaluatedEntity = evaluatedRepo.findById(getEvaluatedId).get();
 		}
-		Course getCourseById = courseRepo.findById(dto.getCourseId()).get();
-		User getUserById = userRepo.findById(dto.getUserId()).get();
-		evaluatedEntity.setCourse(getCourseById);
-		evaluatedEntity.setUser(getUserById);
 		BeanUtils.copyProperties(dto, evaluatedEntity);
+		Course getCourseById = courseRepo.findById(dto.getCourseId()).get();
+		evaluatedEntity.setCourse(getCourseById);
+		User getUserById = userRepo.findById(dto.getUserId()).get();
+		evaluatedEntity.setUser(getUserById);
 		BeanUtils.copyProperties(evaluatedRepo.save(evaluatedEntity), dto);
 		return dto;
 	}
