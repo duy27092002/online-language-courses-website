@@ -43,6 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		AccountDetails accDetails = new AccountDetails(user.getEmail(), user.getPassword(), true, true, true, true,
 				authorities);
 		accDetails.setUserId(user.getId());
+		accDetails.setAvatar(user.getAvatar());
 
 		return accDetails;
 		//return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
