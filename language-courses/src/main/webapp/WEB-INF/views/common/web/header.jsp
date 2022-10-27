@@ -122,8 +122,9 @@
 								</a> <a class="dropdown-item" href="/doi-mat-khau"> <i
 									class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
 									khẩu
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-book-open fa-sm fa-fw mr-2 text-gray-400"></i>
+								</a> <a class="dropdown-item"
+									href="/khoa-hoc-cua-toi?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
+									<i class="fas fa-book-open fa-sm fa-fw mr-2 text-gray-400"></i>
 									Khóa học của tôi
 								</a>
 								<div class="dropdown-divider"></div>

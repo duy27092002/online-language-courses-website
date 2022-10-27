@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.ICourseService;
+import com.javaproject.admin.service.ICourseStudentService;
 import com.javaproject.admin.service.IEvaluatedService;
 import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.admin.service.IVideoService;
@@ -31,6 +32,9 @@ public class CourseController {
 
 	@Autowired
 	private IVideoService videoService;
+
+	@Autowired
+	private ICourseStudentService csService;
 
 	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
 		model.addAttribute("viewTitle", viewTitle);
@@ -74,6 +78,36 @@ public class CourseController {
 			return viewErrorPage(redirectModel);
 		}
 		return "/web/course/detail";
+	}
+
+	@GetMapping(value = "/khoa-hoc-cua-toi")
+	public String viewMyCourseList(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+			RedirectAttributes redirectModel, Model model) {
+		setViewTitleOrGetWebDetails("Khóa học của tôi", model);
+		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
+		try {
+			Long getUserId = Long.parseLong(id);
+			model.addAttribute("myCourseList",
+					courseService.getListByCourseId(csService.getCourseIdListByUserId(getUserId)));
+			return "/web/user/my-course-list";
+		} catch (Exception ex) {
+			return viewErrorPage(redirectModel);
+		}
+	}
+
+	@GetMapping(value = "/vao-hoc")
+	public String viewVideoListOfCourse(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+			RedirectAttributes redirectModel, Model model) {
+		setViewTitleOrGetWebDetails("Khóa học của tôi", model);
+		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
+		try {
+			Long getCourseId = Long.parseLong(id);
+			model.addAttribute("courseName", courseService.getDetails(getCourseId).get(0).getName());
+			model.addAttribute("videoListOfCourse", videoService.getListByCourseId(getCourseId));
+			return "/web/user/video-list";
+		} catch (Exception ex) {
+			return viewErrorPage(redirectModel);
+		}
 	}
 
 	// hiển thị trang lỗi khi không tìm thấy dữ liệu

@@ -15,4 +15,6 @@ public interface ICourseService extends IBaseService<CourseDTO> {
 	CourseDTO update(CourseDTO dto);
 	
 	List<CourseDTO> getListByLanguageIdAndStatus(Long languageId, int status);
+	
+	List<CourseDTO> getListByCourseId(List<Long> courseIdList);
 }

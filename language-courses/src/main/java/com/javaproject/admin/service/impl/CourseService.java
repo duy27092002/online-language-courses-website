@@ -88,7 +88,7 @@ public class CourseService implements ICourseService {
 				releaseTimeStr = dto.getReleaseTimeStr();
 				releaseTimeDate = df.parse(releaseTimeStr);
 			}
-			
+
 			String startDisTimeStr = null;
 			if (!dto.getStartDisTimeStr().isEmpty()) {
 				startDisTimeStr = dto.getStartDisTimeStr();
@@ -157,7 +157,7 @@ public class CourseService implements ICourseService {
 				releaseTimeStr = dto.getReleaseTimeStr();
 				releaseTimeDate = df.parse(releaseTimeStr);
 			}
-			
+
 			String startDisTimeStr = null;
 			if (!dto.getStartDisTimeStr().isEmpty()) {
 				startDisTimeStr = dto.getStartDisTimeStr();
@@ -249,7 +249,23 @@ public class CourseService implements ICourseService {
 	public List<CourseDTO> getListByLanguageIdAndStatus(Long languageId, int status) {
 		List<Course> courseListByLanguageId = courseRepo.findByLanguageIdAndStatus(languageId, status);
 		List<CourseDTO> resultList = new ArrayList<>();
-		for(Course entity : courseListByLanguageId) {
+		for (Course entity : courseListByLanguageId) {
+			CourseDTO dto = new CourseDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<CourseDTO> getListByCourseId(List<Long> courseIdList) {
+		List<Course> courseListByUserId = new ArrayList<>();
+		for (Long courseId : courseIdList) {
+			Course getCourseById = courseRepo.findById(courseId).get();
+			courseListByUserId.add(getCourseById);
+		}
+		List<CourseDTO> resultList = new ArrayList<>();
+		for (Course entity : courseListByUserId) {
 			CourseDTO dto = new CourseDTO();
 			BeanUtils.copyProperties(entity, dto);
 			resultList.add(dto);
