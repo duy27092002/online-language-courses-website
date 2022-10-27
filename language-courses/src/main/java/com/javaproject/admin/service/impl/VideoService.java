@@ -147,4 +147,21 @@ public class VideoService implements IVideoService {
 	public List<VideoDTO> getDetails(Long id) {
 		return null;
 	}
+
+	@Override
+	public List<VideoDTO> getListByCourseId(Long courseId) {
+		List<Video> videoListByCourseId = videoRepo.findByCourseId(courseId);
+		List<VideoDTO> resultList = new ArrayList<>();
+		for (Video entity : videoListByCourseId) {
+			VideoDTO dto = new VideoDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<VideoDTO> getListByCourseIdAndUserId(Long courseId, Long userId) {
+		return null;
+	}
 }

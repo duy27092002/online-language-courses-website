@@ -73,4 +73,17 @@ public class FAQsService implements IFAQsService {
 		return null;
 	}
 
+	
+	@Override
+	public List<FAQsDTO> getListByStatus(int status) {
+		List<FAQs> activeFAQList = faqsRepo.findByStatus(status);
+		List<FAQsDTO> resultList = new ArrayList<>();
+		for (FAQs entity : activeFAQList) {
+			FAQsDTO dto = new FAQsDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
 }

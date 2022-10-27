@@ -23,11 +23,11 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService userDetailsService;
 
-	//private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	// private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);//.passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(userDetailsService);// .passwordEncoder(bCryptPasswordEncoder);
 	}
 
 	@Override
@@ -42,22 +42,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/", "/trang-chu", "/ve-chung-toi", "/danh-sach-khoa-hoc", "/chi-tiet-khoa-hoc",
 						"/danh-sach-giang-vien", "/danh-gia-cua-hoc-vien", "/lien-he", "/dang-nhap", "/dang-ky",
-						"/dang-ki", "/web/**", "/admin/**", "/gui-phan-hoi")
+						"/dang-ki", "/web/**", "/admin/**", "/gui-phan-hoi", "/cau-hoi-thuong-gap")
 				.permitAll();
 
 		http.authorizeRequests().anyRequest().authenticated();
-		
+
 		http.exceptionHandling().accessDeniedPage("/WEB-INF/views/common/403.jsp");
 
-		http.authorizeRequests().and().formLogin().loginPage("/dang-nhap")
-				.loginProcessingUrl("/check_login").successHandler(successHandler())
-				.failureUrl("/dang-nhap?loi").usernameParameter("email").passwordParameter("password").and().logout()
-				.logoutUrl("/dang-xuat").logoutSuccessUrl("/dang-nhap");
+		http.authorizeRequests().and().formLogin().loginPage("/dang-nhap").loginProcessingUrl("/check_login")
+				.successHandler(successHandler()).failureUrl("/dang-nhap?loi").usernameParameter("email")
+				.passwordParameter("password").and().logout().logoutUrl("/dang-xuat").logoutSuccessUrl("/dang-nhap");
 
 //		http.addFilter(customAuthenticaionFilter);
 //		http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
-	
+
 	@Bean
 	CustomSuccessHandler successHandler() {
 		return new CustomSuccessHandler();

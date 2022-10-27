@@ -5,35 +5,20 @@
 <div class="container-fluid py-5">
 	<div class="container py-5">
 		<div class="row">
-			<div class="col-lg-8">
+			<div class="col-lg-12">
 				<div class="mb-5">
 					<div class="section-title position-relative mb-5">
 						<h6
-							class="d-inline-block position-relative text-secondary text-uppercase pb-2">Course
-							Detail</h6>
-						<h1 class="display-4">Web design & development courses for
-							beginners</h1>
+							class="d-inline-block position-relative text-secondary text-uppercase pb-2">Chi
+							tiết khóa học</h6>
+						<h1 class="display-4">${courseDetails.name}</h1>
 					</div>
-					<img class="img-fluid rounded w-100 mb-4" src="/web/img/header.jpg"
-						alt="Image">
-					<p>Tempor erat elitr at rebum at at clita aliquyam consetetur.
-						Diam dolor diam ipsum et, tempor voluptua sit consetetur sit.
-						Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
-						et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo
-						justo et tempor consetetur takimata eirmod, dolores takimata
-						consetetur invidunt magna dolores aliquyam dolores dolore. Amet
-						erat amet et magna</p>
-
-					<p>Sadipscing labore amet rebum est et justo gubergren. Et
-						eirmod ipsum sit diam ut magna lorem. Nonumy vero labore lorem
-						sanctus rebum et lorem magna kasd, stet amet magna accusam
-						consetetur eirmod. Kasd accusam sit ipsum sadipscing et at at
-						sanctus et. Ipsum sit gubergren dolores et, consetetur justo
-						invidunt at et aliquyam ut et vero clita. Diam sea sea no sed
-						dolores diam nonumy, gubergren sit stet no diam kasd vero.</p>
+					<img class="img-fluid rounded w-100 mb-4"
+						src="${courseDetails.thumbnail}" alt="Image">
+					<p>${courseDetails.description}</p>
 				</div>
 
-				<h2 class="mb-3">Related Courses</h2>
+				<!-- <h2 class="mb-3">Related Courses</h2>
 				<div class="owl-carousel related-carousel position-relative"
 					style="padding: 0 30px;">
 					<a
@@ -82,77 +67,48 @@
 							</div>
 						</div>
 					</a>
-				</div>
+				</div> -->
 			</div>
 
-			<div class="col-lg-4 mt-5 mt-lg-0">
+			<div class="col-lg-12 mt-5 mt-lg-0">
 				<div class="bg-primary mb-5 py-3">
-					<h3 class="text-white py-3 px-4 m-0">Course Features</h3>
+					<h3 class="text-white py-3 px-4 m-0">Thông tin cơ bản</h3>
 					<div class="d-flex justify-content-between border-bottom px-4">
-						<h6 class="text-white my-3">Instructor</h6>
-						<h6 class="text-white my-3">John Doe</h6>
+						<h6 class="text-white my-3">Giảng viên</h6>
+						<c:forEach items="${courseDetails.instructors}" var="instructor">
+							<h6 class="text-white my-3">
+								<i class="fa fa-user mr-2"></i>${instructor.name}</h6>
+						</c:forEach>
 					</div>
 					<div class="d-flex justify-content-between border-bottom px-4">
-						<h6 class="text-white my-3">Rating</h6>
+						<h6 class="text-white my-3">Chất lượng</h6>
 						<h6 class="text-white my-3">
-							4.5 <small>(250)</small>
+							${rating} <i class="fas fa-star mr-2"></i> <small>(${totalOfEvaluated})</small>
 						</h6>
 					</div>
 					<div class="d-flex justify-content-between border-bottom px-4">
-						<h6 class="text-white my-3">Lectures</h6>
-						<h6 class="text-white my-3">15</h6>
+						<h6 class="text-white my-3">Số lượng video</h6>
+						<h6 class="text-white my-3">${totalOfVideo}</h6>
 					</div>
 					<div class="d-flex justify-content-between border-bottom px-4">
-						<h6 class="text-white my-3">Duration</h6>
-						<h6 class="text-white my-3">10.00 Hrs</h6>
-					</div>
-					<div class="d-flex justify-content-between border-bottom px-4">
-						<h6 class="text-white my-3">Skill level</h6>
-						<h6 class="text-white my-3">All Level</h6>
+						<h6 class="text-white my-3">Kỹ năng đạt được</h6>
+						<c:forEach items="${courseDetails.skillLevelList}" var="skl">
+							<h6 class="text-white my-3">
+								<i class="fas fa-bookmark mr-2"></i>${skl.name}</h6>
+						</c:forEach>
 					</div>
 					<div class="d-flex justify-content-between px-4">
-						<h6 class="text-white my-3">Language</h6>
-						<h6 class="text-white my-3">English</h6>
+						<h6 class="text-white my-3">Ngôn ngữ</h6>
+						<h6 class="text-white my-3">${courseDetails.language.name}</h6>
 					</div>
-					<h5 class="text-white py-3 px-4 m-0">Course Price: $199</h5>
+					<h5 class="text-white py-3 px-4 m-0">Giá:
+						${courseDetails.price} VND</h5>
 					<div class="py-3 px-4">
-						<a class="btn btn-block btn-secondary py-3 px-5" href="">Enroll
-							Now</a>
+						<a class="btn btn-block btn-secondary py-3 px-5" href="">Mua</a>
 					</div>
 				</div>
 
-				<div class="mb-5">
-					<h2 class="mb-3">Categories</h2>
-					<ul class="list-group list-group-flush">
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center px-0">
-							<a href="" class="text-decoration-none h6 m-0">Web Design</a> <span
-							class="badge badge-primary badge-pill">150</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center px-0">
-							<a href="" class="text-decoration-none h6 m-0">Web
-								Development</a> <span class="badge badge-primary badge-pill">131</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center px-0">
-							<a href="" class="text-decoration-none h6 m-0">Online
-								Marketing</a> <span class="badge badge-primary badge-pill">78</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center px-0">
-							<a href="" class="text-decoration-none h6 m-0">Keyword
-								Research</a> <span class="badge badge-primary badge-pill">56</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center px-0">
-							<a href="" class="text-decoration-none h6 m-0">Email
-								Marketing</a> <span class="badge badge-primary badge-pill">98</span>
-						</li>
-					</ul>
-				</div>
-
-				<div class="mb-5">
+				<!-- <div class="mb-5">
 					<h2 class="mb-4">Recent Courses</h2>
 					<a class="d-flex align-items-center text-decoration-none mb-4"
 						href=""> <img class="img-fluid rounded"
@@ -203,7 +159,7 @@
 							</div>
 						</div>
 					</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

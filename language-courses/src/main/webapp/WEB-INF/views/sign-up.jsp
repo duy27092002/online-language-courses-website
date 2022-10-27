@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglib.jsp"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<title>Đăng ký</title>
-</head>
-
-<body>
-
-	<%@include file="/WEB-INF/views/common/form/header-of-form.jsp"%>
+<%@include file="/WEB-INF/views/common/form/header-of-form.jsp"%>
 
 	<div class="card o-hidden border-0 shadow-lg my-5">
 		<div class="card-body p-0">

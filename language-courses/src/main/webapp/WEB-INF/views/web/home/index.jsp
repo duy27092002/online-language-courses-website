@@ -121,7 +121,7 @@
 <!-- Courses Start -->
 <div class="container-fluid px-0 py-5">
 	<div class="row mx-0 justify-content-center pt-5">
-		<div class="col-lg-6">
+		<div class="col-lg-7">
 			<div class="section-title text-center position-relative mb-4">
 				<h6
 					class="d-inline-block position-relative text-secondary text-uppercase pb-2">Khóa
@@ -129,148 +129,17 @@
 				<h1 class="display-4">Chất lượng và luôn được cập nhật liên tục</h1>
 			</div>
 		</div>
-	</div>
-	<div class="owl-carousel courses-carousel">
-		<div class="courses-item position-relative">
-			<img class="img-fluid" src="img/courses-1.jpg" alt="">
-			<div class="courses-text">
-				<h4 class="text-center text-white px-3">Web design &
-					development courses for beginners</h4>
-				<div class="border-top w-100 mt-3">
-					<div class="d-flex justify-content-between p-4">
-						<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-							Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-							<small>(250)</small></span>
-					</div>
-				</div>
-				<div class="w-100 bg-white text-center p-4">
-					<a class="btn btn-primary" href="detail.html">Chi tiết</a>
-				</div>
-			</div>
-		</div>
-		<div class="courses-item position-relative">
-			<img class="img-fluid" src="img/courses-2.jpg" alt="">
-			<div class="courses-text">
-				<h4 class="text-center text-white px-3">Web design &
-					development courses for beginners</h4>
-				<div class="border-top w-100 mt-3">
-					<div class="d-flex justify-content-between p-4">
-						<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-							Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-							<small>(250)</small></span>
-					</div>
-				</div>
-				<div class="w-100 bg-white text-center p-4">
-					<a class="btn btn-primary" href="detail.html">Chi tiết</a>
-				</div>
-			</div>
-		</div>
-		<div class="courses-item position-relative">
-			<img class="img-fluid" src="img/courses-3.jpg" alt="">
-			<div class="courses-text">
-				<h4 class="text-center text-white px-3">Web design &
-					development courses for beginners</h4>
-				<div class="border-top w-100 mt-3">
-					<div class="d-flex justify-content-between p-4">
-						<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-							Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-							<small>(250)</small></span>
-					</div>
-				</div>
-				<div class="w-100 bg-white text-center p-4">
-					<a class="btn btn-primary" href="detail.html">Chi tiết</a>
-				</div>
-			</div>
-		</div>
-		<div class="courses-item position-relative">
-			<img class="img-fluid" src="img/courses-4.jpg" alt="">
-			<div class="courses-text">
-				<h4 class="text-center text-white px-3">Web design &
-					development courses for beginners</h4>
-				<div class="border-top w-100 mt-3">
-					<div class="d-flex justify-content-between p-4">
-						<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-							Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-							<small>(250)</small></span>
-					</div>
-				</div>
-				<div class="w-100 bg-white text-center p-4">
-					<a class="btn btn-primary" href="detail.html">Chi tiết</a>
-				</div>
-			</div>
-		</div>
-		<div class="courses-item position-relative">
-			<img class="img-fluid" src="img/courses-5.jpg" alt="">
-			<div class="courses-text">
-				<h4 class="text-center text-white px-3">Web design &
-					development courses for beginners</h4>
-				<div class="border-top w-100 mt-3">
-					<div class="d-flex justify-content-between p-4">
-						<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-							Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-							<small>(250)</small></span>
-					</div>
-				</div>
-				<div class="w-100 bg-white text-center p-4">
-					<a class="btn btn-primary" href="detail.html">Chi tiết</a>
-				</div>
-			</div>
-		</div>
-		<div class="courses-item position-relative">
-			<img class="img-fluid" src="img/courses-6.jpg" alt="">
-			<div class="courses-text">
-				<h4 class="text-center text-white px-3">Web design &
-					development courses for beginners</h4>
-				<div class="border-top w-100 mt-3">
-					<div class="d-flex justify-content-between p-4">
-						<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-							Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-							<small>(250)</small></span>
-					</div>
-				</div>
-				<div class="w-100 bg-white text-center p-4">
-					<a class="btn btn-primary" href="detail.html">Chi tiết</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row justify-content-center bg-image mx-0 mb-5">
-		<div class="col-lg-6 py-5">
-			<div class="bg-white p-5 my-5">
-				<h1 class="text-center mb-4">Giảm 30% học phí cho học viên mới</h1>
-				<form>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<input type="text" class="form-control bg-light border-0"
-									placeholder="Họ tên" style="padding: 30px 20px;">
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<input type="email" class="form-control bg-light border-0"
-									placeholder="Email" style="padding: 30px 20px;">
-							</div>
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<select class="custom-select bg-light border-0 px-3"
-									style="height: 60px;">
-									<option selected>Chọn khóa học</option>
-									<option value="1">courses 1</option>
-									<option value="2">courses 1</option>
-									<option value="3">courses 1</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<button class="btn btn-primary btn-block" type="submit"
-								style="height: 60px;">Đăng ký ngay</button>
-						</div>
-					</div>
-				</form>
+		<div class="col-lg-5 my-5">
+			<div class="card o-hidden border-0 shadow-lg py-3 px-5">
+				<ul class="list-group list-group-flush">
+					<c:forEach items="${activeLanguageList}" var="languageInfo">
+						<li
+							class="list-group-item d-flex justify-content-between align-items-center px-0">
+							<a href="/danh-sach-khoa-hoc?id=${languageInfo.id}"
+							class="text-decoration-none h6 m-0">${languageInfo.name}</a>
+						</li>
+					</c:forEach>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -289,62 +158,26 @@
 		</div>
 		<div class="owl-carousel team-carousel position-relative"
 			style="padding: 0 30px;">
-			<div class="team-item">
-				<img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-				<div class="bg-light text-center p-4">
-					<h5 class="mb-3">Instructor Name</h5>
-					<p class="mb-2">Web Design & Development</p>
-					<div class="d-flex justify-content-center">
-						<a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
+			<c:forEach items="${instructorList}" var="instructorInfo">
+				<div class="team-item">
+					<img class="img-fluid w-100" src="${instructorInfo.avatar}" alt="">
+					<div class="bg-light text-center p-4">
+						<h5 class="mb-3">${instructorInfo.name}</h5>
+						<div class="d-flex justify-content-center">
+							<a class="mx-1 p-1" href="${instructorInfo.twitterLink}"><i
+								class="fab fa-twitter"></i></a> <a class="mx-1 p-1"
+								href="${instructorInfo.facebookLink}"><i
+								class="fab fa-facebook-f"></i></a> <a class="mx-1 p-1"
+								href="${instructorInfo.inLink}"><i
+								class="fab fa-linkedin-in"></i></a> <a class="mx-1 p-1"
+								href="${instructorInfo.instagramLink}"><i
+								class="fab fa-instagram"></i></a> <a class="mx-1 p-1"
+								href="${instructorInfo.youtubeLink}"><i
+								class="fab fa-youtube"></i></a>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="team-item">
-				<img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-				<div class="bg-light text-center p-4">
-					<h5 class="mb-3">Instructor Name</h5>
-					<p class="mb-2">Web Design & Development</p>
-					<div class="d-flex justify-content-center">
-						<a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="team-item">
-				<img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-				<div class="bg-light text-center p-4">
-					<h5 class="mb-3">Instructor Name</h5>
-					<p class="mb-2">Web Design & Development</p>
-					<div class="d-flex justify-content-center">
-						<a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="team-item">
-				<img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-				<div class="bg-light text-center p-4">
-					<h5 class="mb-3">Instructor Name</h5>
-					<p class="mb-2">Web Design & Development</p>
-					<div class="d-flex justify-content-center">
-						<a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a> <a
-							class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-						<a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
@@ -370,34 +203,20 @@
 			</div>
 			<div class="col-lg-7">
 				<div class="owl-carousel testimonial-carousel">
-					<div class="bg-white p-5">
-						<i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-						<p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed
-							sit est est ipsum eos clita est ipsum. Est nonumy tempor at kasd.
-							Sed at dolor duo ut dolor, et justo erat dolor magna sed stet
-							amet elitr duo lorem</p>
-						<div class="d-flex flex-shrink-0 align-items-center mt-4">
-							<img class="img-fluid mr-4" src="img/testimonial-2.jpg" alt="">
-							<div>
-								<h5>Student Name</h5>
-								<span>Web Design</span>
+					<c:forEach items="${activeEvaluatedList}" var="evaluated">
+						<div class="bg-white p-5">
+							<i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+							<p>${evaluated.content}</p>
+							<div class="d-flex flex-shrink-0 align-items-center mt-4">
+								<img class="img-fluid mr-4" src="${evaluated.user.avatar}"
+									alt="">
+								<div>
+									<h5>${evaluated.user.name}</h5>
+									<span>Khóa học: ${evaluated.course.name}</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="bg-white p-5">
-						<i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-						<p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed
-							sit est est ipsum eos clita est ipsum. Est nonumy tempor at kasd.
-							Sed at dolor duo ut dolor, et justo erat dolor magna sed stet
-							amet elitr duo lorem</p>
-						<div class="d-flex flex-shrink-0 align-items-center mt-4">
-							<img class="img-fluid mr-4" src="img/testimonial-1.jpg" alt="">
-							<div>
-								<h5>Student Name</h5>
-								<span>Web Design</span>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -419,7 +238,7 @@
 						</div>
 						<div class="mt-n1">
 							<h4>Địa chỉ</h4>
-							<p class="m-0">Đường Hồ Tùng Mậu, Mai Dịch, Cầu Giấy, Hà Nội</p>
+							<p class="m-0">${aboutDetails.location}</p>
 						</div>
 					</div>
 					<div class="d-flex align-items-center mb-5">
@@ -428,7 +247,7 @@
 						</div>
 						<div class="mt-n1">
 							<h4>Số điện thoại</h4>
-							<p class="m-0">+012 345 6789</p>
+							<p class="m-0">${aboutDetails.phoneNumber}</p>
 						</div>
 					</div>
 					<div class="d-flex align-items-center">
@@ -437,7 +256,7 @@
 						</div>
 						<div class="mt-n1">
 							<h4>Email</h4>
-							<p class="m-0">edukate@gmail.com</p>
+							<p class="m-0">${aboutDetails.email}</p>
 						</div>
 					</div>
 				</div>

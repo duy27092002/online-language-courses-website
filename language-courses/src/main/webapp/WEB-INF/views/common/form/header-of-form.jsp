@@ -12,8 +12,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Đăng nhập</title>
-<link href="/web/img/edukate_logo.ico" rel="icon">
+<title>${viewTitle}</title>
+<link href="/image-file/${aboutDetails.favicon}" rel="icon">
 <!-- Custom fonts for this template-->
 <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">

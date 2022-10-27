@@ -11,20 +11,25 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.dto.EvaluatedDTO;
+import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.IEvaluatedService;
+import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "EvaluatedControllerOfWeb")
-@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
-@RequestMapping(value = "/danh-gia")
 public class EvaluatedController {
 	@Autowired
+	private IAboutService aboutService;
+	
+	@Autowired
 	private IEvaluatedService evaluatedService;
+	
+	@Autowired
+	private ILanguageService languageService;
 
 	@Autowired
 	private GetWebsiteDetails webDetails;
@@ -34,26 +39,43 @@ public class EvaluatedController {
 		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
 	}
 	
-	@GetMapping(value = "/tao-danh-gia")
+	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
+		model.addAttribute("viewTitle", viewTitle);
+		model.addAttribute("aboutDetails", aboutService.details(1L));
+	}
+
+	@GetMapping(value = { "/danh-gia-cua-hoc-vien" })
+	public String testimonail(Model model) {
+		setViewTitleOrGetWebDetails("Đánh giá của học viên", model);
+		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
+		model.addAttribute("activeEvaluatedList", evaluatedService.getEvaluatedByStatus(2));
+		return "/web/testimonial/index";
+	}
+	
+	@GetMapping(value = "/danh-gia/tao-danh-gia")
+	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
 	public String viewCreatePage(Model model) {
 		setViewTitleOrFaviconAttribute("Tạo đánh giá", model);
 		model.addAttribute("evaluatedDTO", new EvaluatedDTO());
 		return "/admin/evaluated/edit";
 	}
 
-	@PostMapping(value = "/tao-danh-gia")
+	@PostMapping(value = "/danh-gia/tao-danh-gia")
+	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
 	public String create(@Valid @ModelAttribute("evaluatedDTO") EvaluatedDTO evaluatedDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("create", evaluatedDTO, bindingResult, redirectModel, model);
 	}
 	
-	@GetMapping(value = "/chinh-sua")
+	@GetMapping(value = "/danh-gia/chinh-sua")
+	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
 	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "edit", redirectModel, model);
 	}
 
-	@PostMapping(value = "/chinh-sua")
+	@PostMapping(value = "/danh-gia/chinh-sua")
+	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
 	public String update(@Valid @ModelAttribute("evaluatedDTO") EvaluatedDTO evaluatedDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("update", evaluatedDTO, bindingResult, redirectModel, model);

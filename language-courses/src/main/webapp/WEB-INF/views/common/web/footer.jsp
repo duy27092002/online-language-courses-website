@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/views/common/taglib.jsp"%>
 <!-- Footer Start -->
 <div
 	class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5"
@@ -7,12 +8,12 @@
 	<div class="container mt-5 pt-5">
 		<div class="row">
 			<div class="col-md-6 mb-5">
-				<a href="index.html" class="navbar-brand">
-					<h1 class="mt-n2 text-uppercase text-white">Edukate</h1>
+				<a href="/trang-chu" class="navbar-brand">
+					<h1 class="mt-n2 text-uppercase text-white">${aboutDetails.name}</h1>
 				</a>
-				<p class="m-0">Edukate là nơi cung cấp các khóa học ngoại ngữ
-					online chất lượng được biên soạn bởi rất nhiều giảng viên tài giỏi
-					trong và ngoài nước.</p>
+				<p class="m-0">${aboutDetails.name}là nơi cung cấp các khóa học
+					ngoại ngữ online chất lượng được biên soạn bởi rất nhiều giảng viên
+					tài giỏi trong và ngoài nước.</p>
 			</div>
 			<div class="col-md-6 mb-5 text-center"></div>
 		</div>
@@ -20,36 +21,33 @@
 			<div class="col-md-4 mb-5">
 				<h3 class="text-white mb-4">Liên hệ</h3>
 				<p>
-					<i class="fa fa-map-marker-alt mr-2"></i>Đường Hồ Tùng Mậu, Mai Dịch, Cầu Giấy, Hà Nội
+					<i class="fa fa-map-marker-alt mr-2"></i>${aboutDetails.location}
 				</p>
 				<p>
-					<i class="fa fa-phone-alt mr-2"></i>+012 345 6789
+					<i class="fa fa-phone-alt mr-2"></i>${aboutDetails.phoneNumber}
 				</p>
 				<p>
-					<i class="fa fa-envelope mr-2"></i>edukate@gmail.com
+					<i class="fa fa-envelope mr-2"></i>${aboutDetails.email}
 				</p>
 				<div class="d-flex justify-content-start mt-4">
-					<a class="text-white mr-4" href="#"><i
+					<a class="text-white mr-4" href="${aboutDetails.twitterLink}"><i
 						class="fab fa-2x fa-twitter"></i></a> <a class="text-white mr-4"
-						href="#"><i class="fab fa-2x fa-facebook-f"></i></a> <a
-						class="text-white mr-4" href="#"><i
+						href="${aboutDetails.facebookLink}"><i
+						class="fab fa-2x fa-facebook-f"></i></a> <a class="text-white mr-4"
+						href="${aboutDetails.inLink}"><i
 						class="fab fa-2x fa-linkedin-in"></i></a> <a class="text-white"
-						href="#"><i class="fab fa-2x fa-instagram"></i></a>
+						href="${aboutDetails.instagramLink}"><i
+						class="fab fa-2x fa-instagram"></i></a>
 				</div>
 			</div>
 			<div class="col-md-4 mb-5">
 				<h3 class="text-white mb-4">Khóa học</h3>
 				<div class="d-flex flex-column justify-content-start">
-					<a class="text-white-50 mb-2" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Tiếng Anh</a> <a
-						class="text-white-50 mb-2" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Tiếng Trung Quốc</a> <a
-						class="text-white-50 mb-2" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Tiếng Hàn Quốc</a> <a
-						class="text-white-50 mb-2" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Tiếng Nhật Bản</a> <a
-						class="text-white-50" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Tiếng Nga</a>
+					<c:forEach items="${activeLanguageList}" var="language">
+						<a class="text-white-50 mb-2"
+							href="/danh-sach-khoa-hoc?id=${language.id}"><i
+							class="fa fa-angle-right mr-2"></i>${language.name}</a>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="col-md-4 mb-5">
@@ -59,11 +57,11 @@
 						class="fa fa-angle-right mr-2"></i>Chính sách bảo mật</a> <a
 						class="text-white-50 mb-2" href="#"><i
 						class="fa fa-angle-right mr-2"></i>Điều khoản</a> <a
-						class="text-white-50 mb-2" href="#"><i
+						class="text-white-50 mb-2" href="/cau-hoi-thuong-gap"><i
 						class="fa fa-angle-right mr-2"></i>Câu hỏi thường gặp</a> <a
 						class="text-white-50 mb-2" href="#"><i
 						class="fa fa-angle-right mr-2"></i>Hỗ trợ tư vấn</a> <a
-						class="text-white-50" href="#"><i
+						class="text-white-50" href="/lien-he"><i
 						class="fa fa-angle-right mr-2"></i>Liên hệ ngay</a>
 				</div>
 			</div>
@@ -74,7 +72,7 @@
 	style="border-color: rgba(256, 256, 256, .1) !important;">
 	<div class="container text-center">
 		<p class="m-0">
-			Bản quyền thuộc về &copy; <a class="text-white" href="#">Edukate</a>
+			Bản quyền thuộc về &copy; <a class="text-white" href="#">${aboutDetails.name}</a>
 		</p>
 	</div>
 </div>

@@ -245,4 +245,16 @@ public class CourseService implements ICourseService {
 		return imageUrl;
 	}
 
+	@Override
+	public List<CourseDTO> getListByLanguageIdAndStatus(Long languageId, int status) {
+		List<Course> courseListByLanguageId = courseRepo.findByLanguageIdAndStatus(languageId, status);
+		List<CourseDTO> resultList = new ArrayList<>();
+		for(Course entity : courseListByLanguageId) {
+			CourseDTO dto = new CourseDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
 }

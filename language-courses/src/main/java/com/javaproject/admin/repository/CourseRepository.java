@@ -20,4 +20,6 @@ public interface CourseRepository extends SearchingRepository<Course, Long> {
 	Course findByName(String name);
 	
 	List<Course> findByStatus(int status);
+	
+	List<Course> findByLanguageIdAndStatus(Long languageId, int status);
 }

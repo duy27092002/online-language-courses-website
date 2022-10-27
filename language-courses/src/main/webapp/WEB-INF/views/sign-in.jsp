@@ -50,31 +50,4 @@
 	</div>
 
 </div>
-<!-- <script>
-	$('#btnLogin').click(function(e) {
-		e.preventDefault();
-		var data = {};
-		var formData = $('#loginForm').serializeArray();
-		$.each(formData, function(i, v) {
-			data["" + v.name + ""] = v.value;
-		});
-		checkLogin(data);
-	});
-
-	function checkLogin(data) {
-		$.ajax({
-			url : '/api/auth/login',
-			type : 'POST',
-			contentType : 'application/x-www-form-urlencoded',
-			data : {email: data["email"], password: data["password"]},
-			dataType : 'json',
-			success : function(result) {
-				console.log(result);
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		});
-	}
-</script> -->
 <%@include file="/WEB-INF/views/common/form/footer-of-form.jsp"%>

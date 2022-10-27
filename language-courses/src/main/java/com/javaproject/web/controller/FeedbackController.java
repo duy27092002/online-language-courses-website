@@ -11,20 +11,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.dto.FeedbackDTO;
+import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.IFeedbackService;
-import com.javaproject.util.GetWebsiteDetails;
+import com.javaproject.admin.service.ILanguageService;
 
 @Controller(value = "FeedbackControllerOfWeb")
 public class FeedbackController {
 	@Autowired
-	private IFeedbackService feedbackService;
+	private IAboutService aboutService;
 	
 	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
+	private ILanguageService languageService;
+	
+	@Autowired
+	private IFeedbackService feedbackService;
+	
+	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
 		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
+		model.addAttribute("aboutDetails", aboutService.details(1L));
 	}
 
 	@PostMapping(value = "/gui-phan-hoi")
@@ -36,6 +40,8 @@ public class FeedbackController {
 	private String save(@Valid @ModelAttribute("feedbackDTO") FeedbackDTO feedbackDTO,
 			BindingResult bindingResult, RedirectAttributes redirectModel, Model model) {
 		if (bindingResult.hasErrors()) {
+			setViewTitleOrGetWebDetails("Liên hệ", model);
+			model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 			return "/web/contact/index";
 		}
 

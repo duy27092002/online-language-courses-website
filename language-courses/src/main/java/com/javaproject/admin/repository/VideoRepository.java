@@ -1,5 +1,7 @@
 package com.javaproject.admin.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +17,8 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
 	Page<Video> getSearchList(Long id, String keyword, Pageable pageable);
 
 	Video findByName(String name);
+	
+	List<Video> findByCourseId(Long courseId);
+	
+	List<Video> findByCourseIdAndUserId(Long courseId, Long userId);
 }

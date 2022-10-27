@@ -87,4 +87,39 @@ public class EvaluatedService implements IEvaluatedService {
 		return null;
 	}
 
+	@Override
+	public List<EvaluatedDTO> getEvaluatedByStatus(int status) {
+		List<Evaluated> getActiveList = evaluatedRepo.findByStatus(status);
+		List<EvaluatedDTO> resultList = new ArrayList<>();
+		for (Evaluated entity : getActiveList) {
+			EvaluatedDTO dto = new EvaluatedDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<EvaluatedDTO> getEvaluatedListByCourseId(Long courseId) {
+		List<Evaluated> getListByCourseId = evaluatedRepo.findByCourseId(courseId);
+		List<EvaluatedDTO> resultList = new ArrayList<>();
+		for (Evaluated entity : getListByCourseId) {
+			EvaluatedDTO dto = new EvaluatedDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
+	@Override
+	public double rating(Long courseId) {
+		List<EvaluatedDTO> getListByCourseId = getEvaluatedListByCourseId(courseId);
+		int getSize = getListByCourseId.size();
+		int sumOfPoint = 0;
+		for (EvaluatedDTO evaluated : getListByCourseId) {
+			sumOfPoint += evaluated.getPoint();
+		}
+		return sumOfPoint * 1.0 / getSize;
+	}
+
 }

@@ -20,36 +20,20 @@
 			</div>
 			<div class="col-lg-7">
 				<div class="owl-carousel testimonial-carousel">
-					<div class="bg-light p-5">
-						<i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-						<p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed
-							sit est est ipsum eos clita est ipsum. Est nonumy tempor at kasd.
-							Sed at dolor duo ut dolor, et justo erat dolor magna sed stet
-							amet elitr duo lorem</p>
-						<div class="d-flex flex-shrink-0 align-items-center mt-4">
-							<img class="img-fluid mr-4" src="/web/img/testimonial-2.jpg"
-								alt="">
-							<div>
-								<h5>Student Name</h5>
-								<span>Web Design</span>
+					<c:forEach items="${activeEvaluatedList}" var="evaluated">
+						<div class="bg-white p-5">
+							<i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+							<p>${evaluated.content}</p>
+							<div class="d-flex flex-shrink-0 align-items-center mt-4">
+								<img class="img-fluid mr-4" src="${evaluated.user.avatar}"
+									alt="">
+								<div>
+									<h5>${evaluated.user.name}</h5>
+									<span>Khóa học: ${evaluated.course.name}</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="bg-light p-5">
-						<i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
-						<p>Sed et elitr ipsum labore dolor diam, ipsum duo vero sed
-							sit est est ipsum eos clita est ipsum. Est nonumy tempor at kasd.
-							Sed at dolor duo ut dolor, et justo erat dolor magna sed stet
-							amet elitr duo lorem</p>
-						<div class="d-flex flex-shrink-0 align-items-center mt-4">
-							<img class="img-fluid mr-4" src="/web/img/testimonial-1.jpg"
-								alt="">
-							<div>
-								<h5>Student Name</h5>
-								<span>Web Design</span>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglib.jsp"%>
-<%@ page import="com.javaproject.util.SecurityUtil" %>
+<%@ page import="com.javaproject.util.SecurityUtil"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +13,7 @@
 <meta content="Edukate - online education website" name="description">
 
 <!-- Favicon -->
-<link href="/image-file/${favicon}" rel="icon">
+<link href="/image-file/${aboutDetails.favicon}" rel="icon">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -39,21 +39,23 @@
 		<div class="row py-2 px-lg-5">
 			<div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
 				<div class="d-inline-flex align-items-center text-white">
-					<small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small> <small
-						class="px-3">|</small> <small><i
-						class="fa fa-envelope mr-2"></i>edukate@gmail.com</small>
+					<small><i class="fa fa-phone-alt mr-2"></i>${aboutDetails.phoneNumber}</small>
+					<small class="px-3">|</small> <small><i
+						class="fa fa-envelope mr-2"></i>${aboutDetails.email}</small>
 				</div>
 			</div>
 			<div class="col-lg-6 text-center text-lg-right">
 				<div class="d-inline-flex align-items-center">
-					<a class="text-white px-2" href=""> <i
-						class="fab fa-facebook-f"></i>
-					</a> <a class="text-white px-2" href=""> <i class="fab fa-twitter"></i>
-					</a> <a class="text-white px-2" href=""> <i
+					<a class="text-white px-2" href="${aboutDetails.facebookLink}">
+						<i class="fab fa-facebook-f"></i>
+					</a> <a class="text-white px-2" href="${aboutDetails.twitterLink}">
+						<i class="fab fa-twitter"></i>
+					</a> <a class="text-white px-2" href="${aboutDetails.inLink}"> <i
 						class="fab fa-linkedin-in"></i>
-					</a> <a class="text-white px-2" href=""> <i
-						class="fab fa-instagram"></i>
-					</a> <a class="text-white pl-2" href=""> <i class="fab fa-youtube"></i>
+					</a> <a class="text-white px-2" href="${aboutDetails.instagramLink}">
+						<i class="fab fa-instagram"></i>
+					</a> <a class="text-white pl-2" href="${aboutDetails.youtubeLink}">
+						<i class="fab fa-youtube"></i>
 					</a>
 				</div>
 			</div>
@@ -66,10 +68,10 @@
 	<div class="container-fluid p-0">
 		<nav
 			class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-			<a href="index.html" class="navbar-brand ml-lg-3">
+			<a href="/trang-chu" class="navbar-brand ml-lg-3">
 				<h1 class="m-0 text-uppercase text-primary">
-					<img src="/web/img/edukate_logo.png" class="mr-3"
-						style="width: 45px; border-radius: 50%; margin-bottom: 0.25em;" />Edukate
+					<img src="/image-file/${aboutDetails.logo}" class="mr-3"
+						style="width: 45px; border-radius: 50%; margin-bottom: 0.25em;" />${aboutDetails.name}
 				</h1>
 			</a>
 			<button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -86,9 +88,9 @@
 						<a href="#" class="nav-link dropdown-toggle"
 							data-toggle="dropdown">Khác</a>
 						<div class="dropdown-menu m-0">
-							<a href="/danh-sach-giang-vien" class="dropdown-item">Giảng viên</a> <a
-								href="/danh-gia-cua-hoc-vien" class="dropdown-item">Đánh giá của
-								học viên</a>
+							<a href="/danh-sach-giang-vien" class="dropdown-item">Giảng
+								viên</a> <a href="/danh-gia-cua-hoc-vien" class="dropdown-item">Đánh
+								giá của học viên</a>
 						</div>
 					</div>
 					<a href="/lien-he" class="nav-item nav-link">Liên hệ</a>
@@ -107,16 +109,22 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><sec:authentication
 										property="principal.username"></sec:authentication></span> <img
 								class="img-profile rounded-circle"
-								src="<%=SecurityUtil.getPrincipal().getAvatar()%>" style="width: 30px;">
+								src="<%=SecurityUtil.getPrincipal().getAvatar()%>"
+								style="width: 30px;">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ của tôi
+								<a class="dropdown-item"
+									href="/ho-so-cua-toi?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
+									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ
+									sơ của tôi
+								</a> <a class="dropdown-item" href="/doi-mat-khau"> <i
+									class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật
+									khẩu
 								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-									Đổi mật khẩu
+									class="fas fa-book-open fa-sm fa-fw mr-2 text-gray-400"></i>
+									Khóa học của tôi
 								</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="/dang-xuat"> <i
@@ -146,9 +154,9 @@
 							type="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false">Khóa học</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Tiếng Anh</a> <a
-								class="dropdown-item" href="#">Tiếng Trung Quốc</a> <a
-								class="dropdown-item" href="#">Tiếng Nhật Bản</a>
+							<c:forEach items="${activeLanguageList}" var="language">
+								<a class="dropdown-item" href="#">${language.name}</a>
+							</c:forEach>
 						</div>
 					</div>
 					<input type="text" class="form-control border-light"

@@ -14,7 +14,7 @@
 						</div>
 						<div class="mt-n1">
 							<h4>Địa chỉ</h4>
-							<p class="m-0">Đường Hồ Tùng Mậu, Mai Dịch, Cầu Giấy, Hà Nội</p>
+							<p class="m-0">${aboutDetails.location}</p>
 						</div>
 					</div>
 					<div class="d-flex align-items-center mb-5">
@@ -23,7 +23,7 @@
 						</div>
 						<div class="mt-n1">
 							<h4>Số điện thoại</h4>
-							<p class="m-0">+012 345 6789</p>
+							<p class="m-0">${aboutDetails.phoneNumber }</p>
 						</div>
 					</div>
 					<div class="d-flex align-items-center">
@@ -32,7 +32,7 @@
 						</div>
 						<div class="mt-n1">
 							<h4>Email</h4>
-							<p class="m-0">edukate@gmail.com</p>
+							<p class="m-0">${aboutDetails.email}</p>
 						</div>
 					</div>
 				</div>
