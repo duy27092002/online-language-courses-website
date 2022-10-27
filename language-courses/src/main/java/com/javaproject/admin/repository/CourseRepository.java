@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.javaproject.admin.entity.Course;
 
 public interface CourseRepository extends SearchingRepository<Course, Long> {
-//	@Query("select c from #{#entityName} c where c.name like %?1%")
-//	List<Course> getSearchList(String keyword, Pageable pageable);
 	@Query("select c from #{#entityName} c where c.name like %?1%")
 	Page<Course> getSearchList(String keyword, Pageable pageable);
 	

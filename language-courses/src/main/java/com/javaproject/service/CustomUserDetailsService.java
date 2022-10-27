@@ -46,7 +46,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		accDetails.setAvatar(user.getAvatar());
 
 		return accDetails;
-		//return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 	}
 
 }

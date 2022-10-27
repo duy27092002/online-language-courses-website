@@ -9,9 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.javaproject.admin.entity.Role;
 
 public interface RoleRepository extends SearchingRepository<Role, Long> {
-//	@Query("select r from #{#entityName} r where r.name like %?1%")
-//	List<Role> getSearchList(String keyword, Pageable pageable);
-	
 	@Query("select r from #{#entityName} r where r.name like %?1%")
 	Page<Role> getSearchList(String keyword, Pageable pageable);
 	

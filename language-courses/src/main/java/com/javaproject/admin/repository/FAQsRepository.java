@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.javaproject.admin.entity.FAQs;
 
 public interface FAQsRepository extends SearchingRepository<FAQs, Long> {
-//	@Query("select faq from #{#entityName} faq where faq.question like %?1%")
-//	List<FAQs> getSearchList(String question, Pageable pageable);
 	@Query("select faq from #{#entityName} faq where faq.question like %?1%")
 	Page<FAQs> getSearchList(String question, Pageable pageable);
 	

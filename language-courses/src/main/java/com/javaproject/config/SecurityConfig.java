@@ -19,25 +19,17 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableGlobalMethodSecurity(prePostEnabled = false, securedEnabled = false, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService userDetailsService;
 
-	// private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);// .passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(userDetailsService);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		CustomAuthenticationFilter customAuthenticaionFilter = new CustomAuthenticationFilter(
-//				authenticationManagerBean());
-//		customAuthenticaionFilter.setFilterProcessesUrl("/api/auth/login");
-
 		http.csrf().disable();
-//		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		http.authorizeRequests()
 				.antMatchers("/", "/trang-chu", "/ve-chung-toi", "/danh-sach-khoa-hoc", "/chi-tiet-khoa-hoc",
@@ -52,9 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().formLogin().loginPage("/dang-nhap").loginProcessingUrl("/check_login")
 				.successHandler(successHandler()).failureUrl("/dang-nhap?loi").usernameParameter("email")
 				.passwordParameter("password").and().logout().logoutUrl("/dang-xuat").logoutSuccessUrl("/dang-nhap");
-
-//		http.addFilter(customAuthenticaionFilter);
-//		http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Bean

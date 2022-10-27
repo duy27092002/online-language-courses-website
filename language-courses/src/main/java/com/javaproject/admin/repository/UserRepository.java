@@ -15,8 +15,6 @@ public interface UserRepository extends SearchingRepository<User, Long> {
 	
 	User findByPhoneNumber(String phoneNumber);
 	
-//	@Query("select u from #{#entityName} u where u.name like %?1% or u.email like %?1%")
-//	List<User> getSearchList(String keyword, Pageable pageable);
 	@Query("select u from #{#entityName} u where u.name like %?1% or u.email like %?1%")
 	Page<User> getSearchList(String keyword, Pageable pageable);
 	
