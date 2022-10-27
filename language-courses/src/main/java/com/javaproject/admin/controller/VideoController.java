@@ -26,7 +26,7 @@ import com.javaproject.util.GetWebsiteDetails;
 import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "VideoControllerOfAdmin")
-@PreAuthorize("hasAnyRole('ROLE_admin')")
+@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 public class VideoController {
 	@Autowired
 	private IVideoService videoService;

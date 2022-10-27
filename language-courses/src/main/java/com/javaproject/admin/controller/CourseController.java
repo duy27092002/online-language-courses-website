@@ -27,7 +27,6 @@ import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "CourseControllerOfAdmin")
 @RequestMapping(value = "/quan-tri/khoa-hoc")
-@PreAuthorize("hasAnyRole('ROLE_admin')")
 public class CourseController {
 	@Autowired
 	private ICourseService courseService;
@@ -50,6 +49,7 @@ public class CourseController {
 	}
 
 	@GetMapping(value = "/danh-sach")
+	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewListPage(@PagingParam(path = "khoa-hoc") ResponseDataTableDTO resDTDTO,
 			RedirectAttributes redirectModel, Model model) {
 		setViewTitleOrFaviconAttribute("Danh sách khóa học", model);
@@ -70,6 +70,7 @@ public class CourseController {
 	}
 
 	@GetMapping(value = "/them-moi")
+	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String viewCreatePage(Model model) {
 		setViewTitleOrFaviconAttribute("Thêm mới khóa học", model);
 		model.addAttribute("courseDTO", new CourseDTO());
@@ -80,24 +81,28 @@ public class CourseController {
 	}
 
 	@PostMapping(value = "/them-moi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String create(@Valid @ModelAttribute("courseDTO") CourseDTO courseDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("create", courseDTO, bindingResult, redirectModel, model);
 	}
 
 	@GetMapping(value = "/chi-tiet")
+	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/chinh-sua")
+	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
 
 	@PostMapping(value = "/chinh-sua", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String update(@Valid @ModelAttribute("courseDTO") CourseDTO courseDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("update", courseDTO, bindingResult, redirectModel, model);
