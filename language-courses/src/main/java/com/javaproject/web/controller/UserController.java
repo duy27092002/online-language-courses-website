@@ -98,7 +98,6 @@ public class UserController {
 	@GetMapping(value = "/ho-so-cua-toi")
 	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
-		model.addAttribute("enableEditAction", true);
 		return redirectPage(id, "profile-details", redirectModel, model);
 	}
 
