@@ -81,11 +81,11 @@
 			<div class="collapse navbar-collapse justify-content-between px-lg-3"
 				id="navbarCollapse">
 				<div class="navbar-nav mx-auto py-0">
-					<a href="/trang-chu" class="nav-item nav-link active">Trang chủ</a>
-					<a href="/ve-chung-toi" class="nav-item nav-link">Chúng tôi</a> <a
-						href="/danh-sach-khoa-hoc" class="nav-item nav-link">Khóa học</a>
+					<a href="/trang-chu" class="nav-item nav-link ${activePage}">Trang chủ</a>
+					<a href="/ve-chung-toi" class="nav-item nav-link ${activePage}">Chúng tôi</a> <a
+						href="/danh-sach-khoa-hoc" class="nav-item nav-link ${activePage}">Khóa học</a>
 					<div class="nav-item dropdown">
-						<a href="#" class="nav-link dropdown-toggle"
+						<a href="#" class="nav-link ${activePage} dropdown-toggle"
 							data-toggle="dropdown">Khác</a>
 						<div class="dropdown-menu m-0">
 							<a href="/danh-sach-giang-vien" class="dropdown-item">Giảng
@@ -93,7 +93,7 @@
 								giá của học viên</a>
 						</div>
 					</div>
-					<a href="/lien-he" class="nav-item nav-link">Liên hệ</a>
+					<a href="/lien-he" class="nav-item nav-link ${activePage}">Liên hệ</a>
 				</div>
 				<sec:authorize access="!isAuthenticated()">
 					<a href="/dang-nhap"
