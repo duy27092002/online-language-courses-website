@@ -47,26 +47,26 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
 		log.info("LAY ROLE CHUAN BI DIEU HUONG: {}", getRoleName);
 
-		if (isEmployeeAndNotInstructor(getRoleName)) {
+		if (isEmployee(getRoleName)) {
 			log.info("DAY LA TRANG ADMIN");
 			url = "/quan-tri";
-		} else if (isStudentOrInstructor(getRoleName)) {
+		} else if (isStudent(getRoleName)) {
 			log.info("DAY LA TRANG WEB");
 			url = "/trang-chu";
 		}
 		return url;
 	}
 
-	private boolean isEmployeeAndNotInstructor(String roleName) {
-		if (!roleName.contains("giang-vien") && !roleName.contains("hoc-vien")) {
+	private boolean isEmployee(String roleName) {
+		if (!roleName.contains("hoc-vien")) {
 			return true;
 		}
 
 		return false;
 	}
 
-	private boolean isStudentOrInstructor(String roleName) {
-		if (roleName.contains("giang-vien") || roleName.contains("hoc-vien")) {
+	private boolean isStudent(String roleName) {
+		if (roleName.contains("hoc-vien")) {
 			return true;
 		}
 
