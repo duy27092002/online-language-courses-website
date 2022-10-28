@@ -42,9 +42,7 @@
 					</a>
 					<div class="text-center">
 						<a href="/vao-hoc?id=${courseInfo.id}"
-							class="btn btn-sm btn-primary">Vào học</a> <a
-							href="/tao-danh-gia" class="btn btn-sm btn-secondary">Đánh
-							giá</a>
+							class="btn btn-sm btn-primary">Vào học</a>
 					</div>
 				</div>
 			</c:forEach>
