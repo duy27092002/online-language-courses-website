@@ -52,4 +52,14 @@ public class CourseStudentService implements ICourseStudentService {
 		return csAfterSave;
 	}
 
+	@Override
+	public List<Long> getStudentIdByCourseID(Long courseId) {
+		List<CourseStudent> getListOfStudentByCourseId = csRepo.findByCourseId(courseId);
+		List<Long> resultList = new ArrayList<>();
+		for (CourseStudent entity : getListOfStudentByCourseId) {
+			resultList.add(entity.getStudent().getId());
+		}
+		return resultList;
+	}
+
 }

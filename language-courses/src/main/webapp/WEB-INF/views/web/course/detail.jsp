@@ -119,17 +119,25 @@
 								href="/dang-nhap">Đăng nhập để mua</a>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
-							<f:form modelAttribute="courseStudentDTO" action="/mua-khoa-hoc"
-								method="post">
-								<f:input path="id" type="hidden" />
-								<f:input path="status" type="hidden" value="1" />
-								<f:input path="courseId" type="hidden"
-									value="${courseDetails.id}" />
-								<f:input path="studentId" type="hidden"
-									value="<%=SecurityUtil.getPrincipal().getUserId()%>" />
-								<button type="submit"
-									class="btn btn-block btn-secondary py-3 px-5">Mua</button>
-							</f:form>
+							<c:if
+								test="${listOfStudentIdByCourseId.contains(SecurityUtil.getPrincipal().getUserId())}">
+								<a href="/vao-hoc?id=${courseDetails.id}"
+									class="btn btn-block btn-secondary py-3 px-5">Vào học</a>
+							</c:if>
+							<c:if
+								test="${!listOfStudentIdByCourseId.contains(SecurityUtil.getPrincipal().getUserId())}">
+								<f:form modelAttribute="courseStudentDTO" action="/mua-khoa-hoc"
+									method="post">
+									<f:input path="id" type="hidden" />
+									<f:input path="status" type="hidden" value="1" />
+									<f:input path="courseId" type="hidden"
+										value="${courseDetails.id}" />
+									<f:input path="studentId" type="hidden"
+										value="<%=SecurityUtil.getPrincipal().getUserId()%>" />
+									<button type="submit"
+										class="btn btn-block btn-secondary py-3 px-5">Mua</button>
+								</f:form>
+							</c:if>
 						</sec:authorize>
 					</div>
 				</div>

@@ -86,6 +86,7 @@ public class CourseController {
 			model.addAttribute("totalOfEvaluated", evaluatedService.getEvaluatedListByCourseId(getCourseId).size());
 			model.addAttribute("rating", evaluatedService.rating(getCourseId));
 			model.addAttribute("totalOfVideo", videoService.getListByCourseId(getCourseId).size());
+			model.addAttribute("listOfStudentIdByCourseId", csService.getStudentIdByCourseID(getCourseId));
 		} catch (Exception ex) {
 			return viewErrorPage(redirectModel);
 		}
