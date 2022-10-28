@@ -11,6 +11,16 @@
 				</div>
 			</div>
 		</div>
+		<c:if test="${mess != null}">
+			<div class="alert alert-${status} alert-dismissible fade show"
+				role="alert">
+				<strong>${mess}</strong>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
 		<div class="row">
 			<c:forEach items="${myCourseList}" var="courseInfo">
 				<div class="col-lg-4 col-md-6 pb-4">
