@@ -14,6 +14,8 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.javaproject.util.SecurityUtil;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -45,31 +47,25 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 			getRoleName = roleName.getAuthority();
 		}
 
-		log.info("LAY ROLE CHUAN BI DIEU HUONG: {}", getRoleName);
-
-		if (isEmployee(getRoleName)) {
-			log.info("DAY LA TRANG ADMIN");
+		if (isEmployeeButNotInstructor(getRoleName)) {
 			url = "/quan-tri";
 		} else if (isStudent(getRoleName)) {
-			log.info("DAY LA TRANG WEB");
 			url = "/trang-chu";
+		} else if (isInstructor(getRoleName)) {
+			url = "/quan-tri/khoa-hoc-cua-toi?id=" + SecurityUtil.getPrincipal().getUserId();
 		}
 		return url;
 	}
 
-	private boolean isEmployee(String roleName) {
-		if (!roleName.contains("hoc-vien")) {
-			return true;
-		}
+	private boolean isEmployeeButNotInstructor(String roleName) {
+		return !roleName.contains("hoc-vien") && !roleName.contains("giang-vien");
+	}
 
-		return false;
+	private boolean isInstructor(String roleName) {
+		return roleName.contains("giang-vien");
 	}
 
 	private boolean isStudent(String roleName) {
-		if (roleName.contains("hoc-vien")) {
-			return true;
-		}
-
-		return false;
+		return roleName.contains("hoc-vien");
 	}
 }
