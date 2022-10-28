@@ -18,7 +18,6 @@ import com.javaproject.admin.dto.EvaluatedDTO;
 import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.IEvaluatedService;
 import com.javaproject.admin.service.ILanguageService;
-import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "EvaluatedControllerOfWeb")
 public class EvaluatedController {
@@ -30,14 +29,6 @@ public class EvaluatedController {
 	
 	@Autowired
 	private ILanguageService languageService;
-
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 	
 	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
 		model.addAttribute("viewTitle", viewTitle);
@@ -55,7 +46,7 @@ public class EvaluatedController {
 	@GetMapping(value = "/danh-gia/tao-danh-gia")
 	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
 	public String viewCreatePage(Model model) {
-		setViewTitleOrFaviconAttribute("Tạo đánh giá", model);
+		setViewTitleOrGetWebDetails("Tạo đánh giá", model);
 		model.addAttribute("evaluatedDTO", new EvaluatedDTO());
 		return "/admin/evaluated/edit";
 	}
@@ -83,9 +74,9 @@ public class EvaluatedController {
 	
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
 		if (action.equalsIgnoreCase("details")) {
-			setViewTitleOrFaviconAttribute("Chi tiết đánh giá", model);
+			setViewTitleOrGetWebDetails("Chi tiết đánh giá", model);
 		} else {
-			setViewTitleOrFaviconAttribute("Chỉnh sửa đánh giá", model);
+			setViewTitleOrGetWebDetails("Chỉnh sửa đánh giá", model);
 		}
 
 		try {
@@ -100,16 +91,16 @@ public class EvaluatedController {
 	private String save(String formAction, @Valid @ModelAttribute("evaluatedDTO") EvaluatedDTO evaluatedDTO,
 			BindingResult bindingResult, RedirectAttributes redirectModel, Model model) {
 		if (formAction.equalsIgnoreCase("create")) {
-			setViewTitleOrFaviconAttribute("Tạo đánh giá", model);
+			setViewTitleOrGetWebDetails("Tạo đánh giá", model);
 		} else {
-			setViewTitleOrFaviconAttribute("Chỉnh sửa đánh giá", model);
+			setViewTitleOrGetWebDetails("Chỉnh sửa đánh giá", model);
 		}
 
 		if (bindingResult.hasErrors()) {
 			if (formAction.equalsIgnoreCase("update")) {
 				model.addAttribute("evaluatedDetails", evaluatedDTO);
 			}
-			return "/admin/evaluated/edit";
+			return "/web/user/my-course-list";
 		}
 
 		String successMess = null;
@@ -138,12 +129,12 @@ public class EvaluatedController {
 			redirectModel.addFlashAttribute("mess", errorMess);
 		}
 
-		return "redirect:/quan-tri/danh-gia-cua-hoc-vien/danh-sach";
+		return "redirect:/khoa-hoc-cua-toi?id=" + evaluatedDTO.getUserId();
 	}
 
 	private String isExitAvaluated(Model model) {
 		model.addAttribute("isExitAvaluated", "Bạn đã đánh giá khóa học này rồi!");
-		return "/admin/evaluated/edit";
+		return "/web/user/my-course-list";
 	}
 
 	// hiển thị trang lỗi khi không tìm thấy dữ liệu
