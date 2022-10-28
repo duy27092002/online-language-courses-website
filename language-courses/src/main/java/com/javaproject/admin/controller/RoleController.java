@@ -19,22 +19,13 @@ import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.RoleDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.IRoleService;
-import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "RoleControllerOfAdmin")
 @RequestMapping(value = "/quan-tri/vai-tro")
 @PreAuthorize("hasAnyRole('ROLE_admin')")
-public class RoleController {
+public class RoleController extends BaseController {
 	@Autowired
 	private IRoleService roleService;
-
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 
 	@GetMapping
 	public String viewRoleListPage(@PagingParam(path = "vai-tro") ResponseDataTableDTO resDTDTO,
@@ -146,12 +137,10 @@ public class RoleController {
 
 			RoleDTO getRoleAfterSave = roleService.save(roleDTO);
 			if (getRoleAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/quan-tri/vai-tro";
@@ -161,12 +150,5 @@ public class RoleController {
 	private String isExitName(Model model) {
 		model.addAttribute("isExitName", "Tên vai trò này đã tồn tại");
 		return "/admin/role/create-or-edit";
-	}
-	
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

@@ -15,26 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.LanguageDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.ILanguageService;
-import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "LanguageControllerOfAdmin")
 @RequestMapping(value = "/quan-tri/ngon-ngu")
 @PreAuthorize("hasAnyRole('ROLE_admin')")
-public class LanguageController {
+public class LanguageController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
-	
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 	
 	@GetMapping(value = "/danh-sach")
 	public String viewListPage(@PagingParam(path = "ngon-ngu") ResponseDataTableDTO resDTDTO,
@@ -146,12 +137,10 @@ public class LanguageController {
 
 			LanguageDTO getLanguageAfterSave = languageService.save(languageDTO);
 			if (getLanguageAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/quan-tri/ngon-ngu/danh-sach";
@@ -161,12 +150,5 @@ public class LanguageController {
 	private String isExitName(Model model) {
 		model.addAttribute("isExitName", "Tên ngôn ngữ này đã tồn tại");
 		return "/admin/language/create-or-edit";
-	}
-	
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

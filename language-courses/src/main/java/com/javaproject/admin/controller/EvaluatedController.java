@@ -19,22 +19,13 @@ import com.javaproject.admin.dto.EvaluatedDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.IEvaluatedService;
-import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "EvaluatedControllerOfAdmin")
 @PreAuthorize("hasAnyRole('ROLE_admin')")
 @RequestMapping(value = "/quan-tri/danh-gia-cua-hoc-vien")
-public class EvaluatedController {
+public class EvaluatedController extends BaseController {
 	@Autowired
 	private IEvaluatedService evaluatedService;
-
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 
 	@GetMapping(value = "/danh-sach")
 	public String viewListPage(@PagingParam(path = "danh-gia-cua-hoc-vien") ResponseDataTableDTO resDTDTO,
@@ -108,21 +99,12 @@ public class EvaluatedController {
 
 			EvaluatedDTO getEvaluatedAfterEdit = evaluatedService.save(evaluatedDTO);
 			if (getEvaluatedAfterEdit != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/quan-tri/danh-gia-cua-hoc-vien/danh-sach";
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

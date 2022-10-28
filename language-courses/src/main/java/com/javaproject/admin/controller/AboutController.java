@@ -21,7 +21,7 @@ import com.javaproject.util.GetWebsiteDetails;
 @Controller(value = "AboutControllerOfAdmin")
 @RequestMapping(value = "/quan-tri/thong-tin-website")
 @PreAuthorize("hasAnyRole('ROLE_admin')")
-public class AboutController {
+public class AboutController extends BaseController {
 	@Autowired
 	private IAboutService aboutService;
 
@@ -44,17 +44,14 @@ public class AboutController {
 			AboutDTO getAboutDetails = aboutService.details(1L);
 			model.addAttribute("about", getAboutDetails);
 			if (action.equalsIgnoreCase("update")) {
-				model.addAttribute("viewTitle", "Chỉnh sửa");
+				setViewTitleOrFaviconAttribute("Chỉnh sửa", model);
 				model.addAttribute("aboutDTO", new AboutDTO());
 			} else {
-				model.addAttribute("viewTitle", "Thông tin Website");
+				setViewTitleOrFaviconAttribute("Thông tin website", model);
 			}
-			model.addAttribute("favicon", getAboutDetails.getFavicon());
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			redirectModel.addFlashAttribute("returnPage", "tổng quan");
-			redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-			return "redirect:/loi/404";
+			return viewErrorPage(redirectModel);
 		}
 		return "/admin/about/" + action;
 	}
@@ -63,8 +60,7 @@ public class AboutController {
 	public String update(@Valid @ModelAttribute("aboutDTO") AboutDTO aboutDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("viewTitle", "Chỉnh sửa");
-			model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
+			setViewTitleOrFaviconAttribute("Chỉnh sửa", model);
 			model.addAttribute("oldFavicon", webDetails.getFaviconOrLogo("favicon"));
 			model.addAttribute("oldLogo", webDetails.getFaviconOrLogo("logo"));
 			return "/admin/about/update";
@@ -73,12 +69,10 @@ public class AboutController {
 		try {
 			AboutDTO getUpdatedAbout = aboutService.save(aboutDTO);
 			if (getUpdatedAbout != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", "Cập nhật thành công");
+				redirectNotification(redirectModel, "Cập nhật thành công", "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", "Cập nhật thất bại");
+			redirectNotification(redirectModel, "Cập nhật thất bại", "danger");
 		}
 		return "redirect:/quan-tri/thong-tin-website";
 	}

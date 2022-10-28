@@ -15,26 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.FAQsDTO;
+import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.IFAQsService;
-import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "FAQsControllerOfAdmin")
 @RequestMapping(value = "/quan-tri/cau-hoi-thuong-gap")
 @PreAuthorize("hasAnyRole('ROLE_admin')")
-public class FAQsController {
+public class FAQsController extends BaseController {
 	@Autowired
 	private IFAQsService faqsService;
-	
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 	
 	@GetMapping(value = "/danh-sach")
 	public String viewListPage(@PagingParam(path = "cau-hoi-thuong-gap") ResponseDataTableDTO resDTDTO,
@@ -146,12 +137,10 @@ public class FAQsController {
 
 			FAQsDTO getFAQsAfterSave = faqsService.save(faqsDTO);
 			if (getFAQsAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/quan-tri/cau-hoi-thuong-gap/danh-sach";
@@ -161,12 +150,5 @@ public class FAQsController {
 	private String isExitName(Model model) {
 		model.addAttribute("isExitName", "Câu hỏi này đã tồn tại");
 		return "/admin/faqs/create-or-edit";
-	}
-	
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

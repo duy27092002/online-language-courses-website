@@ -25,25 +25,16 @@ import com.javaproject.admin.dto.UserDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.IRoleService;
 import com.javaproject.admin.service.IUserService;
-import com.javaproject.util.GetWebsiteDetails;
 import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "UserControllerOfAdmin")
 @RequestMapping(value = "/quan-tri")
-public class UserController {
+public class UserController extends BaseController {
 	@Autowired
 	private IUserService userService;
 
 	@Autowired
 	private IRoleService roleService;
-
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 
 	@GetMapping(value = "/nguoi-dung/danh-sach")
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
@@ -243,8 +234,7 @@ public class UserController {
 				}
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 			if (formAction.equalsIgnoreCase("create")) {
 				return "redirect:/quan-tri/nguoi-dung/danh-sach";
 			} else {
@@ -271,15 +261,7 @@ public class UserController {
 
 	private void redirectPageAfterSave(UserDTO userAfterSave, RedirectAttributes redirectModel, String successMess) {
 		if (userAfterSave != null) {
-			redirectModel.addFlashAttribute("typeAlert", "success");
-			redirectModel.addFlashAttribute("mess", successMess);
+			redirectNotification(redirectModel, successMess, "success");
 		}
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

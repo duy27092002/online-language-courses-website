@@ -22,11 +22,9 @@ import com.javaproject.admin.service.ICourseService;
 import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.admin.service.ISkillLevelService;
 import com.javaproject.admin.service.IUserService;
-import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "CourseControllerOfAdmin")
-//@RequestMapping(value = "/quan-tri/khoa-hoc")
-public class CourseController {
+public class CourseController extends BaseController {
 	@Autowired
 	private ICourseService courseService;
 
@@ -38,14 +36,6 @@ public class CourseController {
 
 	@Autowired
 	private IUserService userService;
-
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 
 	@GetMapping(value = "/quan-tri/khoa-hoc/danh-sach")
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
@@ -208,12 +198,10 @@ public class CourseController {
 			}
 
 			if (getCourseAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/quan-tri/khoa-hoc/danh-sach";
@@ -223,12 +211,5 @@ public class CourseController {
 	private String isExitName(Model model) {
 		model.addAttribute("isExitName", "Tên khóa học này đã tồn tại");
 		return "/admin/course/create-or-edit";
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

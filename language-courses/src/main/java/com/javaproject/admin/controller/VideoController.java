@@ -18,26 +18,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.javaproject.admin.dto.VideoDTO;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
+import com.javaproject.admin.dto.VideoDTO;
 import com.javaproject.admin.paging.PagingParam;
 import com.javaproject.admin.service.IVideoService;
-import com.javaproject.util.GetWebsiteDetails;
 import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "VideoControllerOfAdmin")
 @PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
-public class VideoController {
+public class VideoController extends BaseController {
 	@Autowired
 	private IVideoService videoService;
-
-	@Autowired
-	private GetWebsiteDetails webDetails;
-
-	private void setViewTitleOrFaviconAttribute(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
-	}
 
 	@GetMapping(value = "/quan-tri/khoa-hoc/danh-sach-video")
 	public String viewListPage(@PagingParam(path = "/quan-tri/khoa-hoc/danh-sach-video") ResponseDataTableDTO resDTDTO,
@@ -186,12 +177,10 @@ public class VideoController {
 			}
 
 			if (getVideoAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/quan-tri/khoa-hoc/danh-sach-video?id=" + videoDTO.getCourseId();
@@ -207,12 +196,5 @@ public class VideoController {
 	private String isExitName(Model model) {
 		model.addAttribute("isExitName", "Tên video bài giảng này đã tồn tại");
 		return "/admin/video/create-or-edit";
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }
