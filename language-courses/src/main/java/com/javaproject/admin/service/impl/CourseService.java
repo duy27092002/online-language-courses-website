@@ -51,6 +51,12 @@ public class CourseService implements ICourseService {
 	}
 
 	@Override
+	public ResponseDataTableDTO getCourseListByInstructor(ResponseDataTableDTO responseDataTableDTO) throws Exception {
+		return responseDataTableDTO.getCourseListByInstructor(courseRepo, responseDataTableDTO.getId(),
+				responseDataTableDTO.getKeyword());
+	}
+
+	@Override
 	public List<CourseDTO> getList(String keyword, Pageable pageable) {
 		return null;
 	}

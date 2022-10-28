@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglib.jsp"%>
-<%@ page import="com.javaproject.util.SecurityUtil" %>
+<%@ page import="com.javaproject.util.SecurityUtil"%>
 <!-- Topbar -->
 <nav
 	class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -34,6 +34,13 @@
 				</a> <a class="dropdown-item" href="/quan-tri/doi-mat-khau"> <i
 					class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i> Đổi mật khẩu
 				</a>
+				<c:if test="${SecurityUtil.getAuthorities().contains('giang-vien')}">
+					<a class="dropdown-item"
+						href="/quan-tri/khoa-hoc-cua-toi?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
+						<i class="fas fa-book-open fa-sm fa-fw mr-2 text-gray-400"></i>
+						Khóa học của tôi
+					</a>
+				</c:if>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="/dang-xuat" data-toggle="modal"
 					data-target="#logoutModal"> <i

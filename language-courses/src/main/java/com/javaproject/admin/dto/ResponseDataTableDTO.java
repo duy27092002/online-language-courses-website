@@ -8,7 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import com.javaproject.admin.entity.Course;
 import com.javaproject.admin.entity.Video;
+import com.javaproject.admin.repository.CourseRepository;
 import com.javaproject.admin.repository.SearchingRepository;
 import com.javaproject.admin.repository.VideoRepository;
 import com.javaproject.admin.util.SortUtil;
@@ -96,6 +98,34 @@ public class ResponseDataTableDTO {
 		for (Video videoEntity : getListByPage) {
 			VideoDTO dto = new VideoDTO();
 			BeanUtils.copyProperties(videoEntity, dto);
+			resultList.add(dto);
+		}
+		this.setData(resultList);
+		this.setTotalOfItem((int) total);
+		this.setTotalOfPage((int) Math.ceil((double) total / pageSize));
+		return this;
+	}
+
+	public ResponseDataTableDTO getCourseListByInstructor(CourseRepository repository, Long instructorId,
+			String keyword) throws Exception {
+		SortUtil sortUtil = new SortUtil();
+		Pageable pageable = PageRequest.of(page - 1, pageSize, sortUtil.handleSort(orderBy, orderType));
+		List<CourseDTO> resultList = new ArrayList<>();
+		Page<Course> getListByPage = null;
+		long total = 0;
+		if (keyword == null) {
+			try {
+				getListByPage = repository.findByInstructorsId(instructorId, pageable);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			getListByPage = repository.getSearchListByInstructorId(instructorId, keyword, pageable);
+		}
+		total = getListByPage.getTotalElements();
+		for (Course entity : getListByPage) {
+			CourseDTO dto = new CourseDTO();
+			BeanUtils.copyProperties(entity, dto);
 			resultList.add(dto);
 		}
 		this.setData(resultList);

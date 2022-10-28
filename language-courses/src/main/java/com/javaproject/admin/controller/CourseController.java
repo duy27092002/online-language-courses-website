@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,7 +25,7 @@ import com.javaproject.admin.service.IUserService;
 import com.javaproject.util.GetWebsiteDetails;
 
 @Controller(value = "CourseControllerOfAdmin")
-@RequestMapping(value = "/quan-tri/khoa-hoc")
+//@RequestMapping(value = "/quan-tri/khoa-hoc")
 public class CourseController {
 	@Autowired
 	private ICourseService courseService;
@@ -48,8 +47,8 @@ public class CourseController {
 		model.addAttribute("favicon", webDetails.getFaviconOrLogo("favicon"));
 	}
 
-	@GetMapping(value = "/danh-sach")
-	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
+	@GetMapping(value = "/quan-tri/khoa-hoc/danh-sach")
+	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String viewListPage(@PagingParam(path = "khoa-hoc") ResponseDataTableDTO resDTDTO,
 			RedirectAttributes redirectModel, Model model) {
 		setViewTitleOrFaviconAttribute("Danh sách khóa học", model);
@@ -69,7 +68,29 @@ public class CourseController {
 		return "/admin/course/list";
 	}
 
-	@GetMapping(value = "/them-moi")
+	@GetMapping(value = "/quan-tri/khoa-hoc-cua-toi")
+	@PreAuthorize("hasAnyRole('ROLE_giang-vien')")
+	public String viewCourseListOfInstructor(@PagingParam(path = "khoa-hoc-cua-toi") ResponseDataTableDTO resDTDTO,
+			RedirectAttributes redirectModel, Model model) {
+		setViewTitleOrFaviconAttribute("Khóa học của tôi", model);
+		try {
+			ResponseDataTableDTO resultList = courseService.getCourseListByInstructor(resDTDTO);
+			model.addAttribute("resultList", resultList);
+
+			String getOrderType = resultList.getOrderType().equalsIgnoreCase("asc") ? "desc" : "asc";
+			model.addAttribute("orderType", getOrderType);
+
+			if (resDTDTO.getKeyword() != null) {
+				model.addAttribute("keyword", resDTDTO.getKeyword());
+			}
+			model.addAttribute("instructorId", resDTDTO.getId());
+		} catch (Exception e) {
+			return viewErrorPage(redirectModel);
+		}
+		return "/admin/user/courses-of-instructor";
+	}
+
+	@GetMapping(value = "/quan-tri/khoa-hoc/them-moi")
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String viewCreatePage(Model model) {
 		setViewTitleOrFaviconAttribute("Thêm mới khóa học", model);
@@ -80,28 +101,28 @@ public class CourseController {
 		return "/admin/course/create-or-edit";
 	}
 
-	@PostMapping(value = "/them-moi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value = "/quan-tri/khoa-hoc/them-moi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String create(@Valid @ModelAttribute("courseDTO") CourseDTO courseDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("create", courseDTO, bindingResult, redirectModel, model);
 	}
 
-	@GetMapping(value = "/chi-tiet")
+	@GetMapping(value = "/quan-tri/khoa-hoc/chi-tiet")
 	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
-	@GetMapping(value = "/chinh-sua")
+	@GetMapping(value = "/quan-tri/khoa-hoc/chinh-sua")
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
 
-	@PostMapping(value = "/chinh-sua", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value = "/quan-tri/khoa-hoc/chinh-sua", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
 	public String update(@Valid @ModelAttribute("courseDTO") CourseDTO courseDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
@@ -178,14 +199,14 @@ public class CourseController {
 				successMess = "Chỉnh sửa thành công";
 				errorMess = "Chỉnh sửa thất bại";
 			}
-			
+
 			CourseDTO getCourseAfterSave = null;
 			if (formAction.equalsIgnoreCase("create")) {
 				getCourseAfterSave = courseService.save(courseDTO);
 			} else {
 				getCourseAfterSave = courseService.update(courseDTO);
 			}
-			
+
 			if (getCourseAfterSave != null) {
 				redirectModel.addFlashAttribute("typeAlert", "success");
 				redirectModel.addFlashAttribute("mess", successMess);

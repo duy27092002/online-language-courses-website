@@ -7,6 +7,8 @@ import com.javaproject.admin.dto.ResponseDataTableDTO;
 
 public interface ICourseService extends IBaseService<CourseDTO> {
 	ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception;
+
+	ResponseDataTableDTO getCourseListByInstructor(ResponseDataTableDTO responseDataTableDTO) throws Exception;
 	
 	CourseDTO getCourseByName(String name);
 	

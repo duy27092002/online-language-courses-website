@@ -15,6 +15,14 @@ public interface CourseRepository extends SearchingRepository<Course, Long> {
 	@Query("SELECT c FROM Course c JOIN c.language l")
 	Page<Course> getAllList(Pageable pageable);
 
+	// test
+	@Query(value = "select c.*, ci.user_id from course as c join course_instructor as ci on c.id = ci.course_id where ci.user_id = ?1 \r\n"
+			+ "and c.name like %?2%", nativeQuery = true)
+	Page<Course> getSearchListByInstructorId(Long instructorId, String keyword, Pageable pageable);
+
+	Page<Course> findByInstructorsId(Long instructorId, Pageable pageable);
+	// end test
+
 	Course findByName(String name);
 
 	List<Course> findByStatus(int status);
