@@ -273,4 +273,16 @@ public class CourseService implements ICourseService {
 		return resultList;
 	}
 
+	@Override
+	public List<CourseDTO> getSearchListByStatus(String keyword, int status) {
+		List<Course> entityList = courseRepo.getSearchListByStatus(keyword, status);
+		List<CourseDTO> resultList = new ArrayList<>();
+		for (Course entity : entityList) {
+			CourseDTO dto = new CourseDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
+
 }

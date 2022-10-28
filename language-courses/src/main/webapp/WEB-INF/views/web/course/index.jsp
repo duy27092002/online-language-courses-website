@@ -4,6 +4,10 @@
 <!-- Courses Start -->
 <div class="container-fluid py-5">
 	<div class="container py-5">
+		<c:if test="${searchList != null}">
+			<c:set var="title" value='Kết quả tìm kiếm khóa học: "${keyword}"'></c:set>
+			<c:set var="courseList" value="${searchList}"></c:set>
+		</c:if>
 		<c:if test="${courseListByLanguage != null}">
 			<c:set var="title" value="Khóa học ${languageName}"></c:set>
 			<c:set var="courseList" value="${courseListByLanguage}"></c:set>

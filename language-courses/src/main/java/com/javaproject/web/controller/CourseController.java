@@ -46,8 +46,9 @@ public class CourseController {
 
 	@GetMapping(value = { "/danh-sach-khoa-hoc" })
 	public String courseList(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
-			RedirectAttributes redirectModel, Model model) {
-		if (id != null) {
+			@RequestParam(value = "keyword", required = false) String keyword, RedirectAttributes redirectModel,
+			Model model) {
+		if (id != null && keyword == null) {
 			try {
 				Long getLanguageId = Long.parseLong(id);
 				String languageName = languageService.getDetails(getLanguageId).get(0).getName();
@@ -58,10 +59,17 @@ public class CourseController {
 			} catch (Exception e) {
 				return viewErrorPage(redirectModel);
 			}
-		} else {
+		} else if (id == null && keyword == null) {
 			setViewTitleOrGetWebDetails("Khóa học", model);
 			model.addAttribute("activeCourseList", courseService.getListByStatus(2));
 		}
+
+		if (keyword != null && id == null) {
+			setViewTitleOrGetWebDetails("Khóa học", model);
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("searchList", courseService.getSearchListByStatus(keyword, 2));
+		}
+
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		return "/web/course/index";
 	}

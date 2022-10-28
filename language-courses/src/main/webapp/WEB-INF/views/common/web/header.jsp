@@ -81,9 +81,11 @@
 			<div class="collapse navbar-collapse justify-content-between px-lg-3"
 				id="navbarCollapse">
 				<div class="navbar-nav mx-auto py-0">
-					<a href="/trang-chu" class="nav-item nav-link ${activePage}">Trang chủ</a>
-					<a href="/ve-chung-toi" class="nav-item nav-link ${activePage}">Chúng tôi</a> <a
-						href="/danh-sach-khoa-hoc" class="nav-item nav-link ${activePage}">Khóa học</a>
+					<a href="/trang-chu" class="nav-item nav-link ${activePage}">Trang
+						chủ</a> <a href="/ve-chung-toi"
+						class="nav-item nav-link ${activePage}">Chúng tôi</a> <a
+						href="/danh-sach-khoa-hoc" class="nav-item nav-link ${activePage}">Khóa
+						học</a>
 					<div class="nav-item dropdown">
 						<a href="#" class="nav-link ${activePage} dropdown-toggle"
 							data-toggle="dropdown">Khác</a>
@@ -93,7 +95,8 @@
 								giá của học viên</a>
 						</div>
 					</div>
-					<a href="/lien-he" class="nav-item nav-link ${activePage}">Liên hệ</a>
+					<a href="/lien-he" class="nav-item nav-link ${activePage}">Liên
+						hệ</a>
 				</div>
 				<sec:authorize access="!isAuthenticated()">
 					<a href="/dang-nhap"
@@ -148,26 +151,17 @@
 			<h1 class="text-white mt-4 mb-4">Learn From Home</h1>
 			<h1 class="text-white display-1 mb-5">Language Courses</h1>
 			<div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<button
-							class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle"
-							type="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">Khóa học</button>
-						<div class="dropdown-menu">
-							<c:forEach items="${activeLanguageList}" var="language">
-								<a class="dropdown-item" href="#">${language.name}</a>
-							</c:forEach>
+				<form action="/danh-sach-khoa-hoc" method="get">
+					<div class="input-group">
+						<input type="text" name="keyword" class="form-control border-light"
+							style="padding: 30px 25px;" placeholder="Tên khóa học">
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-secondary px-4 px-lg-5">
+								<i class="fa fa-search"></i>
+							</button>
 						</div>
 					</div>
-					<input type="text" class="form-control border-light"
-						style="padding: 30px 25px;" placeholder="Tên khóa học">
-					<div class="input-group-append">
-						<button class="btn btn-secondary px-4 px-lg-5">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
