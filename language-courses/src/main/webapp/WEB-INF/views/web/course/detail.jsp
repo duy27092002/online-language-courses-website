@@ -11,6 +11,16 @@
 						<h6
 							class="d-inline-block position-relative text-secondary text-uppercase pb-2">Chi
 							tiết khóa học</h6>
+						<c:if test="${mess != null}">
+							<div class="alert alert-${status} alert-dismissible fade show"
+								role="alert">
+								<strong>${mess}</strong>
+								<button type="button" class="close" data-dismiss="alert"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</c:if>
 						<h1 class="display-4">${courseDetails.name}</h1>
 					</div>
 					<img class="img-fluid rounded w-100 mb-4"
@@ -104,7 +114,23 @@
 					<h5 class="text-white py-3 px-4 m-0">Giá:
 						${courseDetails.price} VND</h5>
 					<div class="py-3 px-4">
-						<a class="btn btn-block btn-secondary py-3 px-5" href="">Mua</a>
+						<sec:authorize access="!isAuthenticated()">
+							<a class="btn btn-block btn-secondary py-3 px-5"
+								href="/dang-nhap">Đăng nhập để mua</a>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<f:form modelAttribute="courseStudentDTO" action="/mua-khoa-hoc"
+								method="post">
+								<f:input path="id" type="hidden" />
+								<f:input path="status" type="hidden" value="1" />
+								<f:input path="courseId" type="hidden"
+									value="${courseDetails.id}" />
+								<f:input path="studentId" type="hidden"
+									value="<%=SecurityUtil.getPrincipal().getUserId()%>" />
+								<button type="submit"
+									class="btn btn-block btn-secondary py-3 px-5">Mua</button>
+							</f:form>
+						</sec:authorize>
 					</div>
 				</div>
 
