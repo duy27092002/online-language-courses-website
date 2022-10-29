@@ -238,8 +238,15 @@
 									</c:if>
 								</c:if>
 								<div class="form-group row">
-									<button type="submit"
-										class="btn btn-primary btn-user btn-block mt-4">Lưu</button>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+										<button type="submit"
+											class="btn btn-primary btn-user btn-block mt-4">Lưu</button>
+									</div>
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+										<a href="/quan-tri/nguoi-dung/danh-sach"
+											class="btn btn-secondary btn-user btn-block mt-4">Quay
+											lại danh sách</a>
+									</div>
 								</div>
 							</f:form>
 						</div>
