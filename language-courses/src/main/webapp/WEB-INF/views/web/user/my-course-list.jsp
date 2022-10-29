@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<c:if test="${mess != null}">
-			<div class="alert alert-${status} alert-dismissible fade show"
+			<div class="alert alert-${typeAlert} alert-dismissible fade show"
 				role="alert">
 				<strong>${mess}</strong>
 				<button type="button" class="close" data-dismiss="alert"
