@@ -40,7 +40,8 @@
 										path="reNewPass" type="password" />
 								</div>
 								<div class="form-group row">
-									<button class="btn btn-primary rounded-pill btn-block mt-4">Lưu</button>
+									<button class="btn btn-primary rounded-pill btn-block mt-4">Lưu
+										thay đổi</button>
 								</div>
 							</f:form>
 						</div>
