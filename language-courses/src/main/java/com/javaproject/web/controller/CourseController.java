@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.javaproject.admin.dto.CourseDTO;
 import com.javaproject.admin.dto.CourseStudentDTO;
 import com.javaproject.admin.service.ICourseService;
 import com.javaproject.admin.service.ICourseStudentService;
@@ -73,11 +74,14 @@ public class CourseController extends BaseController {
 		model.addAttribute("courseStudentDTO", new CourseStudentDTO());
 		try {
 			Long getCourseId = Long.parseLong(id);
-			model.addAttribute("courseDetails", courseService.getDetails(getCourseId).get(0));
+			CourseDTO courseDetails = courseService.getDetails(getCourseId).get(0);
+			model.addAttribute("courseDetails", courseDetails);
 			model.addAttribute("totalOfEvaluated", evaluatedService.getEvaluatedListByCourseId(getCourseId).size());
 			model.addAttribute("rating", evaluatedService.rating(getCourseId));
 			model.addAttribute("totalOfVideo", videoService.getListByCourseId(getCourseId).size());
 			model.addAttribute("listOfStudentIdByCourseId", csService.getStudentIdByCourseID(getCourseId));
+			model.addAttribute("courseListByLanguage",
+					courseService.getListByLanguageIdAndStatus(courseDetails.getLanguage().getId(), 2));
 		} catch (Exception ex) {
 			return viewErrorPage();
 		}

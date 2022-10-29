@@ -27,57 +27,6 @@
 						src="${courseDetails.thumbnail}" alt="Image">
 					<p>${courseDetails.description}</p>
 				</div>
-
-				<!-- <h2 class="mb-3">Related Courses</h2>
-				<div class="owl-carousel related-carousel position-relative"
-					style="padding: 0 30px;">
-					<a
-						class="courses-list-item position-relative d-block overflow-hidden mb-2"
-						href="detail.html"> <img class="img-fluid"
-						src="/web/img/courses-1.jpg" alt="">
-						<div class="courses-text">
-							<h4 class="text-center text-white px-3">Web design &
-								development courses for beginners</h4>
-							<div class="border-top w-100 mt-3">
-								<div class="d-flex justify-content-between p-4">
-									<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-										Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-										<small>(250)</small></span>
-								</div>
-							</div>
-						</div>
-					</a> <a
-						class="courses-list-item position-relative d-block overflow-hidden mb-2"
-						href="detail.html"> <img class="img-fluid"
-						src="/web/img/courses-2.jpg" alt="">
-						<div class="courses-text">
-							<h4 class="text-center text-white px-3">Web design &
-								development courses for beginners</h4>
-							<div class="border-top w-100 mt-3">
-								<div class="d-flex justify-content-between p-4">
-									<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-										Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-										<small>(250)</small></span>
-								</div>
-							</div>
-						</div>
-					</a> <a
-						class="courses-list-item position-relative d-block overflow-hidden mb-2"
-						href="detail.html"> <img class="img-fluid"
-						src="/web/img/courses-3.jpg" alt="">
-						<div class="courses-text">
-							<h4 class="text-center text-white px-3">Web design &
-								development courses for beginners</h4>
-							<div class="border-top w-100 mt-3">
-								<div class="d-flex justify-content-between p-4">
-									<span class="text-white"><i class="fa fa-user mr-2"></i>Jhon
-										Doe</span> <span class="text-white"><i class="fa fa-star mr-2"></i>4.5
-										<small>(250)</small></span>
-								</div>
-							</div>
-						</div>
-					</a>
-				</div> -->
 			</div>
 
 			<div class="col-lg-12 mt-5 mt-lg-0">
@@ -194,6 +143,39 @@
 						</div>
 					</a>
 				</div> -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="mb-5">
+					<div class="section-title position-relative mt-5">
+						<h1 class="display-5">Khóa học liên quan</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-12 mt-3 mt-lg-0">
+				<div class="owl-carousel related-carousel position-relative"
+					style="padding: 0 30px;">
+					<c:forEach items="${courseListByLanguage}" var="relatedCourseInfo">
+						<a
+							class="courses-list-item position-relative d-block overflow-hidden mb-2"
+							href="/chi-tiet-khoa-hoc?id=${relatedCourseInfo.id}"> <img
+							class="img-fluid" src="${relatedCourseInfo.thumbnail}" alt="">
+							<div class="courses-text">
+								<h4 class="text-center text-white px-3">${relatedCourseInfo.name}</h4>
+								<div class="border-top w-100 mt-3">
+									<div class="d-flex justify-content-between p-4">
+										<c:forEach items="${relatedCourseInfo.instructors}"
+											var="instructorInfo">
+											<span class="text-white"><i class="fa fa-user mr-2"></i>${instructorInfo.name}</span>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</a>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>
