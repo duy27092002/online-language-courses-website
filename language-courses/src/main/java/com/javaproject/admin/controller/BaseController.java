@@ -22,7 +22,7 @@ public class BaseController {
 	protected String viewErrorPage(RedirectAttributes redirectModel) {
 		redirectModel.addFlashAttribute("returnPage", "tổng quan");
 		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
+		return "redirect:/quan-tri/loi/404";
 	}
 
 	// thông báo trạng thái của quá trình thao tác (thành công hoặc thất bại khi
