@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class SaveLocalFile {
-	public static String FOLDER_IMAGE = "C:\\Users\\HP\\Desktop\\BTL-java\\online-language-courses-website\\language-courses\\src\\main\\resources\\static\\web\\img\\";
+	public static String FOLDER_IMAGE = "C:\\img\\";
 
 	public String saveFile(MultipartFile multipartFile) {
 		if (multipartFile.isEmpty() || multipartFile == null) {
