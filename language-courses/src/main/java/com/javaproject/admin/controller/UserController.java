@@ -204,11 +204,11 @@ public class UserController extends BaseController {
 					successMess = "Thêm mới thành công";
 					errorMess = "Thêm mới thất bại";
 				} else if (formAction.equalsIgnoreCase("update")) {
-					if (!getOldUserById.getEmail().equalsIgnoreCase(userDTO.getEmail())) {
-						if (getUserByEmail != null) {
-							return checkDuplicateField(userDTO, getOldUserById, model, "email");
-						}
-					}
+//					if (!getOldUserById.getEmail().equalsIgnoreCase(userDTO.getEmail())) {
+//						if (getUserByEmail != null) {
+//							return checkDuplicateField(userDTO, getOldUserById, model, "email");
+//						}
+//					}
 					if (!getOldUserById.getPhoneNumber().equalsIgnoreCase(userDTO.getPhoneNumber())) {
 						if (getUserByPhoneNumber != null) {
 							return checkDuplicateField(userDTO, getOldUserById, model, "phoneNumber");

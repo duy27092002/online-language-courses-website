@@ -139,15 +139,15 @@ public class UserController extends BaseController {
 		String successMess = null;
 		String errorMess = null;
 		try {
-			UserDTO getUserByEmail = userService.getUserByEmailOrByPhoneNumber(userDTO.getEmail(), null);
-
-			if (!getOldUserById.getEmail().equalsIgnoreCase(userDTO.getEmail())) {
-				if (getUserByEmail != null) {
-					userDTO.setAvatar(getOldUserById.getAvatar());
-					model.addAttribute("userDetails", userDTO);
-					return checkDuplicateField(model, "email");
-				}
-			}
+//			UserDTO getUserByEmail = userService.getUserByEmailOrByPhoneNumber(userDTO.getEmail(), null);
+//
+//			if (!getOldUserById.getEmail().equalsIgnoreCase(userDTO.getEmail())) {
+//				if (getUserByEmail != null) {
+//					userDTO.setAvatar(getOldUserById.getAvatar());
+//					model.addAttribute("userDetails", userDTO);
+//					return checkDuplicateField(model, "email");
+//				}
+//			}
 
 			UserDTO getUserByPhoneNumber = userService.getUserByEmailOrByPhoneNumber(null, userDTO.getPhoneNumber());
 
@@ -174,11 +174,12 @@ public class UserController extends BaseController {
 	}
 
 	private String checkDuplicateField(Model model, String field) {
-		if (field.equalsIgnoreCase("email")) {
-			model.addAttribute("duplicateEmailErr", "Email này đã tồn tại");
-		} else if (field.equalsIgnoreCase("phoneNumber")) {
-			model.addAttribute("duplicatePhoneNumberErr", "Số điện thoại này đã tồn tại");
-		}
+//		if (field.equalsIgnoreCase("email")) {
+//			model.addAttribute("duplicateEmailErr", "Email này đã tồn tại");
+//		} else if (field.equalsIgnoreCase("phoneNumber")) {
+//			model.addAttribute("duplicatePhoneNumberErr", "Số điện thoại này đã tồn tại");
+//		}
+		model.addAttribute("duplicatePhoneNumberErr", "Số điện thoại này đã tồn tại");
 		model.addAttribute("role", SecurityUtil.getAuthorities());
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		return "/web/user/edit-profile";

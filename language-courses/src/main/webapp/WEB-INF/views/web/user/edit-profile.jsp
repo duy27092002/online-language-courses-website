@@ -14,6 +14,13 @@
 							<f:form action="/chinh-sua-ho-so" method="post" cssClass="user"
 								modelAttribute="userDTO" enctype="multipart/form-data">
 								<f:input path="id" value="${userDetails.id}" type="hidden" />
+								<f:input path="email" type="hidden"
+									cssClass="form-control rounded-pill bg-white"
+									value="${userDetails.email}" />
+								<c:if test="${userDetails != null}">
+									<f:input path="password" value="${userDetails.password}"
+										type="hidden" />
+								</c:if>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
 										<label>Họ và tên:</label>
@@ -76,16 +83,12 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Email:</label>
-										<f:input path="email" type="text"
+										<label>Tên tài khoản:</label>
+										<f:input path="userName" type="text"
 											cssClass="form-control rounded-pill bg-white"
-											value="${userDetails.email}" />
-										<small><f:errors path="email" cssClass="text-danger"></f:errors></small>
-										<c:if test="${duplicateEmailErr != null}">
-											<small class="text-danger"> <c:out
-													value="${duplicateEmailErr}" />
-											</small>
-										</c:if>
+											value="${userDetails.userName}" />
+										<small><f:errors path="userName"
+												cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 										<label>Số điện thoại:</label>
@@ -100,20 +103,6 @@
 											</small>
 										</c:if>
 									</div>
-								</div>
-								<div class="form-group row">
-									<div class="col-12 mb-3 mb-sm-0">
-										<label>Tên tài khoản:</label>
-										<f:input path="userName" type="text"
-											cssClass="form-control rounded-pill bg-white"
-											value="${userDetails.userName}" />
-										<small><f:errors path="userName"
-												cssClass="text-danger"></f:errors></small>
-									</div>
-									<c:if test="${userDetails != null}">
-										<f:input path="password" value="${userDetails.password}"
-											type="hidden" />
-									</c:if>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">

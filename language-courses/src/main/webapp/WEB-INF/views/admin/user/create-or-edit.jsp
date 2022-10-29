@@ -103,15 +103,28 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Email:</label>
-										<f:input path="email" type="text"
-											cssClass="form-control form-control-user bg-white"
-											value="${userDetails.email}" />
-										<small><f:errors path="email" cssClass="text-danger"></f:errors></small>
-										<c:if test="${duplicateEmailErr != null}">
-											<small class="text-danger"> <c:out
-													value="${duplicateEmailErr}" />
-											</small>
+										<c:if test="${userDetails != null}">
+											<f:input path="email" type="hidden"
+												cssClass="form-control form-control-user bg-white"
+												value="${userDetails.email}" />
+											<label>Tên tài khoản:</label>
+											<f:input path="userName" type="text"
+												cssClass="form-control form-control-user bg-white"
+												value="${userDetails.userName}" />
+											<small><f:errors path="userName"
+													cssClass="text-danger"></f:errors></small>
+										</c:if>
+										<c:if test="${userDetails == null}">
+											<label>Email:</label>
+											<f:input path="email" type="text"
+												cssClass="form-control form-control-user bg-white"
+												value="${userDetails.email}" />
+											<small><f:errors path="email" cssClass="text-danger"></f:errors></small>
+											<c:if test="${duplicateEmailErr != null}">
+												<small class="text-danger"> <c:out
+														value="${duplicateEmailErr}" />
+												</small>
+											</c:if>
 										</c:if>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -128,16 +141,16 @@
 										</c:if>
 									</div>
 								</div>
-								<div class="form-group row">
-									<div class="${col} mb-3 mb-sm-0">
-										<label>Tên tài khoản:</label>
-										<f:input path="userName" type="text"
-											cssClass="form-control form-control-user bg-white"
-											value="${userDetails.userName}" />
-										<small><f:errors path="userName"
-												cssClass="text-danger"></f:errors></small>
-									</div>
-									<c:if test="${userDetails == null}">
+								<c:if test="${userDetails == null}">
+									<div class="form-group row">
+										<div class="${col} mb-3 mb-sm-0">
+											<label>Tên tài khoản:</label>
+											<f:input path="userName" type="text"
+												cssClass="form-control form-control-user bg-white"
+												value="${userDetails.userName}" />
+											<small><f:errors path="userName"
+													cssClass="text-danger"></f:errors></small>
+										</div>
 										<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 											<label>Mật khẩu:</label>
 											<f:input path="password" type="password"
@@ -145,12 +158,12 @@
 											<small><f:errors path="password"
 													cssClass="text-danger"></f:errors></small>
 										</div>
-									</c:if>
-									<c:if test="${userDetails != null}">
-										<f:input path="password" value="${userDetails.password}"
-											type="hidden" />
-									</c:if>
-								</div>
+									</div>
+								</c:if>
+								<c:if test="${userDetails != null}">
+									<f:input path="password" value="${userDetails.password}"
+										type="hidden" />
+								</c:if>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
 										<label>Youtube:</label>
