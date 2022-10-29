@@ -6,21 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.javaproject.admin.dto.FeedbackDTO;
-import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.ILanguageService;
 
 @Controller(value = "ContactControllerOfWeb")
-public class ContactController {
-	@Autowired
-	private IAboutService aboutService;
-	
+public class ContactController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
-	
-	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("aboutDetails", aboutService.details(1L));
-	}
 	
 	@GetMapping(value = { "/lien-he" })
 	public String contactPage(Model model) {

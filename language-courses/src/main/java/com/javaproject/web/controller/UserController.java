@@ -19,26 +19,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.javaproject.admin.dto.ChangePasswordDTO;
 import com.javaproject.admin.dto.NotificationResponseDTO;
 import com.javaproject.admin.dto.UserDTO;
-import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.admin.service.IUserService;
 import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "UserControllerOfWeb")
-public class UserController {
-	@Autowired
-	private IAboutService aboutService;
-
+public class UserController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
 
 	@Autowired
 	private IUserService userService;
-
-	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("aboutDetails", aboutService.details(1L));
-	}
 
 	@GetMapping(value = { "/dang-nhap" })
 	public String viewSignInPage(Model model) {
@@ -127,7 +118,7 @@ public class UserController {
 			Long getUserId = Long.parseLong(id);
 			model.addAttribute("userDetails", userService.getDetails(getUserId).get(0));
 		} catch (Exception e) {
-			return viewErrorPage(redirectModel);
+			return viewErrorPage();
 		}
 		return "/web/user/" + action;
 	}
@@ -173,13 +164,11 @@ public class UserController {
 
 			UserDTO getUserAfterSave = userService.update(userDTO);
 			if (getUserAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 			return "redirect:/ho-so-cua-toi?id=" + userDTO.getId();
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 			return "redirect:/ho-so-cua-toi?id=" + userDTO.getId();
 		}
 	}
@@ -219,12 +208,5 @@ public class UserController {
 		NotificationResponseDTO notiResDTO = userService.changePassword(dto);
 		redirectModel.addFlashAttribute("message", notiResDTO.getMess());
 		return "redirect:/doi-mat-khau";
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "trang chủ");
-		redirectModel.addFlashAttribute("returnPageUrl", "/");
-		return "redirect:/loi/404";
 	}
 }

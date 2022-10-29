@@ -11,25 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.dto.FeedbackDTO;
-import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.IFeedbackService;
 import com.javaproject.admin.service.ILanguageService;
 
 @Controller(value = "FeedbackControllerOfWeb")
-public class FeedbackController {
-	@Autowired
-	private IAboutService aboutService;
-	
+public class FeedbackController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
 	
 	@Autowired
 	private IFeedbackService feedbackService;
-	
-	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("aboutDetails", aboutService.details(1L));
-	}
 
 	@PostMapping(value = "/gui-phan-hoi")
 	public String create(@Valid @ModelAttribute("feedbackDTO") FeedbackDTO feedbackDTO, BindingResult bindingResult,
@@ -53,12 +44,10 @@ public class FeedbackController {
 
 			FeedbackDTO getFAQsAfterSave = feedbackService.save(feedbackDTO);
 			if (getFAQsAfterSave != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/lien-he";

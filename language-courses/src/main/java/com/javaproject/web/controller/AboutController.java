@@ -5,21 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.ILanguageService;
 
 @Controller(value = "AboutControllerOfWeb")
-public class AboutController {
-	@Autowired
-	private IAboutService aboutService;
-	
+public class AboutController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
-	
-	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("aboutDetails", aboutService.details(1L));
-	}
 	
 	@GetMapping(value = { "/ve-chung-toi" })
 	public String aboutPage(Model model) {

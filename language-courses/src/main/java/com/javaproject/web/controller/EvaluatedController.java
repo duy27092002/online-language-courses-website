@@ -15,25 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.dto.EvaluatedDTO;
-import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.IEvaluatedService;
 import com.javaproject.admin.service.ILanguageService;
 
 @Controller(value = "EvaluatedControllerOfWeb")
-public class EvaluatedController {
-	@Autowired
-	private IAboutService aboutService;
-	
+public class EvaluatedController extends BaseController {
 	@Autowired
 	private IEvaluatedService evaluatedService;
 	
 	@Autowired
 	private ILanguageService languageService;
-	
-	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("aboutDetails", aboutService.details(1L));
-	}
 
 	@GetMapping(value = { "/danh-gia-cua-hoc-vien" })
 	public String testimonail(Model model) {
@@ -83,7 +74,7 @@ public class EvaluatedController {
 			Long getAvaluatedId = Long.parseLong(id);
 			model.addAttribute("evaluatedDetails", evaluatedService.getDetails(getAvaluatedId).get(0));
 		} catch (Exception e) {
-			return viewErrorPage(redirectModel);
+			return viewErrorPage();
 		}
 		return "/admin/evaluated/" + action;
 	}
@@ -121,12 +112,10 @@ public class EvaluatedController {
 
 			EvaluatedDTO getEvaluatedAfterEdit = evaluatedService.save(evaluatedDTO);
 			if (getEvaluatedAfterEdit != null) {
-				redirectModel.addFlashAttribute("typeAlert", "success");
-				redirectModel.addFlashAttribute("mess", successMess);
+				redirectNotification(redirectModel, successMess, "success");
 			}
 		} catch (Exception ex) {
-			redirectModel.addFlashAttribute("typeAlert", "danger");
-			redirectModel.addFlashAttribute("mess", errorMess);
+			redirectNotification(redirectModel, errorMess, "danger");
 		}
 
 		return "redirect:/khoa-hoc-cua-toi?id=" + evaluatedDTO.getUserId();
@@ -135,12 +124,5 @@ public class EvaluatedController {
 	private String isExitAvaluated(Model model) {
 		model.addAttribute("isExitAvaluated", "Bạn đã đánh giá khóa học này rồi!");
 		return "/web/user/my-course-list";
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "tổng quan");
-		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
-		return "redirect:/loi/404";
 	}
 }

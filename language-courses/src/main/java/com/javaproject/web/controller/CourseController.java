@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.dto.CourseStudentDTO;
-import com.javaproject.admin.service.IAboutService;
 import com.javaproject.admin.service.ICourseService;
 import com.javaproject.admin.service.ICourseStudentService;
 import com.javaproject.admin.service.IEvaluatedService;
@@ -20,10 +19,7 @@ import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.admin.service.IVideoService;
 
 @Controller(value = "CourseControllerOfWeb")
-public class CourseController {
-	@Autowired
-	private IAboutService aboutService;
-
+public class CourseController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
 
@@ -39,11 +35,6 @@ public class CourseController {
 	@Autowired
 	private ICourseStudentService csService;
 
-	private void setViewTitleOrGetWebDetails(String viewTitle, Model model) {
-		model.addAttribute("viewTitle", viewTitle);
-		model.addAttribute("aboutDetails", aboutService.details(1L));
-	}
-
 	@GetMapping(value = { "/danh-sach-khoa-hoc" })
 	public String courseList(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "keyword", required = false) String keyword, RedirectAttributes redirectModel,
@@ -57,7 +48,7 @@ public class CourseController {
 				model.addAttribute("courseListByLanguage",
 						courseService.getListByLanguageIdAndStatus(getLanguageId, 2));
 			} catch (Exception e) {
-				return viewErrorPage(redirectModel);
+				return viewErrorPage();
 			}
 		} else if (id == null && keyword == null) {
 			setViewTitleOrGetWebDetails("Khóa học", model);
@@ -88,7 +79,7 @@ public class CourseController {
 			model.addAttribute("totalOfVideo", videoService.getListByCourseId(getCourseId).size());
 			model.addAttribute("listOfStudentIdByCourseId", csService.getStudentIdByCourseID(getCourseId));
 		} catch (Exception ex) {
-			return viewErrorPage(redirectModel);
+			return viewErrorPage();
 		}
 		return "/web/course/detail";
 	}
@@ -104,7 +95,7 @@ public class CourseController {
 					courseService.getListByCourseId(csService.getCourseIdListByUserId(getUserId)));
 			return "/web/user/my-course-list";
 		} catch (Exception ex) {
-			return viewErrorPage(redirectModel);
+			return viewErrorPage();
 		}
 	}
 
@@ -119,7 +110,7 @@ public class CourseController {
 			model.addAttribute("videoListOfCourse", videoService.getListByCourseId(getCourseId));
 			return "/web/user/video-list";
 		} catch (Exception ex) {
-			return viewErrorPage(redirectModel);
+			return viewErrorPage();
 		}
 	}
 
@@ -128,19 +119,10 @@ public class CourseController {
 			RedirectAttributes redirectModel) {
 		CourseStudentDTO dto = csService.save(csDTO);
 		if (dto != null) {
-			redirectModel.addFlashAttribute("mess", "Mua khóa học thành công. Chúc bạn học tập vui vẻ!");
-			redirectModel.addFlashAttribute("status", "success");
+			redirectNotification(redirectModel, "Mua khóa học thành công. Chúc bạn học tập vui vẻ!", "success");
 			return "redirect:/khoa-hoc-cua-toi?id=" + csDTO.getStudentId();
 		}
-		redirectModel.addFlashAttribute("mess", "Mua khóa học thất bại. Vui lòng thử lại!");
-		redirectModel.addFlashAttribute("status", "danger");
+		redirectNotification(redirectModel, "Mua khóa học thất bại. Vui lòng thử lại!", "danger");
 		return "redirect:/chi-tiet-khoa-hoc?id=" + csDTO.getCourseId();
-	}
-
-	// hiển thị trang lỗi khi không tìm thấy dữ liệu
-	private String viewErrorPage(RedirectAttributes redirectModel) {
-		redirectModel.addFlashAttribute("returnPage", "trang chủ");
-		redirectModel.addFlashAttribute("returnPageUrl", "/");
-		return "redirect:/loi/404";
 	}
 }
