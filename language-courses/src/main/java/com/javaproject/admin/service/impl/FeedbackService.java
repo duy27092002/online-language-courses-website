@@ -62,4 +62,17 @@ public class FeedbackService implements IFeedbackService {
 		getInfo.add(dto);
 		return getInfo;
 	}
+
+
+	@Override
+	public List<FeedbackDTO> getListByStatus(int status) {
+		List<Feedback> entityListByStatus = feedbackRepo.findByStatus(status);
+		List<FeedbackDTO> resultList = new ArrayList<>();
+		for (Feedback entity : entityListByStatus) {
+			FeedbackDTO dto = new FeedbackDTO();
+			BeanUtils.copyProperties(entity, dto);
+			resultList.add(dto);
+		}
+		return resultList;
+	}
 }
