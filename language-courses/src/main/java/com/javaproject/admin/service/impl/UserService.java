@@ -206,4 +206,22 @@ public class UserService implements IUserService {
 		return instructorIdListByCourse;
 	}
 
+	@Override
+	public int getTotalUser() {
+		return (int) userRepo.count();
+	}
+
+	@Override
+	public int getTotalEmployeeNotInstructorByStatus(int status) {
+		int totalActiveUser = userRepo.findByStatus(1).size();
+		int totalInactiveUser = userRepo.findByStatus(0).size();
+		int totalActiveInstructor = getListByRoleIdAndStatus(2, 1).size();
+		int totalInactiveInstructor = getListByRoleIdAndStatus(2, 0).size();
+		int totalActiveStudent = getListByRoleIdAndStatus(3, 1).size();
+		int totalInactiveStudent = getListByRoleIdAndStatus(3, 0).size();
+		int totalActiveEmployee = totalActiveUser - totalActiveInstructor - totalActiveStudent;
+		int totalInactiveEmployee = totalInactiveUser - totalInactiveInstructor - totalInactiveStudent;
+		return status == 1 ? totalActiveEmployee : totalInactiveEmployee;
+	}
+
 }

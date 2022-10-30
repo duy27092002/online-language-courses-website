@@ -21,5 +21,7 @@ public interface UserRepository extends SearchingRepository<User, Long> {
 	@Query("select u from #{#entityName} u")
 	Page<User> getAllList(Pageable pageable);
 	
-	List<User> findByRoleIdAndStatus(long roleId, int statys);
+	List<User> findByRoleIdAndStatus(long roleId, int status);
+	
+	List<User> findByStatus(int status);
 }

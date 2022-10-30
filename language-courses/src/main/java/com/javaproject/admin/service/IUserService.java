@@ -20,4 +20,8 @@ public interface IUserService extends IBaseService<UserDTO> {
 	List<UserDTO> getListByRoleIdAndStatus(long roleId, int status);
 	
 	List<Long> getInstructorIdListByCourse(CourseDTO courseDTO);
+	
+	int getTotalUser();
+	
+	int getTotalEmployeeNotInstructorByStatus(int status);
 }
