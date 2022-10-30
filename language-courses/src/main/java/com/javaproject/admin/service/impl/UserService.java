@@ -207,11 +207,6 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public int getTotalUser() {
-		return (int) userRepo.count();
-	}
-
-	@Override
 	public int getTotalEmployeeNotInstructorByStatus(int status) {
 		int totalActiveUser = userRepo.findByStatus(1).size();
 		int totalInactiveUser = userRepo.findByStatus(0).size();
