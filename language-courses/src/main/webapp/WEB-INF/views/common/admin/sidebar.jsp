@@ -64,7 +64,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link" href="/quan-tri">
+			<li class="nav-item"><a class="nav-link" href="/quan-tri">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Tổng quan</span>
 			</a></li>
 
