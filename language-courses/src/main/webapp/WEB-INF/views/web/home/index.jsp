@@ -28,7 +28,7 @@
 				<div class="row pt-3 mx-0">
 					<div class="col-4 px-0">
 						<div class="bg-primary text-center p-4">
-							<h1 class="text-white" data-toggle="counter-up">1234</h1>
+							<h1 class="text-white" data-toggle="counter-up">${releasedCourse}</h1>
 							<h6 class="text-uppercase text-white">
 								Khóa học<span class="d-block">trực tuyến</span>
 							</h6>
@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-4 px-0">
 						<div class="bg-secondary text-center p-4">
-							<h1 class="text-white" data-toggle="counter-up">123</h1>
+							<h1 class="text-white" data-toggle="counter-up">${activeInstructor}</h1>
 							<h6 class="text-uppercase text-white">
 								Giảng viên<span class="d-block">giỏi</span>
 							</h6>
@@ -44,7 +44,7 @@
 					</div>
 					<div class="col-4 px-0">
 						<div class="bg-warning text-center p-4">
-							<h1 class="text-white" data-toggle="counter-up">1234</h1>
+							<h1 class="text-white" data-toggle="counter-up">${activeStudent}</h1>
 							<h6 class="text-uppercase text-white">
 								Học viên<span class="d-block">thân thiện</span>
 							</h6>
