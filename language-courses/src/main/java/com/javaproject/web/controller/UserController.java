@@ -116,7 +116,11 @@ public class UserController extends BaseController {
 
 		try {
 			Long getUserId = Long.parseLong(id);
-			model.addAttribute("userDetails", userService.getDetails(getUserId).get(0));
+			if (getUserId == SecurityUtil.getPrincipal().getUserId()) {
+				model.addAttribute("userDetails", userService.getDetails(getUserId).get(0));
+			} else {
+				return viewErrorPage();
+			}
 		} catch (Exception e) {
 			return viewErrorPage();
 		}
