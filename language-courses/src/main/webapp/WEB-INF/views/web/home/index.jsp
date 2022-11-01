@@ -28,7 +28,7 @@
 				<div class="row pt-3 mx-0">
 					<div class="col-4 px-0">
 						<div class="bg-primary text-center p-4">
-							<h1 class="text-white" data-toggle="counter-up">${releasedCourse}</h1>
+							<h1 class="text-white" data-toggle="counter-up">${countOfReleasedCourse}</h1>
 							<h6 class="text-uppercase text-white">
 								Khóa học<span class="d-block">trực tuyến</span>
 							</h6>
@@ -36,7 +36,7 @@
 					</div>
 					<div class="col-4 px-0">
 						<div class="bg-secondary text-center p-4">
-							<h1 class="text-white" data-toggle="counter-up">${activeInstructor}</h1>
+							<h1 class="text-white" data-toggle="counter-up">${sizeOfActiveInstructorList}</h1>
 							<h6 class="text-uppercase text-white">
 								Giảng viên<span class="d-block">giỏi</span>
 							</h6>
@@ -121,7 +121,7 @@
 <!-- Courses Start -->
 <div class="container-fluid px-0 py-5">
 	<div class="row mx-0 justify-content-center pt-5">
-		<div class="col-lg-7">
+		<div class="col-lg-6">
 			<div class="section-title text-center position-relative mb-4">
 				<h6
 					class="d-inline-block position-relative text-secondary text-uppercase pb-2">Khóa
@@ -129,7 +129,29 @@
 				<h1 class="display-4">Chất lượng và luôn được cập nhật liên tục</h1>
 			</div>
 		</div>
-		<div class="col-lg-5 my-5">
+		<div class="owl-carousel courses-carousel">
+			<c:forEach items="${releasedCourse}" var="courseInfo">
+				<div class="courses-item position-relative">
+					<img class="img-fluid" src="${courseInfo.thumbnail}" alt="">
+					<div class="courses-text">
+						<h4 class="text-center text-white px-3">${courseInfo.name}</h4>
+						<div class="border-top w-100 mt-3">
+							<div class="d-flex justify-content-between p-4">
+								<c:forEach items="${courseInfo.instructors}"
+									var="instructorInfo">
+									<span class="text-white"><i class="fa fa-user mr-2"></i>${instructorInfo.name}</span>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="w-100 bg-white text-center p-4">
+							<a class="btn btn-primary"
+								href="/chi-tiet-khoa-hoc?id=${courseInfo.id}">Chi tiết</a>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<%-- <div class="col-lg-5 my-5">
 			<div class="card o-hidden border-0 shadow-lg py-3 px-5">
 				<ul class="list-group list-group-flush">
 					<c:forEach items="${activeLanguageList}" var="languageInfo">
@@ -141,7 +163,7 @@
 					</c:forEach>
 				</ul>
 			</div>
-		</div>
+		</div> --%>
 	</div>
 </div>
 <!-- Courses End -->
@@ -158,7 +180,7 @@
 		</div>
 		<div class="owl-carousel team-carousel position-relative"
 			style="padding: 0 30px;">
-			<c:forEach items="${instructorList}" var="instructorInfo">
+			<c:forEach items="${activeInstructorList}" var="instructorInfo">
 				<div class="team-item">
 					<img class="img-fluid w-100" src="${instructorInfo.avatar}" alt="">
 					<div class="bg-light text-center p-4">

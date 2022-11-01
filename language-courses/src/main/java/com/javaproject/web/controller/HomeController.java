@@ -1,10 +1,14 @@
 package com.javaproject.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.javaproject.admin.dto.CourseDTO;
+import com.javaproject.admin.dto.UserDTO;
 import com.javaproject.admin.service.ICourseService;
 import com.javaproject.admin.service.IEvaluatedService;
 import com.javaproject.admin.service.ILanguageService;
@@ -27,11 +31,14 @@ public class HomeController extends BaseController {
 	@GetMapping(value = { "/trang-chu", "/" })
 	public String homePage(Model model) {
 		setViewTitleOrGetWebDetails("Trang chủ", model);
-		model.addAttribute("instructorList", userService.getListByRoleIdAndStatus(2, 1));
+		List<UserDTO> getActiveInstructorList = userService.getListByRoleIdAndStatus(2, 1);
+		List<CourseDTO> getReleasedCourse = courseService.getListByStatus(2);
+		model.addAttribute("activeInstructorList", getActiveInstructorList);
 		model.addAttribute("activeEvaluatedList", evaluatedService.getEvaluatedByStatus(2));
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
-		model.addAttribute("releasedCourse", courseService.getListByStatus(2).size());
-		model.addAttribute("activeInstructor", userService.getListByRoleIdAndStatus(2, 1).size());
+		model.addAttribute("releasedCourse", getReleasedCourse);
+		model.addAttribute("countOfReleasedCourse", getReleasedCourse.size());
+		model.addAttribute("sizeOfActiveInstructorList", getActiveInstructorList.size());
 		model.addAttribute("activeStudent", userService.getListByRoleIdAndStatus(3, 1).size());
 		return "/web/home/index";
 	}
