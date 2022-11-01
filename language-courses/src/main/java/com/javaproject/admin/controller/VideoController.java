@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.javaproject.admin.dto.ResponseDataTableDTO;
 import com.javaproject.admin.dto.VideoDTO;
 import com.javaproject.admin.paging.PagingParam;
+import com.javaproject.admin.service.ICourseService;
 import com.javaproject.admin.service.IVideoService;
 import com.javaproject.util.SecurityUtil;
 
@@ -29,6 +30,9 @@ import com.javaproject.util.SecurityUtil;
 public class VideoController extends BaseController {
 	@Autowired
 	private IVideoService videoService;
+
+	@Autowired
+	private ICourseService courseService;
 
 	@GetMapping(value = "/quan-tri/khoa-hoc/danh-sach-video")
 	public String viewListPage(@PagingParam(path = "/quan-tri/khoa-hoc/danh-sach-video") ResponseDataTableDTO resDTDTO,
@@ -93,6 +97,17 @@ public class VideoController extends BaseController {
 
 		try {
 			Long getVideoId = Long.parseLong(id);
+
+			// kiểm tra xem id của video có thuộc danh sách video do giảng viên phụ trách
+			// hay không?
+			List<Long> getCourseIdListByInstructor = courseService
+					.getCourseIdListByInstructorId(SecurityUtil.getPrincipal().getUserId());
+			List<Long> getVidIdListByCourseOfInstructor = videoService
+					.getVideoIdListByCourse(getCourseIdListByInstructor);
+			if (!getVidIdListByCourseOfInstructor.contains(getVideoId)) {
+				return viewErrorPage(redirectModel);
+			}
+
 			VideoDTO videoDetails = videoService.getVideoByIdOrName(getVideoId, null).get(0);
 			model.addAttribute("videoDetails", videoDetails);
 			model.addAttribute("role", SecurityUtil.getAuthorities());

@@ -15,4 +15,6 @@ public interface IVideoService extends IBaseService<VideoDTO> {
 	List<VideoDTO> getListByCourseId(Long courseId);
 	
 	List<VideoDTO> getListByCourseIdAndUserId(Long courseId, Long userId);
+	
+	List<Long> getVideoIdListByCourse(List<Long> courseIdList);
 }

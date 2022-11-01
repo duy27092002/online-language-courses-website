@@ -164,4 +164,16 @@ public class VideoService implements IVideoService {
 	public List<VideoDTO> getListByCourseIdAndUserId(Long courseId, Long userId) {
 		return null;
 	}
+
+	@Override
+	public List<Long> getVideoIdListByCourse(List<Long> courseIdList) {
+		List<Long> resultList = new ArrayList<>();
+		for (Long courseId : courseIdList) {
+			List<VideoDTO> vidList = getListByCourseId(courseId);
+			for (VideoDTO vidDTO : vidList) {
+				resultList.add(vidDTO.getId());
+			}
+		}
+		return resultList;
+	}
 }
