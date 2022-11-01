@@ -151,19 +151,6 @@
 				</div>
 			</c:forEach>
 		</div>
-		<%-- <div class="col-lg-5 my-5">
-			<div class="card o-hidden border-0 shadow-lg py-3 px-5">
-				<ul class="list-group list-group-flush">
-					<c:forEach items="${activeLanguageList}" var="languageInfo">
-						<li
-							class="list-group-item d-flex justify-content-between align-items-center px-0">
-							<a href="/danh-sach-khoa-hoc?id=${languageInfo.id}"
-							class="text-decoration-none h6 m-0">${languageInfo.name}</a>
-						</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</div> --%>
 	</div>
 </div>
 <!-- Courses End -->
