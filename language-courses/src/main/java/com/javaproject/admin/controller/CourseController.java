@@ -1,5 +1,7 @@
 package com.javaproject.admin.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -22,6 +24,7 @@ import com.javaproject.admin.service.ICourseService;
 import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.admin.service.ISkillLevelService;
 import com.javaproject.admin.service.IUserService;
+import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "CourseControllerOfAdmin")
 public class CourseController extends BaseController {
@@ -65,15 +68,23 @@ public class CourseController extends BaseController {
 		setViewTitleOrFaviconAttribute("Khóa học của tôi", model);
 		try {
 			ResponseDataTableDTO resultList = courseService.getCourseListByInstructor(resDTDTO);
-			model.addAttribute("resultList", resultList);
+			// kiểm tra id người dùng sau khi đăng nhập thành công có bằng với id ghi trên
+			// url hay không?
+			// Nếu bằng thì hiển thị dữ liệu
+			// Nếu không bằng thì redirect ra trang 404
+			if (resDTDTO.getId() == SecurityUtil.getPrincipal().getUserId()) {
+				model.addAttribute("resultList", resultList);
 
-			String getOrderType = resultList.getOrderType().equalsIgnoreCase("asc") ? "desc" : "asc";
-			model.addAttribute("orderType", getOrderType);
+				String getOrderType = resultList.getOrderType().equalsIgnoreCase("asc") ? "desc" : "asc";
+				model.addAttribute("orderType", getOrderType);
 
-			if (resDTDTO.getKeyword() != null) {
-				model.addAttribute("keyword", resDTDTO.getKeyword());
+				if (resDTDTO.getKeyword() != null) {
+					model.addAttribute("keyword", resDTDTO.getKeyword());
+				}
+				model.addAttribute("instructorId", resDTDTO.getId());
+			} else {
+				return viewErrorPage(redirectModel);
 			}
-			model.addAttribute("instructorId", resDTDTO.getId());
 		} catch (Exception e) {
 			return viewErrorPage(redirectModel);
 		}
@@ -131,6 +142,19 @@ public class CourseController extends BaseController {
 
 		try {
 			Long getCourseId = Long.parseLong(id);
+			// Kiểm tra xem id khóa học ở url có tồn tại trong danh sách khóa học mà giảng
+			// viên quản lý hay không?
+			// Nếu có thì hiển thị dữ liệu
+			// Nếu không thì redirect trang lỗi 404
+			// Chỉ kiểm tra điều này với tài khoản giảng viên
+			// còn tài khoản quản trị viên thì không cần
+			if (SecurityUtil.getAuthorities().contains("giang-vien")) {
+				List<Long> courseIdListByInstructor = courseService
+						.getCourseIdListByInstructorId(SecurityUtil.getPrincipal().getUserId());
+				if (!courseIdListByInstructor.contains(getCourseId)) {
+					return viewErrorPage(redirectModel);
+				}
+			}
 			CourseDTO courseDetails = courseService.getDetails(getCourseId).get(0);
 			model.addAttribute("courseDetails", courseDetails);
 			model.addAttribute("instructorIdListByCourse", userService.getInstructorIdListByCourse(courseDetails));

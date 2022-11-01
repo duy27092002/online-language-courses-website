@@ -291,4 +291,14 @@ public class CourseService implements ICourseService {
 		return resultList;
 	}
 
+	@Override
+	public List<Long> getCourseIdListByInstructorId(Long instructorId) {
+		List<Course> entityList = courseRepo.findByInstructorsId(instructorId);
+		List<Long> resultList = new ArrayList<>();
+		for (Course entity : entityList) {
+			resultList.add(entity.getId());
+		}
+		return resultList;
+	}
+
 }

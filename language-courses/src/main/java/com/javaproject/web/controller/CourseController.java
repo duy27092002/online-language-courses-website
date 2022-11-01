@@ -1,5 +1,7 @@
 package com.javaproject.web.controller;
 
+import java.util.List;
+
 import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.javaproject.admin.service.ICourseStudentService;
 import com.javaproject.admin.service.IEvaluatedService;
 import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.admin.service.IVideoService;
+import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "CourseControllerOfWeb")
 public class CourseController extends BaseController {
@@ -95,9 +98,13 @@ public class CourseController extends BaseController {
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		try {
 			Long getUserId = Long.parseLong(id);
-			model.addAttribute("myCourseList",
-					courseService.getListByCourseId(csService.getCourseIdListByUserId(getUserId)));
-			return "/web/user/my-course-list";
+			if (getUserId == SecurityUtil.getPrincipal().getUserId()) {
+				model.addAttribute("myCourseList",
+						courseService.getListByCourseId(csService.getCourseIdListByUserId(getUserId)));
+				return "/web/user/my-course-list";
+			} else {
+				return viewErrorPage();
+			}
 		} catch (Exception ex) {
 			return viewErrorPage();
 		}
@@ -110,9 +117,19 @@ public class CourseController extends BaseController {
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		try {
 			Long getCourseId = Long.parseLong(id);
-			model.addAttribute("courseName", courseService.getDetails(getCourseId).get(0).getName());
-			model.addAttribute("videoListOfCourse", videoService.getListByCourseId(getCourseId));
-			return "/web/user/video-list";
+			
+			// lấy danh sách id khóa học mà học viên đã mua thành công
+			List<Long> courseIdListByStudent = csService
+					.getCourseIdListByUserId(SecurityUtil.getPrincipal().getUserId());
+			
+			// kiểm tra id khóa học ở url xem có tồn tại trong danh sách phía trên hay không?
+			if (courseIdListByStudent.contains(getCourseId)) {
+				model.addAttribute("courseName", courseService.getDetails(getCourseId).get(0).getName());
+				model.addAttribute("videoListOfCourse", videoService.getListByCourseId(getCourseId));
+				return "/web/user/video-list";
+			} else {
+				return viewErrorPage();
+			}
 		} catch (Exception ex) {
 			return viewErrorPage();
 		}
