@@ -100,12 +100,15 @@ public class VideoController extends BaseController {
 
 			// kiểm tra xem id của video có thuộc danh sách video do giảng viên phụ trách
 			// hay không?
-			List<Long> getCourseIdListByInstructor = courseService
-					.getCourseIdListByInstructorId(SecurityUtil.getPrincipal().getUserId());
-			List<Long> getVidIdListByCourseOfInstructor = videoService
-					.getVideoIdListByCourse(getCourseIdListByInstructor);
-			if (!getVidIdListByCourseOfInstructor.contains(getVideoId)) {
-				return viewErrorPage(redirectModel);
+			// Chỉ áp dụng cho vai trò giảng viên
+			if (SecurityUtil.getAuthorities().contains("giang-vien")) {
+				List<Long> getCourseIdListByInstructor = courseService
+						.getCourseIdListByInstructorId(SecurityUtil.getPrincipal().getUserId());
+				List<Long> getVidIdListByCourseOfInstructor = videoService
+						.getVideoIdListByCourse(getCourseIdListByInstructor);
+				if (!getVidIdListByCourseOfInstructor.contains(getVideoId)) {
+					return viewErrorPage(redirectModel);
+				}
 			}
 
 			VideoDTO videoDetails = videoService.getVideoByIdOrName(getVideoId, null).get(0);
