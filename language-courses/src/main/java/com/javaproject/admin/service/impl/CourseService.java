@@ -21,11 +21,13 @@ import com.javaproject.admin.entity.Language;
 import com.javaproject.admin.entity.SkillLevel;
 import com.javaproject.admin.entity.User;
 import com.javaproject.admin.repository.CourseRepository;
+import com.javaproject.admin.repository.EvaluatedRepository;
 import com.javaproject.admin.repository.LanguageRepository;
 import com.javaproject.admin.repository.SkillLevelRepository;
 import com.javaproject.admin.repository.UserRepository;
 import com.javaproject.admin.service.ICourseService;
 import com.javaproject.service.IImageService;
+import com.javaproject.util.SecurityUtil;
 
 @Service
 @Transactional
@@ -44,6 +46,9 @@ public class CourseService implements ICourseService {
 
 	@Autowired
 	private IImageService imageService;
+
+	@Autowired
+	private EvaluatedRepository evaluatedRepo;
 
 	@Override
 	public ResponseDataTableDTO getList(ResponseDataTableDTO responseDataTableDTO) throws Exception {
@@ -274,6 +279,8 @@ public class CourseService implements ICourseService {
 		for (Course entity : courseListByUserId) {
 			CourseDTO dto = new CourseDTO();
 			BeanUtils.copyProperties(entity, dto);
+			dto.setWasEvaluated(evaluatedRepo.findByUserIdAndCourseId(SecurityUtil.getPrincipal().getUserId(),
+					entity.getId()) != null ? true : false);
 			resultList.add(dto);
 		}
 		return resultList;

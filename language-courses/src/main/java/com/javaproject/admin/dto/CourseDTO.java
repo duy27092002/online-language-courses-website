@@ -63,4 +63,6 @@ public class CourseDTO extends BaseDTO<CourseDTO> {
 	private List<SkillLevel> skillLevelList = new ArrayList<>();
 	
 	private List<User> instructors = new ArrayList<>();
+	
+	private boolean wasEvaluated;
 }
