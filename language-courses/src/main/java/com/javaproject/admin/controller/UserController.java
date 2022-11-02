@@ -130,11 +130,11 @@ public class UserController extends BaseController {
 		if (!Objects.equals(dto.getNewPass(), dto.getReNewPass())) {
 			bindingResult.rejectValue("reNewPass", "error.dto", "Mật khẩu mới không trùng khớp");
 		}
-		
+
 		if (bindingResult.hasErrors()) {
 			return "/admin/user/change-password";
 		}
-		
+
 		NotificationResponseDTO notiResDTO = userService.changePassword(dto);
 		redirectModel.addFlashAttribute("message", notiResDTO.getMess());
 		return "redirect:/quan-tri/doi-mat-khau";
@@ -152,7 +152,12 @@ public class UserController extends BaseController {
 
 		try {
 			Long getUserId = Long.parseLong(id);
-			if (getUserId == SecurityUtil.getPrincipal().getUserId()) {
+
+			// Nếu id đăng nhập bằng với id trên url thì hiển thị dữ liệu, ngược lại thì báo
+			// lỗi
+			// Admin có quyền xem chi tiết thông tin của tất cả người dùng
+			if (getUserId == SecurityUtil.getPrincipal().getUserId()
+					|| SecurityUtil.getAuthorities().contains("admin")) {
 				model.addAttribute("userDetails", userService.getDetails(getUserId).get(0));
 			} else {
 				return viewErrorPage(redirectModel);
