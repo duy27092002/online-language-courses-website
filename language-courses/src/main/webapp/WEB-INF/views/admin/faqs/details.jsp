@@ -17,12 +17,12 @@
 						<div class="p-5">
 							<f:form cssClass="user">
 								<div class="form-group">
-									<label>Câu hỏi:</label>
+									<label>Câu hỏi</label>
 									<textarea class="form-control bg-white" disabled="disabled"
 										rows="3" style="border-radius: 20px;">${faqsDetails.question}</textarea>
 								</div>
 								<div class="form-group">
-									<label>Câu trả lời:</label>
+									<label>Câu trả lời</label>
 									<textarea id="answer-details" class="form-control bg-white" disabled="disabled"
 										rows="5" style="border-radius: 20px;">${faqsDetails.answer}</textarea>
 								</div>
@@ -33,7 +33,7 @@
 									<c:if test="${faqsDetails.status == 0 }">
 										<c:set var="status" value="Đã ẩn"></c:set>
 									</c:if>
-									<label>Trạng thái:</label> <input
+									<label>Trạng thái</label> <input
 										class="form-control form-control-user bg-white"
 										value="<c:out value="${status}" />" disabled="disabled" />
 								</div>

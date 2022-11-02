@@ -18,18 +18,18 @@
 							<f:form cssClass="user">
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Người phản hồi:</label> <input
+										<label>Người phản hồi</label> <input
 											class="form-control form-control-user bg-white"
 											value="${feedbackDetails.name}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Email:</label> <input
+										<label>Email</label> <input
 											class="form-control form-control-user bg-white"
 											value="${feedbackDetails.email}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Phản hồi:</label>
+									<label>Phản hồi</label>
 									<textarea class="form-control bg-white" disabled="disabled"
 										rows="5" style="border-radius: 20px;">${feedbackDetails.question}</textarea>
 								</div>
@@ -43,7 +43,7 @@
 									<c:if test="${feedbackDetails.status == 2 }">
 										<c:set var="status" value="Đã trả lời"></c:set>
 									</c:if>
-									<label>Trạng thái:</label> <input
+									<label>Trạng thái</label> <input
 										class="form-control form-control-user bg-white"
 										value="<c:out value="${status}" />" disabled="disabled" />
 								</div>

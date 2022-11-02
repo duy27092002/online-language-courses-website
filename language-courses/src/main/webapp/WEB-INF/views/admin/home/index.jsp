@@ -180,8 +180,9 @@
 									</p>
 									<p class="mb-0">
 										<small><i
-											class="fas fa-caret-right fa-1x text-body-300 mr-2"></i><strong>Chờ
-												kiểm duyệt:</strong> ${censorshipCourse}</small>
+											class="fas fa-caret-right fa-1x text-body-300 mr-2"></i><strong
+											class="text-warning">Chờ kiểm duyệt:</strong>
+											${censorshipCourse}</small>
 									</p>
 									<p class="mb-0">
 										<small><i
@@ -220,8 +221,9 @@
 									</p>
 									<p class="mb-0">
 										<small><i
-											class="fas fa-caret-right fa-1x text-body-300 mr-2"></i><strong>Chờ
-												kiểm duyệt:</strong> ${censorshipEvaluated}</small>
+											class="fas fa-caret-right fa-1x text-body-300 mr-2"></i><strong
+											class="text-warning">Chờ kiểm duyệt:</strong>
+											${censorshipEvaluated}</small>
 									</p>
 									<p class="mb-0">
 										<small><i
@@ -262,8 +264,9 @@
 											</p>
 											<p class="mb-0">
 												<small><i
-													class="fas fa-caret-right fa-1x text-body-300 mr-2"></i><strong>Chờ
-														kiểm duyệt:</strong> ${censorshipFeedback}</small>
+													class="fas fa-caret-right fa-1x text-body-300 mr-2"></i><strong
+													class="text-warning">Chờ kiểm duyệt:</strong>
+													${censorshipFeedback}</small>
 											</p>
 											<p class="mb-0">
 												<small><i

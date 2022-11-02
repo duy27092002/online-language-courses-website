@@ -36,7 +36,8 @@
 								<f:input type="hidden" path="code" value="${roleDetails.code}" />
 								<div class="form-group row">
 									<div class="<c:out value="${col}" /> mb-sm-0">
-										<label>Tên vai trò:</label>
+										<label>Tên vai trò <span class="text-danger">*</span>
+										</label>
 										<f:input cssClass="form-control form-control-user basic-usage"
 											value="${roleDetails.name}" path="name" />
 										<small><f:errors path="name" cssClass="text-danger"></f:errors></small>
@@ -46,7 +47,7 @@
 									</div>
 									<c:if test="${roleDetails != null}">
 										<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-											<label>Trạng thái:</label>
+											<label>Trạng thái</label>
 											<f:select path="status" cssClass="form-control"
 												style="font-size: .8rem;
 												    border-radius: 10rem;

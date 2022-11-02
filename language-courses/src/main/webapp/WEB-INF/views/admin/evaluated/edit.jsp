@@ -25,26 +25,26 @@
 									value="${evaluatedDetails.course.id}" />
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Email học viên:</label> <input
+										<label>Email học viên</label> <input
 											class="form-control form-control-user bg-white"
 											value="${evaluatedDetails.user.email}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Tên khóa học:</label> <input
+										<label>Tên khóa học</label> <input
 											class="form-control form-control-user bg-white"
 											value="${evaluatedDetails.course.name}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Nội dung đánh giá:</label>
+										<label>Nội dung đánh giá</label>
 										<f:input type="hidden" path="content"
 											value="${evaluatedDetails.content}" />
 										<div class="element-scroll">${evaluatedDetails.content}
 										</div>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Điểm đánh giá:</label>
+										<label>Điểm đánh giá</label>
 										<f:input type="hidden" path="point"
 											value="${evaluatedDetails.point}" />
 										<input class="form-control form-control-user bg-white"
@@ -52,7 +52,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label>Trạng thái:</label>
+									<label>Trạng thái</label>
 									<f:select path="status" cssClass="form-control"
 										style="font-size: .8rem;
 												    border-radius: 10rem;

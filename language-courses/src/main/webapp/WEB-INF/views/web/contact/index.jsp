@@ -60,20 +60,20 @@
 							<div class="col-6 form-group">
 								<f:input path="name" type="text"
 									cssClass="form-control border-top-0 border-right-0 border-left-0 p-0"
-									placeholder="Họ tên" />
+									placeholder="Họ tên *" />
 								<small><f:errors path="name" cssClass="text-danger"></f:errors></small>
 							</div>
 							<div class="col-6 form-group">
 								<f:input path="email" type="text"
 									cssClass="form-control border-top-0 border-right-0 border-left-0 p-0"
-									placeholder="Email" />
+									placeholder="Email *" />
 								<small><f:errors path="email" cssClass="text-danger"></f:errors></small>
 							</div>
 						</div>
 						<div class="form-group">
 							<f:textarea path="question"
 								cssClass="form-control border-top-0 border-right-0 border-left-0 p-0"
-								rows="5" placeholder="Lời nhắn" />
+								rows="5" placeholder="Lời nhắn *" />
 							<small><f:errors path="question" cssClass="text-danger"></f:errors></small>
 						</div>
 						<div>

@@ -18,30 +18,30 @@
 							<f:form cssClass="user">
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Email học viên:</label> <input
+										<label>Email học viên</label> <input
 											class="form-control form-control-user bg-white"
 											value="${evaluatedDetails.user.email}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Tên khóa học:</label> <input
+										<label>Tên khóa học</label> <input
 											class="form-control form-control-user bg-white"
 											value="${evaluatedDetails.course.name}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Nội dung đánh giá:</label>
+										<label>Nội dung đánh giá</label>
 										<div class="element-scroll">${evaluatedDetails.content}
 										</div>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Điểm đánh giá:</label> <input
+										<label>Điểm đánh giá</label> <input
 											class="form-control form-control-user bg-white"
 											value="${evaluatedDetails.point}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group">
-									<c:if test="${evaluatedDetails.status == 1 }">
+									<c:if test="${evaluatedDetails.status == 2 }">
 										<c:set var="status" value="Đang hiển thị"></c:set>
 									</c:if>
 									<c:if test="${evaluatedDetails.status == 1 }">
@@ -50,7 +50,7 @@
 									<c:if test="${evaluatedDetails.status == 0 }">
 										<c:set var="status" value="Đã ẩn"></c:set>
 									</c:if>
-									<label>Trạng thái:</label> <input
+									<label>Trạng thái</label> <input
 										class="form-control form-control-user bg-white"
 										value="${status}" disabled="disabled" />
 								</div>

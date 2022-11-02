@@ -35,7 +35,8 @@
 									<f:input type="hidden" path="status" value="1" />
 								</c:if>
 								<div class="form-group mb-3">
-									<label>Câu hỏi:</label>
+									<label>Câu hỏi <span class="text-danger">*</span>
+									</label>
 									<f:textarea rows="3" cssClass="form-control bg-white"
 										value="${faqsDetails.question}" path="question"
 										style="border-radius: 20px;" />
@@ -48,13 +49,14 @@
 									</c:if>
 								</div>
 								<div class="form-group mb-3">
-									<label>Câu trả lời:</label>
-									<f:textarea rows="5" cssClass="form-control form-control-user bg-white"
+									<label>Câu trả lời</label>
+									<f:textarea rows="5"
+										cssClass="form-control form-control-user bg-white"
 										value="${faqsDetails.answer}" path="answer" />
 								</div>
 								<div class="form-group mb-3">
 									<c:if test="${faqsDetails != null}">
-										<label>Trạng thái:</label>
+										<label>Trạng thái</label>
 										<f:select path="status" cssClass="form-control"
 											style="font-size: .8rem;
 												    border-radius: 10rem;
@@ -92,7 +94,7 @@
 <!-- End of Main Content -->
 <script src="/lib/ckeditor/ckeditor.js"></script>
 <script>
-	$(document).ready(function(){
+	$(document).ready(function() {
 		CKEDITOR.replace('answer');
 	});
 </script>

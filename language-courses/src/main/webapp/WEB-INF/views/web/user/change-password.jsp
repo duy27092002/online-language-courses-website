@@ -23,19 +23,22 @@
 							<f:form action="/doi-mat-khau" cssClass="user"
 								modelAttribute="changePasswordDTO" method="post">
 								<div class="form-group row">
-									<label>Mật khẩu cũ:</label>
+									<label>Mật khẩu cũ <span class="text-danger">*</span>
+									</label>
 									<f:input cssClass="form-control rounded-pill bg-white"
 										path="oldPass" type="password" />
 									<small><f:errors path="oldPass" cssClass="text-danger"></f:errors></small>
 								</div>
 								<div class="form-group row">
-									<label>Mật khẩu mới:</label>
+									<label>Mật khẩu mới <span class="text-danger">*</span>
+									</label>
 									<f:input cssClass="form-control rounded-pill bg-white"
 										path="newPass" type="password" />
 									<small><f:errors path="newPass" cssClass="text-danger"></f:errors></small>
 								</div>
 								<div class="form-group row">
-									<label>Nhập lại mật khẩu mới:</label>
+									<label>Nhập lại mật khẩu mới <span class="text-danger">*</span>
+									</label>
 									<f:input cssClass="form-control rounded-pill bg-white"
 										path="reNewPass" type="password" />
 								</div>

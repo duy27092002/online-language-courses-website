@@ -47,7 +47,8 @@
 								</c:if>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Video:</label>
+										<label>Video <span class="text-danger">*</span>
+										</label>
 										<f:input type="file" id="addVideoInput"
 											cssStyle="display: none"
 											class="form-control form-control-user bg-white"
@@ -71,7 +72,7 @@
 										</c:if>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Thumbnail:</label>
+										<label>Thumbnail</label>
 										<f:input type="file" id="thumbnailInput"
 											onchange="readURL(this);" cssStyle="display: none"
 											class="form-control form-control-user bg-white"
@@ -97,14 +98,15 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Thứ tự video:</label>
+										<label>Thứ tự video</label>
 										<f:input type="number" min="1" path="index_"
 											cssClass="form-control form-control-user bg-white"
 											value="${videoDetails.index_ }" />
 										<small><f:errors path="index_" cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Tên video bài giảng:</label>
+										<label>Tên video bài giảng <span class="text-danger">*</span>
+										</label>
 										<f:input path="name" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${videoDetails.name}" />
@@ -115,7 +117,8 @@
 									</div>
 								</div>
 								<div class="form-group mb-3">
-									<label>Mô tả:</label>
+									<label>Mô tả <span class="text-danger">*</span>
+									</label>
 									<f:textarea cssClass="form-control bg-white"
 										value="${videoDetails.description}" path="description" />
 									<small><f:errors path="description"
@@ -123,7 +126,7 @@
 								</div>
 								<c:if test="${role != null && role.contains('admin')}">
 									<div class="form-group mb-3">
-										<label>Nhận xét:</label>
+										<label>Nhận xét</label>
 										<f:textarea cssClass="form-control bg-white"
 											value="${videoDetails.cmt}" path="cmt"
 											style="border-radius: 20px;" />
@@ -136,7 +139,7 @@
 								</c:if>
 								<div class="form-group mb-3">
 									<c:if test="${videoDetails != null && role.contains('admin')}">
-										<label>Trạng thái:</label>
+										<label>Trạng thái</label>
 										<f:select path="status" cssClass="form-control"
 											style="font-size: .8rem;
 												    border-radius: 10rem;

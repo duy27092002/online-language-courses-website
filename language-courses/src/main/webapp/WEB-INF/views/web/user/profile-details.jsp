@@ -31,19 +31,19 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên:</label> <input
+										<label>Tên</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.name}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Tên tài khoản:</label> <input
+										<label>Tên tài khoản</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.userName}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Ngày sinh:</label> <input
+										<label>Ngày sinh</label> <input
 											class="form-control rounded-pill bg-white"
 											value="<fmt:formatDate
 										value="${userDetails.dobDate}"
@@ -51,7 +51,7 @@
 											disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Giới tính:</label>
+										<label>Giới tính</label>
 										<c:if test="${userDetails.gender == 0}">
 											<c:set var="gender" value="Nữ"></c:set>
 										</c:if>
@@ -67,41 +67,41 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Email:</label> <input
+										<label>Email</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.email}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Số điện thoại:</label> <input
+										<label>Số điện thoại</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.phoneNumber}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Youtube:</label> <input
+										<label>Youtube</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.youtubeLink}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Facebook:</label> <input
+										<label>Facebook</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.facebookLink}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Instagram:</label> <input
+										<label>Instagram</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.instagramLink}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Twitter:</label> <input
+										<label>Twitter</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.twitterLink}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>LinkedIn:</label> <input
+										<label>LinkedIn</label> <input
 											class="form-control rounded-pill bg-white"
 											value="${userDetails.inLink}" disabled="disabled" />
 									</div>

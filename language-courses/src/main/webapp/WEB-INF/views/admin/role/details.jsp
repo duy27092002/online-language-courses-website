@@ -18,7 +18,7 @@
 							<f:form cssClass="user">
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên vai trò:</label> <input
+										<label>Tên vai trò</label> <input
 											class="form-control form-control-user bg-white"
 											value="${roleDetails.name}" disabled="disabled" />
 									</div>
@@ -29,7 +29,7 @@
 										<c:if test="${roleDetails.status == 0 }">
 											<c:set var="status" value="Đã hủy"></c:set>
 										</c:if>
-										<label>Trạng thái:</label> <input
+										<label>Trạng thái</label> <input
 											class="form-control form-control-user bg-white"
 											value="<c:out value="${status}" />" disabled="disabled" />
 									</div>

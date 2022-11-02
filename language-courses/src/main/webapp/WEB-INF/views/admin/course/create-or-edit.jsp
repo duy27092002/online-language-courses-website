@@ -36,7 +36,8 @@
 								</c:if>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên khóa học:</label>
+										<label>Tên khóa học <span class="text-danger">*</span>
+										</label>
 										<f:input path="name" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${courseDetails.name}" />
@@ -46,7 +47,7 @@
 										</c:if>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Ảnh bìa:</label>
+										<label>Ảnh bìa</label>
 										<f:input type="file" id="thumbnailInput"
 											onchange="readURL(this);" cssStyle="display: none"
 											class="form-control form-control-user bg-white"
@@ -72,7 +73,7 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Ngôn ngữ:</label>
+										<label>Ngôn ngữ</label>
 										<f:select path="languageId" cssClass="form-control"
 											style="font-size: .8rem;
 												    border-radius: 10rem;
@@ -85,7 +86,8 @@
 										</f:select>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Giá (VND):</label>
+										<label>Giá (VND) <span class="text-danger">*</span>
+										</label>
 										<f:input path="price" type="text"
 											cssClass="form-control form-control-user bg-white number-separator"
 											value="${courseDetails.price}" />
@@ -93,7 +95,8 @@
 									</div>
 								</div>
 								<div class="form-group mb-3">
-									<label>Mô tả:</label>
+									<label>Mô tả <span class="text-danger">*</span>
+									</label>
 									<f:textarea cssClass="form-control bg-white"
 										value="${courseDetails.description}" path="description" />
 									<small><f:errors path="description"
@@ -101,7 +104,8 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Giảng viên phụ trách:</label>
+										<label>Giảng viên phụ trách <span class="text-danger">*</span>
+										</label>
 										<div class="element-scroll">
 											<c:forEach var="instructor" items="${activeInstructorList}">
 												<c:if
@@ -127,7 +131,9 @@
 												cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Kỹ năng đạt được sau khóa học:</label>
+										<label>Kỹ năng đạt được sau khóa học <span
+											class="text-danger">*</span>
+										</label>
 										<div class="element-scroll">
 											<c:forEach var="skl" items="${activeSklList}">
 												<c:if
@@ -154,13 +160,13 @@
 								</div>
 								<div class="form-group row mb-3">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Giảm giá (%):</label>
+										<label>Giảm giá (%)</label>
 										<f:input path="discount"
 											cssClass="form-control form-control-user bg-white"
 											value="${courseDetails.discount}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Ngày bắt đầu giảm giá:</label>
+										<label>Ngày bắt đầu giảm giá</label>
 										<c:if test="${courseDetails == null}">
 											<f:input path="startDisTimeStr" type="date"
 												cssClass="form-control form-control-user bg-white" />
@@ -174,7 +180,7 @@
 										</c:if>
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Ngày kết thúc giảm giá:</label>
+										<label>Ngày kết thúc giảm giá</label>
 										<c:if test="${courseDetails == null}">
 											<f:input path="endDisTimeStr" type="date"
 												cssClass="form-control form-control-user bg-white" />
@@ -190,7 +196,7 @@
 								</div>
 								<div class="form-group mb-3">
 									<c:if test="${courseDetails != null}">
-										<label>Trạng thái:</label>
+										<label>Trạng thái</label>
 										<f:select path="status" cssClass="form-control"
 											style="font-size: .8rem;
 												    border-radius: 10rem;

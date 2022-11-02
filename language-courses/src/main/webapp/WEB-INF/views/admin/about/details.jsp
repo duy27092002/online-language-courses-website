@@ -28,14 +28,14 @@
 							<f:form cssClass="user">
 								<div class="form-group row text-center">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Favicon:</label>
+										<label>Favicon</label>
 										<p>
 											<img src="/image-file/${about.favicon}"
 												class="img-fluid rounded-circle" style="width: 100px;" />
 										</p>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Logo:</label>
+										<label>Logo</label>
 										<p>
 											<img src="/image-file/${about.logo}"
 												class="img-fluid rounded-circle" style="width: 100px;" />
@@ -44,53 +44,53 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên website:</label> <input
+										<label>Tên website</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.name}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Email:</label> <input
+										<label>Email</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.email}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Số điện thoại:</label> <input
+										<label>Số điện thoại</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.phoneNumber}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Địa chỉ:</label> <input
+										<label>Địa chỉ</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.location}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Youtube:</label> <input
+										<label>Youtube</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.youtubeLink}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Facebook:</label> <input
+										<label>Facebook</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.facebookLink}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Instagram:</label> <input
+										<label>Instagram</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.instagramLink}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Twitter:</label> <input
+										<label>Twitter</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.twitterLink}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>LinkedIn:</label> <input
+										<label>LinkedIn</label> <input
 											class="form-control form-control-user bg-white"
 											value="${about.inLink}" disabled="disabled" />
 									</div>

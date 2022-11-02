@@ -23,14 +23,14 @@
 								</c:if>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Họ và tên:</label>
+										<label>Họ và tên <span class="text-danger">*</span></label>
 										<f:input path="name" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.name}" />
 										<small><f:errors path="name" cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Avatar:</label>
+										<label>Avatar</label>
 										<f:input type="file" id="avatarInput"
 											onchange="readURL(this);" cssStyle="display: none"
 											class="form-control rounded-pill bg-white" path="fileImage" />
@@ -51,7 +51,8 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Ngày sinh:</label>
+										<label>Ngày sinh <small class="text-muted">(năm-tháng-ngày)</small>
+											<span class="text-danger">*</span></label>
 										<c:if test="${userDetails != null}">
 											<fmt:formatDate value="${userDetails.dobDate}"
 												var="dobString" pattern="yyyy-MM-dd" />
@@ -62,7 +63,7 @@
 										<small><f:errors path="dob" cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Giới tính:</label><br>
+										<label>Giới tính</label><br>
 										<div class="form-check form-check-inline">
 											<input type="radio" class="form-check-input" name="gender"
 												value="0" ${userDetails.gender == 0 ? "checked" : "" } /> <label
@@ -83,7 +84,7 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên tài khoản:</label>
+										<label>Tên tài khoản <span class="text-danger">*</span></label>
 										<f:input path="userName" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.userName}" />
@@ -91,7 +92,7 @@
 												cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Số điện thoại:</label>
+										<label>Số điện thoại <span class="text-danger">*</span></label>
 										<f:input path="phoneNumber" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.phoneNumber}" />
@@ -106,13 +107,13 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Youtube:</label>
+										<label>Youtube</label>
 										<f:input path="youtubeLink" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.youtubeLink}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Facebook:</label>
+										<label>Facebook</label>
 										<f:input path="facebookLink" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.facebookLink}" />
@@ -120,19 +121,19 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Instagram:</label>
+										<label>Instagram</label>
 										<f:input path="instagramLink" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.instagramLink}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Twitter:</label>
+										<label>Twitter</label>
 										<f:input path="twitterLink" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.twitterLink}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>LinkedIn:</label>
+										<label>LinkedIn</label>
 										<f:input path="inLink" type="text"
 											cssClass="form-control rounded-pill bg-white"
 											value="${userDetails.inLink}" />

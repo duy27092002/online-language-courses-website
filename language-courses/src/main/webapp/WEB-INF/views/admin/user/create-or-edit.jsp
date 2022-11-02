@@ -33,14 +33,15 @@
 								<f:input path="id" value="${userDetails.id}" type="hidden" />
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Họ và tên:</label>
+										<label>Họ và tên <span class="text-danger">*</span>
+										</label>
 										<f:input path="name" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.name}" />
 										<small><f:errors path="name" cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Avatar:</label>
+										<label>Avatar</label>
 										<f:input type="file" id="avatarInput"
 											onchange="readURL(this);" cssStyle="display: none"
 											class="form-control form-control-user bg-white"
@@ -66,7 +67,9 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Ngày sinh:</label>
+										<label>Ngày sinh <small class="text-muted">(năm-tháng-ngày)</small>
+											<span class="text-danger">*</span>
+										</label>
 										<c:if test="${userDetails == null}">
 											<f:input path="dob" type="date"
 												cssClass="form-control form-control-user bg-white" />
@@ -81,7 +84,7 @@
 										<small><f:errors path="dob" cssClass="text-danger"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Giới tính:</label><br>
+										<label>Giới tính</label><br>
 										<div class="form-check form-check-inline">
 											<input type="radio" class="form-check-input" name="gender"
 												value="0" ${userDetails.gender == 0 ? "checked" : "" }
@@ -107,7 +110,8 @@
 											<f:input path="email" type="hidden"
 												cssClass="form-control form-control-user bg-white"
 												value="${userDetails.email}" />
-											<label>Tên tài khoản:</label>
+											<label>Tên tài khoản <span class="text-danger">*</span>
+											</label>
 											<f:input path="userName" type="text"
 												cssClass="form-control form-control-user bg-white"
 												value="${userDetails.userName}" />
@@ -115,7 +119,8 @@
 													cssClass="text-danger"></f:errors></small>
 										</c:if>
 										<c:if test="${userDetails == null}">
-											<label>Email:</label>
+											<label>Email <span class="text-danger">*</span>
+											</label>
 											<f:input path="email" type="text"
 												cssClass="form-control form-control-user bg-white"
 												value="${userDetails.email}" />
@@ -128,7 +133,8 @@
 										</c:if>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Số điện thoại:</label>
+										<label>Số điện thoại <span class="text-danger">*</span>
+										</label>
 										<f:input path="phoneNumber" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.phoneNumber}" />
@@ -144,7 +150,8 @@
 								<c:if test="${userDetails == null}">
 									<div class="form-group row">
 										<div class="${col} mb-3 mb-sm-0">
-											<label>Tên tài khoản:</label>
+											<label>Tên tài khoản <span class="text-danger">*</span>
+											</label>
 											<f:input path="userName" type="text"
 												cssClass="form-control form-control-user bg-white"
 												value="${userDetails.userName}" />
@@ -152,7 +159,8 @@
 													cssClass="text-danger"></f:errors></small>
 										</div>
 										<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-											<label>Mật khẩu:</label>
+											<label>Mật khẩu <span class="text-danger">*</span>
+											</label>
 											<f:input path="password" type="password"
 												cssClass="form-control form-control-user bg-white" />
 											<small><f:errors path="password"
@@ -166,13 +174,13 @@
 								</c:if>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Youtube:</label>
+										<label>Youtube</label>
 										<f:input path="youtubeLink" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.youtubeLink}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Facebook:</label>
+										<label>Facebook</label>
 										<f:input path="facebookLink" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.facebookLink}" />
@@ -180,19 +188,19 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Instagram:</label>
+										<label>Instagram</label>
 										<f:input path="instagramLink" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.instagramLink}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Twitter:</label>
+										<label>Twitter</label>
 										<f:input path="twitterLink" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.twitterLink}" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>LinkedIn:</label>
+										<label>LinkedIn</label>
 										<f:input path="inLink" type="text"
 											cssClass="form-control form-control-user bg-white"
 											value="${userDetails.inLink}" />
@@ -207,7 +215,7 @@
 								<c:if
 									test="${role.contains('admin') || enableSelectElement == true}">
 									<div class="form-group">
-										<label>Vai trò:</label>
+										<label>Vai trò</label>
 										<f:select path="roleId" cssClass="form-control"
 											style="font-size: .8rem;
 												    border-radius: 10rem;
@@ -221,7 +229,7 @@
 									</div>
 									<c:if test="${userDetails != null}">
 										<div class="form-group">
-											<label>Trạng thái:</label>
+											<label>Trạng thái</label>
 											<f:select path="status" cssClass="form-control"
 												style="font-size: .8rem;
 												    border-radius: 10rem;

@@ -28,12 +28,12 @@
 							<f:form cssClass="user">
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Thumbnail:</label><br> <img
+										<label>Thumbnail</label><br> <img
 											class="border img-fluid" style="width: 200px;"
 											src="${videoDetails.thumbnail}" alt="avatar" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Video:</label><br>
+										<label>Video</label><br>
 										<video controls style="height: 200px;">
 											<source src="${videoDetails.videoFile}" type="video/mp4">
 										</video>
@@ -41,40 +41,40 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Thứ tự:</label> <input
+										<label>Thứ tự</label> <input
 											class="form-control form-control-user bg-white"
 											value="${videoDetails.index_}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Tên video bài giảng:</label> <input
+										<label>Tên video bài giảng</label> <input
 											class="form-control form-control-user bg-white"
 											value="${videoDetails.name}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên khóa học:</label> <input
+										<label>Tên khóa học</label> <input
 											class="form-control form-control-user bg-white"
 											value="${videoDetails.course.name}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Giảng viên đăng video:</label> <input
+										<label>Giảng viên đăng video</label> <input
 											class="form-control form-control-user bg-white"
 											value="${videoDetails.user.email}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Mô tả:</label>
+									<label>Mô tả</label>
 									<textarea id="description" disabled="disabled" rows="5">${videoDetails.description}</textarea>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Nhận xét của admin:</label>
+										<label>Nhận xét của admin</label>
 										<textarea class="form-control bg-white"
 											style="border-radius: 20px;" disabled="disabled" rows="3">${videoDetails.cmt}</textarea>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Trạng thái:</label> <input
+										<label>Trạng thái</label> <input
 											class="form-control form-control-user bg-white"
 											value="${videoDetails.status == 1 ? 'Đang kiểm duyệt' : videoDetails.status == 2 ? 'Đạt yêu cầu' : 'Không đạt yêu cầu'}"
 											disabled="disabled" />

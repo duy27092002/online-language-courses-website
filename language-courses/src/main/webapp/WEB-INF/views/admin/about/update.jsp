@@ -22,14 +22,16 @@
 								<f:input type="hidden" path="status" value="${about.status}" />
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Tên website:</label>
+										<label>Tên website <span class="text-danger">*</span>
+										</label>
 										<f:input path="name" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.name}" />
 										<small><f:errors path="name" style="color:red;"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Email:</label>
+										<label>Email <span class="text-danger">*</span>
+										</label>
 										<f:input path="email" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.email}" />
@@ -38,14 +40,16 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Số điện thoại:</label>
+										<label>Số điện thoại <span class="text-danger">*</span>
+										</label>
 										<f:input path="phoneNumber" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.phoneNumber}" />
 										<small><f:errors path="phoneNumber" style="color:red;"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Địa chỉ:</label>
+										<label>Địa chỉ <span class="text-danger">*</span>
+										</label>
 										<f:input path="location" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.location}" />
@@ -54,7 +58,7 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Favicon:</label>
+										<label>Favicon</label>
 										<f:input type="file" id="faviconInput"
 											onchange="readURL(this, 'favicon');" cssStyle="display: none"
 											class="form-control form-control-user" path="faviconFile"
@@ -69,10 +73,11 @@
 													src="/image-file/${about.favicon}" alt="Favicon" />
 											</c:if>
 										</p>
-										<label for="faviconInput" class="border p-2">Chọn favicon</label>
+										<label for="faviconInput" class="border p-2">Chọn
+											favicon</label>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Logo:</label>
+										<label>Logo</label>
 										<f:input type="file" id="logoInput"
 											onchange="readURL(this, 'logo');" cssStyle="display: none"
 											class="form-control form-control-user" path="logoFile"
@@ -92,14 +97,16 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Youtube:</label>
+										<label>Youtube <span class="text-danger">*</span>
+										</label>
 										<f:input path="youtubeLink" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.youtubeLink}" />
 										<small><f:errors path="youtubeLink" style="color:red;"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Facebook:</label>
+										<label>Facebook <span class="text-danger">*</span>
+										</label>
 										<f:input path="facebookLink" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.facebookLink}" />
@@ -109,7 +116,8 @@
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Instagram:</label>
+										<label>Instagram <span class="text-danger">*</span>
+										</label>
 										<f:input path="instagramLink" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.instagramLink}" />
@@ -117,14 +125,16 @@
 												style="color:red;"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>Twitter:</label>
+										<label>Twitter <span class="text-danger">*</span>
+										</label>
 										<f:input path="twitterLink" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.twitterLink}" />
 										<small><f:errors path="twitterLink" style="color:red;"></f:errors></small>
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
-										<label>LinkedIn:</label>
+										<label>LinkedIn <span class="text-danger">*</span>
+										</label>
 										<f:input path="inLink" type="text"
 											class="form-control form-control-user bg-white"
 											value="${about.inLink}" />

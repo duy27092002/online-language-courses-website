@@ -33,50 +33,50 @@
 									</p>
 								</div>
 								<div class="form-group">
-									<label>Tên khóa học:</label> <input
+									<label>Tên khóa học</label> <input
 										class="form-control form-control-user bg-white"
 										value="${courseDetails.name}" disabled="disabled" />
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Ngôn ngữ:</label> <input
+										<label>Ngôn ngữ</label> <input
 											class="form-control form-control-user bg-white"
 											value="${courseDetails.language.name}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3 mb-sm-0">
-										<label>Giá gốc (VND):</label> <input
+										<label>Giá gốc (VND)</label> <input
 											class="form-control form-control-user bg-white"
 											value="${courseDetails.price}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group">
-									<label>Mô tả:</label>
+									<label>Mô tả</label>
 									<textarea id="description" disabled="disabled" rows="5">${courseDetails.description}</textarea>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3 mb-sm-0">
-										<label>Giảm giá (%):</label> <input
+										<label>Giảm giá (%)</label> <input
 											class="form-control form-control-user bg-white"
 											value="${courseDetails.discount}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
 										<fmt:formatDate value="${courseDetails.startDiscountTime}"
 											pattern="HH:mm:ss dd/MM/yyyy" var="startDiscountTime" />
-										<label>Ngày bắt đầu giảm giá:</label> <input
+										<label>Ngày bắt đầu giảm giá</label> <input
 											class="form-control form-control-user bg-white"
 											value="${startDiscountTime}" disabled="disabled" />
 									</div>
 									<div class="col-12 col-sm-12 col-md-4 col-lg-4">
 										<fmt:formatDate value="${courseDetails.endDiscountTime}"
 											pattern="HH:mm:ss dd/MM/yyyy" var="endDiscountTime" />
-										<label>Ngày kết thúc giảm giá:</label> <input
+										<label>Ngày kết thúc giảm giá</label> <input
 											class="form-control form-control-user bg-white"
 											value="${endDiscountTime}" disabled="disabled" />
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Danh sách kỹ năng đạt được sau khóa học:</label> <select
+										<label>Danh sách kỹ năng đạt được sau khóa học</label> <select
 											multiple class="form-control bg-white"
 											style="border-radius: 20px;" disabled="disabled">
 											<c:forEach var="skl" items="${courseDetails.skillLevelList}">
@@ -85,7 +85,7 @@
 										</select>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Danh sách giảng viên phụ trách:</label> <select
+										<label>Danh sách giảng viên phụ trách</label> <select
 											multiple class="form-control bg-white"
 											style="border-radius: 20px;" disabled="disabled">
 											<c:forEach var="instructor"
