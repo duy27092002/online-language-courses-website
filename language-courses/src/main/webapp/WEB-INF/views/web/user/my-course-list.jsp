@@ -43,6 +43,14 @@
 					<div class="text-center">
 						<a href="/vao-hoc?id=${courseInfo.id}"
 							class="btn btn-sm btn-primary">Vào học</a>
+						<c:if test="${courseInfo.wasEvaluated}">
+							<a href="/danh-gia/chinh-sua?id=${courseInfo.id}"
+								class="btn btn-sm btn-secondary">Sửa đánh giá</a>
+						</c:if>
+						<c:if test="${!courseInfo.wasEvaluated}">
+							<a href="/danh-gia/tao-danh-gia?id=${courseInfo.id}"
+								class="btn btn-sm btn-secondary">Tạo đánh giá</a>
+						</c:if>
 					</div>
 				</div>
 			</c:forEach>
