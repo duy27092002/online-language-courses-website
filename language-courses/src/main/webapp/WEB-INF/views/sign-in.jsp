@@ -39,7 +39,10 @@
 								<a class="small" href="">Quên mật khẩu?</a>
 							</div>
 							<div class="text-center">
-								<a class="small" href="/dang-ky">Tạo tài khoản!</a>
+								<a class="small" href="/dang-ky">Bạn chưa có tài khoản? Tạo tài khoản!</a>
+							</div>
+							<div class="text-center">
+								<a class="small" href="/trang-chu">&larr; Quay về trang chủ</a>
 							</div>
 						</div>
 					</div>
