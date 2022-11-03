@@ -11,7 +11,7 @@
 				<a href="/trang-chu" class="navbar-brand">
 					<h1 class="mt-n2 text-uppercase text-white">${aboutDetails.name}</h1>
 				</a>
-				<p class="m-0">${aboutDetails.name}là nơi cung cấp các khóa học
+				<p class="m-0">${aboutDetails.name}lànơi cung cấp các khóa học
 					ngoại ngữ online chất lượng được biên soạn bởi rất nhiều giảng viên
 					tài giỏi trong và ngoài nước.</p>
 			</div>
@@ -56,11 +56,9 @@
 					<a class="text-white-50 mb-2" href="#"><i
 						class="fa fa-angle-right mr-2"></i>Chính sách bảo mật</a> <a
 						class="text-white-50 mb-2" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Điều khoản</a> <a
+						class="fa fa-angle-right mr-2"></i>Điều khoản dịch vụ</a> <a
 						class="text-white-50 mb-2" href="/cau-hoi-thuong-gap"><i
 						class="fa fa-angle-right mr-2"></i>Câu hỏi thường gặp</a> <a
-						class="text-white-50 mb-2" href="#"><i
-						class="fa fa-angle-right mr-2"></i>Hỗ trợ tư vấn</a> <a
 						class="text-white-50" href="/lien-he"><i
 						class="fa fa-angle-right mr-2"></i>Liên hệ ngay</a>
 				</div>
@@ -72,7 +70,7 @@
 	style="border-color: rgba(256, 256, 256, .1) !important;">
 	<div class="container text-center">
 		<p class="m-0">
-			Bản quyền thuộc về &copy; <a class="text-white" href="#">${aboutDetails.name}</a>
+			Bản quyền thuộc về &copy; <strong class="text-white">${aboutDetails.name}</strong>
 		</p>
 	</div>
 </div>
