@@ -61,7 +61,7 @@
 									<td><img class="border img-fluid" style="width: 60px;"
 										src="${vid.thumbnail}" alt="Thumbnail" /></td>
 									<td>${vid.index_}</td>
-									<td>${vid.name}</td>
+									<td class="text-truncate" style="max-width: 150px;">${vid.name}</td>
 									<td>${vid.user.email}</td>
 									<td><c:if test="${vid.status == 2 }">
 											<c:set var="textColor" value="success"></c:set>

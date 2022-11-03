@@ -67,8 +67,8 @@
 						<tbody>
 							<c:forEach items="${resultList.data}" var="faq">
 								<tr>
-									<td>${faq.question}</td>
-									<td>${faq.answer}</td>
+									<td class="text-truncate" style="max-width: 150px;">${faq.question}</td>
+									<td class="text-truncate" style="max-width: 150px;">${faq.answer}</td>
 									<td><c:if test="${faq.status == 1 }">
 											<i class="fas fa-toggle-on text-success"
 												data-toggle="tooltip" title="Đang hiển thị"></i>

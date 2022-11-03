@@ -51,7 +51,7 @@
 								<tr>
 									<td>${feedback.name}</td>
 									<td>${feedback.email}</td>
-									<td>${feedback.question}</td>
+									<td class="text-truncate" style="max-width: 150px;">${feedback.question}</td>
 									<td><f:form modelAttribute="feedbackDTO"
 											action="/quan-tri/phan-hoi/cap-nhat-trang-thai" method="post">
 											<f:input path="id" type="hidden" value="${feedback.id}" />

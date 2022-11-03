@@ -71,8 +71,8 @@
 							<c:forEach items="${resultList.data}" var="evaluated">
 								<tr>
 									<td>${evaluated.user.email}</td>
-									<td>${evaluated.course.name}</td>
-									<td>${evaluated.content}</td>
+									<td class="text-truncate" style="max-width: 150px;">${evaluated.course.name}</td>
+									<td class="text-truncate" style="max-width: 150px;">${evaluated.content}</td>
 									<td>${evaluated.point}</td>
 									<td><c:if test="${evaluated.status == 2 }">
 											<i class="fas fa-toggle-on text-success"

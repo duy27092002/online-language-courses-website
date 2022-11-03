@@ -71,7 +71,7 @@
 									<td><img class="border img-fluid" style="width: 70px;"
 										src="${course.thumbnail}" alt="thumbnail" /></td>
 
-									<td>${course.name}</td>
+									<td class="text-truncate" style="max-width: 150px;">${course.name}</td>
 									<td>${course.language.name}</td>
 									<td>${course.price}</td>
 									<td><c:if test="${course.status == 1 }">
