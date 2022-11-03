@@ -39,6 +39,17 @@ public class VideoController extends BaseController {
 			RedirectAttributes redirectModel, Model model) {
 		setViewTitleOrFaviconAttribute("Danh sách video", model);
 		try {
+			List<Long> getCourseIdListByInstructor = courseService
+					.getCourseIdListByInstructorId(SecurityUtil.getPrincipal().getUserId());
+			// nếu là giảng viên thì kiểm tra xem course id trên url có thuộc danh sách khóa
+			// học được phụ trách hay không?
+			// Nếu có thì hiển thị danh sách video, ngược lại báo lỗi 404
+			if (SecurityUtil.getAuthorities().contains("giang-vien")) {
+				if (!getCourseIdListByInstructor.contains(resDTDTO.getId())) {
+					return viewErrorPage(redirectModel);
+				}
+			}
+
 			ResponseDataTableDTO resultList = videoService.getList(resDTDTO);
 			model.addAttribute("resultList", resultList);
 
