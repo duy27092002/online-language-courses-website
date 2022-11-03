@@ -11,11 +11,12 @@
 		<div class="text-center">
 			<div class="error mx-auto" data-text="404">404</div>
 			<p class="lead text-gray-800 mb-5">Không tìm thấy dữ liệu</p>
-			<a href="${returnPageUrl}">&larr; Quay lại trang ${returnPage}</a>
+			<c:if test="${!role.contains('giang-vien')}">
+				<a href="${returnPageUrl}">&larr; Quay lại trang ${returnPage}</a>
+			</c:if>
 		</div>
 
 	</div>
-	<%@include file="/WEB-INF/views/common/pagination.jsp"%>
 </div>
 <!-- End of Main Content -->
 
