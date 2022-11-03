@@ -39,6 +39,7 @@
 				</form>
 			</div>
 		</div>
+		<small class="text-muted">(Ấn vào biểu tượng để thay đổi trạng thái)</small>
 		<div class="card o-hidden border-0 shadow-lg mb-4 mt-3">
 			<div class="card-body p-5">
 				<div class="table-responsive">
