@@ -18,11 +18,9 @@
 				<div class="error mx-auto" data-text="403">403</div>
 				<p class="lead text-gray-800 mb-5">Bạn không được phép truy cập
 					vào trang này!</p>
-				<a href="/quan-tri">&larr; Quay lại trang tổng quan</a>
 			</div>
 
 		</div>
-		<%@include file="/WEB-INF/views/common/pagination.jsp"%>
 	</div>
 	<!-- End of Main Content -->
 
