@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.util.GetWebsiteDetails;
+import com.javaproject.util.SecurityUtil;
 
 @Controller(value = "BaseControllerOfAdmin")
 public class BaseController {
@@ -22,6 +23,7 @@ public class BaseController {
 	protected String viewErrorPage(RedirectAttributes redirectModel) {
 		redirectModel.addFlashAttribute("returnPage", "tổng quan");
 		redirectModel.addFlashAttribute("returnPageUrl", "/quan-tri");
+		redirectModel.addFlashAttribute("role", SecurityUtil.getAuthorities());
 		return "redirect:/quan-tri/loi/404";
 	}
 
