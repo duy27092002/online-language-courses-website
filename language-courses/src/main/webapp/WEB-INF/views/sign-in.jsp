@@ -35,9 +35,9 @@
 									class="btn btn-primary btn-user btn-block">Đăng nhập</button>
 							</form>
 							<hr>
-							<div class="text-center">
+							<!-- <div class="text-center">
 								<a class="small" href="">Quên mật khẩu?</a>
-							</div>
+							</div> -->
 							<div class="text-center">
 								<a class="small" href="/dang-ky">Bạn chưa có tài khoản? Tạo tài khoản!</a>
 							</div>

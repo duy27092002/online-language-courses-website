@@ -102,9 +102,9 @@
 							ký</button>
 					</f:form>
 					<hr>
-					<div class="text-center">
+					<!-- <div class="text-center">
 						<a class="small" href="">Quên mật khẩu?</a>
-					</div>
+					</div> -->
 					<div class="text-center">
 						<a class="small" href="/dang-nhap">Bạn đã có tài khoản? Đăng
 							nhập!</a>
