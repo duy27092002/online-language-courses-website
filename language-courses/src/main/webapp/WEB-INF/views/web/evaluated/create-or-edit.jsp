@@ -15,7 +15,7 @@
 			<c:set var="actionTitle" value="Tạo đánh giá"></c:set>
 			<c:set var="formAction" value="/danh-gia/tao-danh-gia"></c:set>
 			<c:set var="modelAttribute" value="evaluatedDTO"></c:set>
-			<c:set var="courseId" value="${param.id}"></c:set>
+			<c:set var="courseId" value="${courseId}"></c:set>
 		</c:if>
 		<h1 class="text-center text-uppercase">
 			<c:out value="${actionTitle}" />

@@ -1,5 +1,6 @@
 package com.javaproject.admin.service.impl;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,7 +120,8 @@ public class EvaluatedService implements IEvaluatedService {
 		for (EvaluatedDTO evaluated : getListByCourseId) {
 			sumOfPoint += evaluated.getPoint();
 		}
-		return sumOfPoint * 1.0 / getSize;
+		DecimalFormat numberFormat = new DecimalFormat("#.#");
+		return Double.parseDouble(numberFormat.format(sumOfPoint * 1.0 / getSize));
 	}
 
 }

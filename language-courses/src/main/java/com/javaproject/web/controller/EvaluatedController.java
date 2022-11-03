@@ -1,5 +1,7 @@
 package com.javaproject.web.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javaproject.admin.dto.EvaluatedDTO;
+import com.javaproject.admin.service.ICourseStudentService;
 import com.javaproject.admin.service.IEvaluatedService;
 import com.javaproject.admin.service.ILanguageService;
 import com.javaproject.util.SecurityUtil;
@@ -27,6 +30,9 @@ public class EvaluatedController extends BaseController {
 	@Autowired
 	private ILanguageService languageService;
 
+	@Autowired
+	private ICourseStudentService csService;
+
 	@GetMapping(value = { "/danh-gia-cua-hoc-vien" })
 	public String testimonail(Model model) {
 		setViewTitleOrGetWebDetails("Đánh giá của học viên", model);
@@ -37,10 +43,34 @@ public class EvaluatedController extends BaseController {
 
 	@GetMapping(value = "/danh-gia/tao-danh-gia")
 	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
-	public String viewCreatePage(Model model) {
-		setViewTitleOrGetWebDetails("Tạo đánh giá", model);
-		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
-		model.addAttribute("evaluatedDTO", new EvaluatedDTO());
+	public String viewCreatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+			RedirectAttributes redirectModel, Model model) {
+		try {
+			setViewTitleOrGetWebDetails("Tạo đánh giá", model);
+			model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
+
+			Long getUserId = SecurityUtil.getPrincipal().getUserId();
+			Long getCourseId = Long.parseLong(id);
+
+			List<Long> courseIdListOfStudent = csService.getCourseIdListByUserId(getUserId);
+			if (!courseIdListOfStudent.contains(getCourseId)) {
+				return viewErrorPage();
+			}
+
+			EvaluatedDTO getEvaluatedByUserIdAndCourseId = evaluatedService.getEvaluatedByUserIdAndCourseId(getUserId,
+					getCourseId);
+
+			if (getEvaluatedByUserIdAndCourseId != null) {
+				redirectNotification(redirectModel, "Bạn đã đánh giá khóa học này rồi!", "warning");
+				return "redirect:/khoa-hoc-cua-toi?id=" + getUserId;
+			} else {
+				model.addAttribute("evaluatedDTO", new EvaluatedDTO());
+				model.addAttribute("courseId", getCourseId);
+			}
+		} catch (Exception ex) {
+			return viewErrorPage();
+		}
+
 		return "/web/evaluated/create-or-edit";
 	}
 
@@ -59,8 +89,12 @@ public class EvaluatedController extends BaseController {
 			setViewTitleOrGetWebDetails("Chỉnh sửa đánh giá", model);
 			model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 			Long getCourseId = Long.parseLong(id);
-			model.addAttribute("evaluatedDetails", evaluatedService
-					.getEvaluatedByUserIdAndCourseId(SecurityUtil.getPrincipal().getUserId(), getCourseId));
+			EvaluatedDTO evaluatedDetails = evaluatedService
+					.getEvaluatedByUserIdAndCourseId(SecurityUtil.getPrincipal().getUserId(), getCourseId);
+			if (evaluatedDetails == null) {
+				return viewErrorPage();
+			}
+			model.addAttribute("evaluatedDetails", evaluatedDetails);
 		} catch (Exception e) {
 			return viewErrorPage();
 		}
@@ -94,12 +128,6 @@ public class EvaluatedController extends BaseController {
 		String errorMess = null;
 		try {
 			if (formAction.equalsIgnoreCase("create")) {
-				EvaluatedDTO getEvaluatedByUserIdAndCourseId = evaluatedService
-						.getEvaluatedByUserIdAndCourseId(evaluatedDTO.getUserId(), evaluatedDTO.getCourseId());
-				if (getEvaluatedByUserIdAndCourseId != null) {
-					model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
-					return isExitEvaluated(model);
-				}
 				successMess = "Cảm ơn bạn đã đánh giá khóa học của chúng tôi!";
 				errorMess = "Tạo đánh giá thất bại";
 			} else {
@@ -116,10 +144,5 @@ public class EvaluatedController extends BaseController {
 		}
 
 		return "redirect:/khoa-hoc-cua-toi?id=" + evaluatedDTO.getUserId();
-	}
-
-	private String isExitEvaluated(Model model) {
-		model.addAttribute("isExitAvaluated", "Bạn đã đánh giá khóa học này rồi!");
-		return "/web/user/my-course-list";
 	}
 }

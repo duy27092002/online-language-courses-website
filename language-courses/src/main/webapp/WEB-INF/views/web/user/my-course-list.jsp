@@ -11,16 +11,22 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${mess != null}">
-			<div class="alert alert-${typeAlert} alert-dismissible fade show"
-				role="alert">
-				<strong>${mess}</strong>
-				<button type="button" class="close" data-dismiss="alert"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+		<c:if test="${isExitAvaluated != null}">
+			<c:set var="typeAlert" value="warning"></c:set>
+			<c:set var="message" value="${isExitAvaluated}"></c:set>
 		</c:if>
+		<c:if test="${mess != null}">
+			<c:set var="typeAlert" value="${typeAlert}"></c:set>
+			<c:set var="message" value="${mess}"></c:set>
+		</c:if>
+		<div class="alert alert-${typeAlert} alert-dismissible fade show"
+			role="alert">
+			<strong>${message}</strong>
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 		<div class="row">
 			<c:forEach items="${myCourseList}" var="courseInfo">
 				<div class="col-lg-4 col-md-6 pb-4">
