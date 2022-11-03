@@ -18,7 +18,7 @@
 				</button>
 			</div>
 		</c:if>
-		<div class="row">
+		<%-- <div class="row">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 				<a class="btn btn-sm btn-primary mb-4"
 					href="/quan-tri/danh-gia-cua-hoc-vien/them-moi"><i
@@ -40,7 +40,7 @@
 					</div>
 				</form>
 			</div>
-		</div>
+		</div> --%>
 		<div class="card o-hidden border-0 shadow-lg mb-4 mt-3">
 			<div class="card-body p-5">
 				<div class="table-responsive">
