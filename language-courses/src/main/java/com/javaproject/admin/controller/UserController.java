@@ -142,9 +142,9 @@ public class UserController extends BaseController {
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
 		if (action.equalsIgnoreCase("details")) {
-			setViewTitleOrFaviconAttribute("Chi tiết hồ sơ người dùng", model);
+			setViewTitleOrFaviconAttribute("Hồ sơ chi tiết", model);
 		} else {
-			setViewTitleOrFaviconAttribute("Chỉnh sửa thông tin người dùng", model);
+			setViewTitleOrFaviconAttribute("Chỉnh sửa thông tin hồ sơ", model);
 			model.addAttribute("roleList", roleService.activeRoleList());
 			model.addAttribute("userDTO", new UserDTO());
 			model.addAttribute("role", SecurityUtil.getAuthorities());

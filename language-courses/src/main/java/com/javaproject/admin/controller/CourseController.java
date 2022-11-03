@@ -113,6 +113,8 @@ public class CourseController extends BaseController {
 	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
 	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
+		model.addAttribute("role", SecurityUtil.getAuthorities());
+		model.addAttribute("instructorId", SecurityUtil.getPrincipal().getUserId());
 		return redirectPage(id, "details", redirectModel, model);
 	}
 

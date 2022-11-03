@@ -19,11 +19,17 @@
 		</c:if>
 		<div class="row">
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+				<c:if test="${!role.contains('giang-vien')}">
+					<c:set var="url" value="/quan-tri/khoa-hoc/danh-sach"></c:set>
+				</c:if>
+				<c:if test="${role.contains('giang-vien')}">
+					<c:set var="url"
+						value="/quan-tri/khoa-hoc-cua-toi?id=${instructorId}"></c:set>
+				</c:if>
 				<a class="btn btn-sm btn-primary mb-4"
 					href="/quan-tri/video/them-moi?id=${courseId}"><i
 					class="fas fa-plus mr-2"></i>Thêm mới</a> <a
-					class="btn btn-sm btn-secondary mb-4"
-					href="/quan-tri/khoa-hoc/danh-sach">Quay lại</a>
+					class="btn btn-sm btn-secondary mb-4" href="${url}">Quay lại</a>
 			</div>
 			<div class="col-12 col-sm-12 col-md-6 col-lg-6">
 				<form action="/quan-tri/khoa-hoc/danh-sach-video" method="get"

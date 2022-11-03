@@ -49,6 +49,8 @@ public class VideoController extends BaseController {
 				model.addAttribute("keyword", resDTDTO.getKeyword());
 			}
 			model.addAttribute("courseId", resDTDTO.getId());
+			model.addAttribute("role", SecurityUtil.getAuthorities());
+			model.addAttribute("instructorId", SecurityUtil.getPrincipal().getUserId());
 		} catch (Exception e) {
 			return viewErrorPage(redirectModel);
 		}

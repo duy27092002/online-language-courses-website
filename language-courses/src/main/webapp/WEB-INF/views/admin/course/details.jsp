@@ -85,9 +85,9 @@
 										</select>
 									</div>
 									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<label>Danh sách giảng viên phụ trách</label> <select
-											multiple class="form-control bg-white"
-											style="border-radius: 20px;" disabled="disabled">
+										<label>Danh sách giảng viên phụ trách</label> <select multiple
+											class="form-control bg-white" style="border-radius: 20px;"
+											disabled="disabled">
 											<c:forEach var="instructor"
 												items="${courseDetails.instructors}">
 												<option>${instructor.email}</option>
@@ -102,12 +102,21 @@
 										value="${courseDetails.modifiedDate}"
 										pattern="HH:mm:ss dd/MM/yyyy" /></small>
 								<div class="form-group row">
-									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<a href="/quan-tri/khoa-hoc/chinh-sua?id=${courseDetails.id}"
-											class="btn btn-primary btn-user btn-block mt-4">Sửa</a>
-									</div>
-									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<a href="/quan-tri/khoa-hoc/danh-sach"
+									<c:if test="${!role.contains('giang-vien')}">
+										<c:set var="url" value="/quan-tri/khoa-hoc/danh-sach"></c:set>
+										<c:set var="col" value="col-12 col-sm-12 col-md-6 col-lg-6"></c:set>
+										<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+											<a href="/quan-tri/khoa-hoc/chinh-sua?id=${courseDetails.id}"
+												class="btn btn-primary btn-user btn-block mt-4">Sửa</a>
+										</div>
+									</c:if>
+									<c:if test="${role.contains('giang-vien')}">
+										<c:set var="url"
+											value="/quan-tri/khoa-hoc-cua-toi?id=${instructorId}"></c:set>
+										<c:set var="col" value="col-12"></c:set>
+									</c:if>
+									<div class="${col}">
+										<a href="${url}"
 											class="btn btn-secondary btn-user btn-block mt-4">Quay
 											lại danh sách</a>
 									</div>
