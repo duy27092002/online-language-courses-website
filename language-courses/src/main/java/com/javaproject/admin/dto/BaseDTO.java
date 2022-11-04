@@ -1,7 +1,6 @@
 package com.javaproject.admin.dto;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,10 +21,4 @@ public class BaseDTO<T> {
 	private String modifiedBy;
 
 	private int status;
-
-	private int currentPage;
-
-	private int pageTotal;
-
-	private List<T> resultList;
 }
