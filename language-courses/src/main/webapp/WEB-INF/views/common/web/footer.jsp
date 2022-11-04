@@ -11,7 +11,7 @@
 				<a href="/trang-chu" class="navbar-brand">
 					<h1 class="mt-n2 text-uppercase text-white">${aboutDetails.name}</h1>
 				</a>
-				<p class="m-0">${aboutDetails.name}lànơi cung cấp các khóa học
+				<p class="m-0">${aboutDetails.name}lànơicung cấp các khóa học
 					ngoại ngữ online chất lượng được biên soạn bởi rất nhiều giảng viên
 					tài giỏi trong và ngoài nước.</p>
 			</div>
@@ -53,9 +53,9 @@
 			<div class="col-md-4 mb-5">
 				<h3 class="text-white mb-4">Khác</h3>
 				<div class="d-flex flex-column justify-content-start">
-					<a class="text-white-50 mb-2" href="#"><i
+					<a class="text-white-50 mb-2" href="/chinh-sach-bao-mat"><i
 						class="fa fa-angle-right mr-2"></i>Chính sách bảo mật</a> <a
-						class="text-white-50 mb-2" href="#"><i
+						class="text-white-50 mb-2" href="/dieu-khoan-dich-vu"><i
 						class="fa fa-angle-right mr-2"></i>Điều khoản dịch vụ</a> <a
 						class="text-white-50 mb-2" href="/cau-hoi-thuong-gap"><i
 						class="fa fa-angle-right mr-2"></i>Câu hỏi thường gặp</a> <a

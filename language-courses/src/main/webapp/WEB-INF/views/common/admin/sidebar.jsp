@@ -64,8 +64,8 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="/quan-tri">
-					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Tổng quan</span>
+			<li class="nav-item"><a class="nav-link" href="/quan-tri"> <i
+					class="fas fa-fw fa-tachometer-alt"></i> <span>Tổng quan</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -120,6 +120,11 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/quan-tri/cau-hoi-thuong-gap/danh-sach"> <i
 					class="fas fa-question-circle"></i> <span>Câu hỏi thường gặp</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="/quan-tri/chinh-sach-va-dieu-khoan"> <i
+					class="fas fa-shield-alt"></i> <span>Chính sách và điều
+						khoản</span>
 			</a></li>
 
 			<!-- Divider -->

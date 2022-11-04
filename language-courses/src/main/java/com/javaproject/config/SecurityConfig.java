@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/", "/trang-chu", "/ve-chung-toi", "/danh-sach-khoa-hoc", "/chi-tiet-khoa-hoc",
 						"/danh-sach-giang-vien", "/danh-gia-cua-hoc-vien", "/lien-he", "/dang-nhap", "/dang-ky",
-						"/dang-ki", "/web/**", "/admin/**", "/image-file/**", "/gui-phan-hoi", "/cau-hoi-thuong-gap")
+						"/dang-ki", "/web/**", "/admin/**", "/image-file/**", "/gui-phan-hoi", "/cau-hoi-thuong-gap",
+						"/chinh-sach-bao-mat", "/dieu-khoan-dich-vu")
 				.permitAll();
 
 		http.authorizeRequests().anyRequest().authenticated();
