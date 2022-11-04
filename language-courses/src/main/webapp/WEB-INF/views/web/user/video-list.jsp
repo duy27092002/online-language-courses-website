@@ -11,6 +11,7 @@
 				<video src="${videoListOfCourse[0].videoFile}" loop controls
 					class="main-video"></video>
 				<h3 class="main-vid-title">${videoListOfCourse[0].name}</h3>
+				<div class="main-vid-description">${videoListOfCourse[0].description}</div>
 			</div>
 
 			<div class="video-list-container col-12 col-sm-12 col-md-4 col-lg-4">
@@ -18,6 +19,7 @@
 					<div class="list">
 						<video src="${video.videoFile}" class="list-video"></video>
 						<h3 class="list-title">${video.name}</h3>
+						<div class="list-description" style="display: none;">${video.description}</div>
 					</div>
 				</c:forEach>
 			</div>
