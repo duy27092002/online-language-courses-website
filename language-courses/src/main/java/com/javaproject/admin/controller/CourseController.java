@@ -111,7 +111,7 @@ public class CourseController extends BaseController {
 
 	@GetMapping(value = "/quan-tri/khoa-hoc/chi-tiet")
 	@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_giang-vien')")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		model.addAttribute("role", SecurityUtil.getAuthorities());
 		model.addAttribute("instructorId", SecurityUtil.getPrincipal().getUserId());
@@ -120,7 +120,7 @@ public class CourseController extends BaseController {
 
 	@GetMapping(value = "/quan-tri/khoa-hoc/chinh-sua")
 	@PreAuthorize("hasAnyRole('ROLE_admin')")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
@@ -133,6 +133,10 @@ public class CourseController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Chi tiết khóa học", model);
 		} else {

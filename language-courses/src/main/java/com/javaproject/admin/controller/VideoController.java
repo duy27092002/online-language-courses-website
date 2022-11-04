@@ -83,13 +83,13 @@ public class VideoController extends BaseController {
 	}
 
 	@GetMapping(value = "/quan-tri/video/chi-tiet")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/quan-tri/video/chinh-sua")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
@@ -102,6 +102,10 @@ public class VideoController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Chi tiết video bài giảng", model);
 		} else {

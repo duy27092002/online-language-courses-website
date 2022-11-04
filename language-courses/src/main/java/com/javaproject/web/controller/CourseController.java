@@ -71,7 +71,11 @@ public class CourseController extends BaseController {
 
 	@GetMapping(value = { "/chi-tiet-khoa-hoc" })
 	public String courseDetails(RedirectAttributes redirectModel, Model model,
-			@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id) {
+			@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id) {
+		if (id == null) {
+			return viewErrorPage();
+		}
+
 		setViewTitleOrGetWebDetails("Chi tiết khóa học", model);
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		model.addAttribute("courseStudentDTO", new CourseStudentDTO());
@@ -92,8 +96,12 @@ public class CourseController extends BaseController {
 	}
 
 	@GetMapping(value = "/khoa-hoc-cua-toi")
-	public String viewMyCourseList(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewMyCourseList(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage();
+		}
+
 		setViewTitleOrGetWebDetails("Khóa học của tôi", model);
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		try {
@@ -111,18 +119,24 @@ public class CourseController extends BaseController {
 	}
 
 	@GetMapping(value = "/vao-hoc")
-	public String viewVideoListOfCourse(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewVideoListOfCourse(
+			@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage();
+		}
+
 		setViewTitleOrGetWebDetails("Khóa học của tôi", model);
 		model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
 		try {
 			Long getCourseId = Long.parseLong(id);
-			
+
 			// lấy danh sách id khóa học mà học viên đã mua thành công
 			List<Long> courseIdListByStudent = csService
 					.getCourseIdListByUserId(SecurityUtil.getPrincipal().getUserId());
-			
-			// kiểm tra id khóa học ở url xem có tồn tại trong danh sách phía trên hay không?
+
+			// kiểm tra id khóa học ở url xem có tồn tại trong danh sách phía trên hay
+			// không?
 			if (courseIdListByStudent.contains(getCourseId)) {
 				model.addAttribute("courseName", courseService.getDetails(getCourseId).get(0).getName());
 				model.addAttribute("videoListOfCourse", videoService.getListByCourseId(getCourseId));

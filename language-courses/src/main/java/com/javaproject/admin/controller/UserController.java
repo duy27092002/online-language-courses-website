@@ -75,14 +75,14 @@ public class UserController extends BaseController {
 	}
 
 	@GetMapping(value = "/nguoi-dung/chi-tiet-ho-so")
-	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		model.addAttribute("enableEditAction", true);
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/nguoi-dung/chinh-sua-ho-so")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
@@ -135,6 +135,10 @@ public class UserController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Hồ sơ chi tiết", model);
 		} else {

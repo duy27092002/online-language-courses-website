@@ -41,7 +41,7 @@ public class FeedbackController extends BaseController {
 	}
 
 	@GetMapping(value = "/chi-tiet")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
@@ -53,6 +53,10 @@ public class FeedbackController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Chi tiết phản hồi", model);
 		} else {

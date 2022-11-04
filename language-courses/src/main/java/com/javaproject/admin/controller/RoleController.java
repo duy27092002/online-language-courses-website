@@ -61,13 +61,13 @@ public class RoleController extends BaseController {
 	}
 
 	@GetMapping(value = "/chi-tiet")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/chinh-sua")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
@@ -79,6 +79,10 @@ public class RoleController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Chi tiết vai trò", model);
 		} else {

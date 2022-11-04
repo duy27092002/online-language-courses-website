@@ -43,8 +43,12 @@ public class EvaluatedController extends BaseController {
 
 	@GetMapping(value = "/danh-gia/tao-danh-gia")
 	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
-	public String viewCreatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewCreatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage();
+		}
+
 		try {
 			setViewTitleOrGetWebDetails("Tạo đánh giá", model);
 			model.addAttribute("activeLanguageList", languageService.getListByStatus(1));
@@ -83,8 +87,12 @@ public class EvaluatedController extends BaseController {
 
 	@GetMapping(value = "/danh-gia/chinh-sua")
 	@PreAuthorize("hasAnyRole('ROLE_hoc-vien')")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage();
+		}
+		
 		try {
 			setViewTitleOrGetWebDetails("Chỉnh sửa đánh giá", model);
 			model.addAttribute("activeLanguageList", languageService.getListByStatus(1));

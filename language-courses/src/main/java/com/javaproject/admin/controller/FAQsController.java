@@ -26,7 +26,7 @@ import com.javaproject.admin.service.IFAQsService;
 public class FAQsController extends BaseController {
 	@Autowired
 	private IFAQsService faqsService;
-	
+
 	@GetMapping(value = "/danh-sach")
 	public String viewListPage(@PagingParam(path = "cau-hoi-thuong-gap") ResponseDataTableDTO resDTDTO,
 			RedirectAttributes redirectModel, Model model) {
@@ -61,13 +61,13 @@ public class FAQsController extends BaseController {
 	}
 
 	@GetMapping(value = "/chi-tiet")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/chinh-sua")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
@@ -79,6 +79,10 @@ public class FAQsController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Chi tiết câu hỏi", model);
 		} else {

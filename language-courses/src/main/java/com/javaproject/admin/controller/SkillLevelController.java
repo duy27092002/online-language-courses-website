@@ -26,7 +26,7 @@ import com.javaproject.admin.service.ISkillLevelService;
 public class SkillLevelController extends BaseController {
 	@Autowired
 	private ISkillLevelService sklService;
-	
+
 	@GetMapping(value = "/danh-sach")
 	public String viewListPage(@PagingParam(path = "ky-nang") ResponseDataTableDTO resDTDTO,
 			RedirectAttributes redirectModel, Model model) {
@@ -61,13 +61,13 @@ public class SkillLevelController extends BaseController {
 	}
 
 	@GetMapping(value = "/chi-tiet")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/chinh-sua")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
@@ -79,6 +79,10 @@ public class SkillLevelController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage(redirectModel);
+		}
+
 		if (action.equalsIgnoreCase("details")) {
 			setViewTitleOrFaviconAttribute("Chi tiết kỹ năng", model);
 		} else {

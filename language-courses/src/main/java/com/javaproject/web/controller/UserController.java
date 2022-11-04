@@ -87,13 +87,13 @@ public class UserController extends BaseController {
 	}
 
 	@GetMapping(value = "/ho-so-cua-toi")
-	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "profile-details", redirectModel, model);
 	}
 
 	@GetMapping(value = "/chinh-sua-ho-so")
-	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
+	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id", required = false) String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "edit-profile", redirectModel, model);
 	}
@@ -105,6 +105,10 @@ public class UserController extends BaseController {
 	}
 
 	private String redirectPage(String id, String action, RedirectAttributes redirectModel, Model model) {
+		if (id == null) {
+			return viewErrorPage();
+		}
+
 		if (action.equalsIgnoreCase("profile-details")) {
 			setViewTitleOrGetWebDetails("Hồ sơ của tôi", model);
 		} else {
