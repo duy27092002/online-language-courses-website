@@ -131,7 +131,7 @@
 										pattern="HH:mm:ss dd/MM/yyyy" /></small>
 								<c:if test="${enableEditAction == true}">
 									<div class="form-group">
-										<a href="/quan-tri/chinh-sua-ho-so?id=${userDetails.id}"
+										<a href="/quan-tri/nguoi-dung/chinh-sua-ho-so?id=${userDetails.id}"
 											class="btn btn-primary btn-user btn-block mt-4">Sửa</a>
 									</div>
 								</c:if>

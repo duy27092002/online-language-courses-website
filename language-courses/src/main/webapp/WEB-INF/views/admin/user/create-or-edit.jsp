@@ -9,7 +9,7 @@
 		<c:if test="${userDetails != null}">
 			<c:set var="actionTitle" value="Chỉnh sửa thông tin hồ sơ"></c:set>
 			<c:set var="col" value="col-12"></c:set>
-			<c:set var="formAction" value="/quan-tri/chinh-sua-ho-so"></c:set>
+			<c:set var="formAction" value="/quan-tri/nguoi-dung/chinh-sua-ho-so"></c:set>
 			<c:set var="action" value="update"></c:set>
 		</c:if>
 		<c:if test="${userDetails == null}">

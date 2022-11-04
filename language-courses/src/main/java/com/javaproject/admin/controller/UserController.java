@@ -74,20 +74,20 @@ public class UserController extends BaseController {
 		return save("create", userDTO, bindingResult, redirectModel, model);
 	}
 
-	@GetMapping(value = { "/ho-so-cua-toi", "/nguoi-dung/chi-tiet" })
+	@GetMapping(value = "/nguoi-dung/chi-tiet-ho-so")
 	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		model.addAttribute("enableEditAction", true);
 		return redirectPage(id, "details", redirectModel, model);
 	}
 
-	@GetMapping(value = "/chinh-sua-ho-so")
+	@GetMapping(value = "/nguoi-dung/chinh-sua-ho-so")
 	public String viewUpdatePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		return redirectPage(id, "create-or-edit", redirectModel, model);
 	}
 
-	@PostMapping(value = "/chinh-sua-ho-so", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value = "/nguoi-dung/chinh-sua-ho-so", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String update(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult bindingResult,
 			RedirectAttributes redirectModel, Model model) {
 		return save("update", userDTO, bindingResult, redirectModel, model);
@@ -228,7 +228,7 @@ public class UserController extends BaseController {
 				if (formAction.contains("status")) {
 					return "redirect:/quan-tri/nguoi-dung/danh-sach";
 				} else {
-					return "redirect:/quan-tri/ho-so-cua-toi?id=" + userDTO.getId();
+					return "redirect:/quan-tri/nguoi-dung/chi-tiet-ho-so?id=" + userDTO.getId();
 				}
 			}
 		} catch (Exception ex) {
@@ -236,7 +236,7 @@ public class UserController extends BaseController {
 			if (formAction.equalsIgnoreCase("create")) {
 				return "redirect:/quan-tri/nguoi-dung/danh-sach";
 			} else {
-				return "redirect:/quan-tri/ho-so-cua-toi?id=" + userDTO.getId();
+				return "redirect:/quan-tri/nguoi-dung/chi-tiet-ho-so?id=" + userDTO.getId();
 			}
 		}
 		return null;

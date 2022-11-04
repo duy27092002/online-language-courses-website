@@ -97,9 +97,10 @@
 											</button>
 										</form></td>
 									<td><button class="btn btn-sm border-primary">
-											<a href="/quan-tri/nguoi-dung/chi-tiet?id=${user.id}"><i
+											<a href="/quan-tri/nguoi-dung/chi-tiet-ho-so?id=${user.id}"><i
 												class="fas fa-eye" data-toggle="tooltip" title="Xem hồ sơ"></i></a>
-											| <a href="/quan-tri/chinh-sua-ho-so?id=${user.id}"><i
+											| <a
+												href="/quan-tri/nguoi-dung/chinh-sua-ho-so?id=${user.id}"><i
 												class="fas fa-edit" data-toggle="tooltip" title="Chỉnh sửa"></i></a>
 										</button></td>
 								</tr>

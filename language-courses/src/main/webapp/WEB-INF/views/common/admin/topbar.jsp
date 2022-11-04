@@ -28,7 +28,7 @@
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item"
-					href="/quan-tri/ho-so-cua-toi?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
+					href="/quan-tri/nguoi-dung/chi-tiet-ho-so?id=<%=SecurityUtil.getPrincipal().getUserId()%>">
 					<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Hồ sơ
 					của tôi
 				</a> <a class="dropdown-item" href="/quan-tri/doi-mat-khau"> <i
