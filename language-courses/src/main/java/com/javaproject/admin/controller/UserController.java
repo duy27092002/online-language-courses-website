@@ -74,13 +74,7 @@ public class UserController extends BaseController {
 		return save("create", userDTO, bindingResult, redirectModel, model);
 	}
 
-	@GetMapping(value = "/nguoi-dung/chi-tiet")
-	public String viewDetailsPage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
-			RedirectAttributes redirectModel, Model model) {
-		return redirectPage(id, "details", redirectModel, model);
-	}
-
-	@GetMapping(value = "/ho-so-cua-toi")
+	@GetMapping(value = { "/ho-so-cua-toi", "/nguoi-dung/chi-tiet" })
 	public String viewProfilePage(@Pattern(regexp = "^.+$") @RequestParam(value = "id") String id,
 			RedirectAttributes redirectModel, Model model) {
 		model.addAttribute("enableEditAction", true);
@@ -213,11 +207,6 @@ public class UserController extends BaseController {
 					successMess = "Thêm mới thành công";
 					errorMess = "Thêm mới thất bại";
 				} else if (formAction.equalsIgnoreCase("update")) {
-//					if (!getOldUserById.getEmail().equalsIgnoreCase(userDTO.getEmail())) {
-//						if (getUserByEmail != null) {
-//							return checkDuplicateField(userDTO, getOldUserById, model, "email");
-//						}
-//					}
 					if (!getOldUserById.getPhoneNumber().equalsIgnoreCase(userDTO.getPhoneNumber())) {
 						if (getUserByPhoneNumber != null) {
 							return checkDuplicateField(userDTO, getOldUserById, model, "phoneNumber");

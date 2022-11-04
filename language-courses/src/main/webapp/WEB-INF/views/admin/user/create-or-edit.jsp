@@ -10,11 +10,13 @@
 			<c:set var="actionTitle" value="Chỉnh sửa thông tin hồ sơ"></c:set>
 			<c:set var="col" value="col-12"></c:set>
 			<c:set var="formAction" value="/quan-tri/chinh-sua-ho-so"></c:set>
+			<c:set var="action" value="update"></c:set>
 		</c:if>
 		<c:if test="${userDetails == null}">
 			<c:set var="actionTitle" value="Thêm mới người dùng"></c:set>
 			<c:set var="col" value="col-12 col-sm-12 col-md-6 col-lg-6"></c:set>
 			<c:set var="formAction" value="/quan-tri/nguoi-dung/them-moi"></c:set>
+			<c:set var="action" value="create"></c:set>
 		</c:if>
 		<h1 class="text-center">
 			<c:out value="${actionTitle}" />
@@ -246,15 +248,20 @@
 									</c:if>
 								</c:if>
 								<div class="form-group row">
-									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+									<c:if test="${action != 'create'}">
+										<c:set var="col" value="col-12"></c:set>
+									</c:if>
+									<div class="${col}">
 										<button type="submit"
 											class="btn btn-primary btn-user btn-block mt-4">Lưu</button>
 									</div>
-									<div class="col-12 col-sm-12 col-md-6 col-lg-6">
-										<a href="/quan-tri/ho-so-cua-toi?id=${userDetails.id}"
-											class="btn btn-secondary btn-user btn-block mt-4">Quay
-											lại</a>
-									</div>
+									<c:if test="${action == 'create'}">
+										<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+											<a href="/quan-tri/nguoi-dung/danh-sach"
+												class="btn btn-secondary btn-user btn-block mt-4">Quay
+												lại danh sách</a>
+										</div>
+									</c:if>
 								</div>
 							</f:form>
 						</div>

@@ -39,7 +39,8 @@
 				</form>
 			</div>
 		</div>
-		<small class="text-muted">(Ấn vào biểu tượng để thay đổi trạng thái)</small>
+		<small class="text-muted">(Ấn vào biểu tượng để thay đổi trạng
+			thái)</small>
 		<div class="card o-hidden border-0 shadow-lg mb-4 mt-3">
 			<div class="card-body p-5">
 				<div class="table-responsive">
@@ -98,6 +99,8 @@
 									<td><button class="btn btn-sm border-primary">
 											<a href="/quan-tri/nguoi-dung/chi-tiet?id=${user.id}"><i
 												class="fas fa-eye" data-toggle="tooltip" title="Xem hồ sơ"></i></a>
+											| <a href="/quan-tri/chinh-sua-ho-so?id=${user.id}"><i
+												class="fas fa-edit" data-toggle="tooltip" title="Chỉnh sửa"></i></a>
 										</button></td>
 								</tr>
 							</c:forEach>
