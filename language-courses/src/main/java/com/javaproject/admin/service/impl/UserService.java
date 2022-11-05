@@ -73,7 +73,7 @@ public class UserService implements IUserService {
 		try {
 			if (userDTO.getFileImage().getOriginalFilename().isEmpty()) {
 				userDTO.setAvatar(
-						"https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/avatar_default.png?alt=media&token=b493b298-c1ce-4f76-9150-f5b6f6c743a3");
+						"https://firebasestorage.googleapis.com/v0/b/edukate-ce6f1.appspot.com/o/avatar_default.png?alt=media&token=4e800018-0c17-4041-9f58-2ea8f45186cb");
 			} else {
 				userDTO.setAvatar(getImageURL(userDTO.getFileImage()));
 			}
