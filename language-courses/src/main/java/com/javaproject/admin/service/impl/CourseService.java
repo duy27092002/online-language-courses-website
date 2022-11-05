@@ -80,7 +80,7 @@ public class CourseService implements ICourseService {
 		try {
 			if (dto.getThumbnailFile().getOriginalFilename().isEmpty()) {
 				dto.setThumbnail(
-						"https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/thumbnail_default.png?alt=media&token=bd4c3805-1176-40fd-af64-f9f5ed566513");
+						"https://firebasestorage.googleapis.com/v0/b/edukate-ce6f1.appspot.com/o/thumbnail_default.png?alt=media&token=4f9a6f84-9cd8-44ba-99e0-6113e45562f8");
 			} else {
 				dto.setThumbnail(getImageURL(dto.getThumbnailFile()));
 			}
