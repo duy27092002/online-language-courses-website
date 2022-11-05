@@ -80,7 +80,7 @@ public class VideoService implements IVideoService {
 			dto.setVideoFile(getFileURL(dto.getVideoFileName()));
 			if (dto.getThumbnailImg().getOriginalFilename().isEmpty()) {
 				dto.setThumbnail(
-						"https://firebasestorage.googleapis.com/v0/b/edukate-system.appspot.com/o/video_thumbnail_default.png?alt=media&token=a620226a-f8f9-4ab2-be8b-7773a4424b1b");
+						"https://firebasestorage.googleapis.com/v0/b/edukate-ce6f1.appspot.com/o/video_thumbnail_default.png?alt=media&token=e31b0d23-7566-41fc-8fa7-5410f2809207");
 			} else {
 				dto.setThumbnail(getFileURL(dto.getThumbnailImg()));
 			}
