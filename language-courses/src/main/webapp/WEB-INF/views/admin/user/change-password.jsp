@@ -7,7 +7,16 @@
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<h1 class="text-center">Đổi mật khẩu</h1>
-		<p style="color: red">${message}</p>
+		<c:if test="${message != null}">
+			<div class="alert alert-success alert-dismissible fade show"
+				role="alert">
+				<strong>${message}</strong>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
 		<div class="card o-hidden border-0 shadow-lg mb-5 mt-3">
 			<div class="card-body p-0">
 				<!-- Nested Row within Card Body -->
