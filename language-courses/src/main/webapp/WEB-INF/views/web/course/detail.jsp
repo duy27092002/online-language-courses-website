@@ -42,7 +42,8 @@
 					<div class="d-flex justify-content-between border-bottom px-4">
 						<h6 class="text-white my-3">Chất lượng</h6>
 						<h6 class="text-white my-3">
-							${rating} <i class="fas fa-star mr-2"></i> <small>(${totalOfEvaluated})</small>
+							${rating} / <small>5</small> <i class="fas fa-star mr-2"></i> <small>(${totalOfEvaluated}
+								lượt)</small>
 						</h6>
 					</div>
 					<div class="d-flex justify-content-between border-bottom px-4">
