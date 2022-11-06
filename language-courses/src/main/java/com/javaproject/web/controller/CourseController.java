@@ -84,7 +84,8 @@ public class CourseController extends BaseController {
 			CourseDTO courseDetails = courseService.getDetails(getCourseId).get(0);
 			model.addAttribute("courseDetails", courseDetails);
 			model.addAttribute("totalOfEvaluated", evaluatedService.getEvaluatedListByCourseId(getCourseId).size());
-			model.addAttribute("rating", evaluatedService.rating(getCourseId));
+			double getRating = evaluatedService.rating(getCourseId);
+			model.addAttribute("rating", Double.isNaN(getRating) ? 0 : getRating);
 			model.addAttribute("totalOfVideo", videoService.getListByCourseId(getCourseId).size());
 			model.addAttribute("listOfStudentIdByCourseId", csService.getStudentIdByCourseID(getCourseId));
 			model.addAttribute("courseListByLanguage",
