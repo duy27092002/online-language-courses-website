@@ -153,8 +153,9 @@
 			<div class="mx-auto mb-5" style="width: 100%; max-width: 600px;">
 				<form action="/danh-sach-khoa-hoc" method="get">
 					<div class="input-group">
-						<input type="text" name="keyword" class="form-control border-light"
-							style="padding: 30px 25px;" placeholder="Tên khóa học">
+						<input type="text" maxlength="50" name="keyword"
+							class="form-control border-light" style="padding: 30px 25px;"
+							placeholder="Tên khóa học">
 						<div class="input-group-append">
 							<button type="submit" class="btn btn-secondary px-4 px-lg-5">
 								<i class="fa fa-search"></i>

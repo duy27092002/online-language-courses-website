@@ -28,8 +28,9 @@
 				<form action="/quan-tri/vai-tro" method="get"
 					class="float-sm-left float-md-right float-lg-right form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
-						<input name="keyword" type="text" class="form-control bg-light small"
-							placeholder="Nhập từ khóa" value="${keyword}">
+						<input name="keyword" type="text" maxlength="20"
+							class="form-control bg-light small" placeholder="Nhập từ khóa"
+							value="${keyword}">
 						<div class="input-group-append">
 							<button class="btn btn-primary" type="submit">
 								<i class="fas fa-search fa-sm"></i>
@@ -54,9 +55,9 @@
 										value="keyword=${resultList.keyword}&orderBy=name&orderType=${orderType}"></c:set>
 								</c:if>
 								<th scope="col"><a
-									href="?page=${resultList.page}&${pagingParam}" class="text-body"
-									style="text-decoration: none;">Tên vai trò <i
-										class="fas fa-arrows-alt-v ml-1"></i>
+									href="?page=${resultList.page}&${pagingParam}"
+									class="text-body" style="text-decoration: none;">Tên vai
+										trò <i class="fas fa-arrows-alt-v ml-1"></i>
 								</a></th>
 								<th scope="col">Trạng thái</th>
 								<th scope="col">Thao tác</th>

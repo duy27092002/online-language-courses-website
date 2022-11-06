@@ -37,7 +37,7 @@
 					<div class="input-group">
 						<input name="id" type="hidden" value="${courseId}" /> <input
 							name="keyword" type="text" class="form-control bg-light small"
-							placeholder="Nhập từ khóa" value="${keyword}">
+							placeholder="Nhập từ khóa" maxlength="50" value="${keyword}">
 						<div class="input-group-append">
 							<button class="btn btn-primary" type="submit">
 								<i class="fas fa-search fa-sm"></i>

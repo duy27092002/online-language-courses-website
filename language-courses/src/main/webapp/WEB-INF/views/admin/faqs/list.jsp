@@ -29,8 +29,8 @@
 					class="float-sm-left float-md-right float-lg-right form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 					<div class="input-group">
 						<input name="keyword" type="text"
-							class="form-control bg-light small" placeholder="Nhập từ khóa"
-							value="${keyword}">
+							class="form-control bg-light small" maxlength="50"
+							placeholder="Nhập từ khóa" value="${keyword}">
 						<div class="input-group-append">
 							<button class="btn btn-primary" type="submit">
 								<i class="fas fa-search fa-sm"></i>
