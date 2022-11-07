@@ -164,7 +164,6 @@
 		}
 	</script>
 	<!-- /.container-fluid -->
-	<%@include file="/WEB-INF/views/common/pagination.jsp"%>
 </div>
 <!-- End of Main Content -->
 
