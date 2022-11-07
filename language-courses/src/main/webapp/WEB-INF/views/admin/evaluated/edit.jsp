@@ -89,3 +89,4 @@
 	<!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
+<%@include file="/WEB-INF/views/common/admin/footer.jsp"%>
